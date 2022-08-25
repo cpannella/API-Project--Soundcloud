@@ -37,6 +37,11 @@ module.exports = (sequelize, DataTypes) => {
       });
       return await User.scope('currentUser').findByPk(user.id);
     }
+
+    validatePassword(password) {
+      return bcrypt.compareSync(password, this.hashedPassword.toString());
+    }
+
 //-------------------------------------------------------------
     static associate(models) {
       // define association here
@@ -69,9 +74,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING.BINARY,
         allowNull: false,
         validate: {
-          validatePassword(password) {
-            return bcrypt.compareSync(password, this.hashedPassword.toString());
-          },
           len: [60, 60]
         }
       }
