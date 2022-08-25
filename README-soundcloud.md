@@ -1,9 +1,13 @@
 
-   # `<name of application here>`
+
+
+   # `SOUNDCLOUD`
 
 ## Database Schema Design
 
 `<insert database schema design here>`
+
+<img src="./SoundCloudSchema.PNG" alt="Alt text" title="Optional title">
 
 ## API Documentation
 
