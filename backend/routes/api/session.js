@@ -35,4 +35,19 @@ router.post('/', async (req, res, next) => {
   );
 
 
+  // Restore session user
+router.get(
+  '/',
+  restoreUser,
+  (req, res) => {
+    const { user } = req;
+    if (user) {
+      return res.json({
+        user: user.toSafeObject()
+      });
+    } else return res.json({});
+  }
+);
+
+
 module.exports = router;
