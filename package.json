@@ -1,4 +1,11 @@
 {
+  "scripts": {
+    "install": "npm --prefix backend install backend",
+    "dev:backend": "npm install --prefix backend start",
+    "sequelize": "npm run --prefix backend sequelize",
+    "sequelize-cli": "npm run --prefix backend sequelize-cli",
+    "start": "npm start --prefix backend"
+  },
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -15,6 +22,7 @@
     "sequelize": "^6.21.4",
     "sequelize-cli": "^6.4.1"
   },
+
   "devDependencies": {
     "sqlite3": "^5.0.11"
   }
