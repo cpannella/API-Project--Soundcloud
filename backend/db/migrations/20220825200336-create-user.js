@@ -7,10 +7,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        references:{
-          model: 'Albums',
-          key: 'userId',
-        }
+  
       },
       username: {
         type: Sequelize.STRING(30),

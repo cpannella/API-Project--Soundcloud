@@ -10,7 +10,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createtable('Playlists',{
+    await queryInterface.createTable('Playlists',{
       id: {
         type: Sequelize.INTEGER,
         unique: true,
