@@ -46,6 +46,9 @@ module.exports = (sequelize, DataTypes) => {
 
 //-------------------------------------------------------------
     static associate(models) {
+      User.hasMany(models.Playlist, {foreignKey: 'userId'})
+      User.hasMany(models.Album, {foreignKey: 'userId'})
+      User.hasMany(models.Comment, {foreignKey: 'userId'})
       // define association here
     }
   };
@@ -102,6 +105,9 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: [60, 60]
         }
+      },
+      imageUrl: {
+        type: DataTypes.STRING,
       }
     },
     {

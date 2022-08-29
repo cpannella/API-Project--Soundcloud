@@ -6,7 +6,16 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model: 'Albums',
+          key: 'userId',
+        }
+      },
+      username: {
+        type: Sequelize.STRING(30),
+        allowNull: false,
+        unique: true
       },
       firstName: {
         type: Sequelize.STRING(30),
@@ -16,19 +25,17 @@ module.exports = {
         type: Sequelize.STRING(30),
         allowNull: false,
       },
-      username: {
-        type: Sequelize.STRING(30),
-        allowNull: false,
-        unique: true
+      hashedPassword: {
+        type: Sequelize.STRING.BINARY,
+        allowNull: false
       },
       email: {
         type: Sequelize.STRING(256),
         allowNull: false,
         unique: true
       },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,
-        allowNull: false
+      imageUrl:{
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
