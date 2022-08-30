@@ -14,7 +14,6 @@ const { ValidationError } = require('sequelize');
 const app = express();
 
 app.use(morgan('dev'))
-
 app.use(cookieParser());
 app.use(express.json());
 
@@ -45,8 +44,16 @@ app.use(
   })
 );
 
-app.use(routes)
 
+
+app.use(routes)//-----------------importing index
+
+
+
+
+
+
+app.use('./songs', require('./routes'))
 // backend/app.js
 // ...
 // Catch unhandled requests and forward to error handler.
