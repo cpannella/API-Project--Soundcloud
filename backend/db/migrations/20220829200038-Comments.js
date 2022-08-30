@@ -19,7 +19,6 @@ module.exports = {
       },
       songId: {
         type: Sequelize.INTEGER,
-        unique: true,
         references: {
           model: 'Songs',
           key: 'id'
@@ -27,7 +26,6 @@ module.exports = {
       },
       userid:{
         type: Sequelize.INTEGER,
-        unique: true,
         references:{
           model: 'Users',
           key: 'id'

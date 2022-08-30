@@ -11,6 +11,18 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+   await queryInterface.bulkInsert('Comments', [
+    {
+      songId: 1,
+      userId: 1,
+      body: 'This song is great'
+   },
+   {
+    songId: 1,
+    userId: 2,
+    body: 'This song is great'
+   }
+  ])
   },
 
   async down (queryInterface, Sequelize) {
