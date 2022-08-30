@@ -11,6 +11,18 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+     await queryInterface.bulkInsert('Playlists',[
+      {
+        userId: 1,
+        name: 'Pink Floyd Favs',
+        imageUrl: 'Pink Floyd art'
+      },
+      {
+        userId: 2,
+        name: 'Metal playlist',
+        imageUrl: 'a piece of metal'
+      }
+    ])
   },
 
   async down (queryInterface, Sequelize) {
@@ -20,5 +32,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('Playlists', null, {})
   }
 };

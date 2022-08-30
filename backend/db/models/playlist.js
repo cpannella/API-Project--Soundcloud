@@ -12,11 +12,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Playlist.belongsTo(models.User, {foreignKey: 'userId'})
       Playlist.belongsToMany(models.Song, {through: models.PlaylistSong})
-      // define association here
+      // // define association here
     }
   }
   Playlist.init({
-    id: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
     userId: {
       type:DataTypes.INTEGER,
       unique: true,

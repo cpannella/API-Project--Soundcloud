@@ -10,11 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      // PliaylistSong.belongsToam(models.Song, {thro})
       // define association here
     }
   }
   PlaylistSong.init({
-    id: DataTypes.INTEGER,
+    id: {
+      type:DataTypes.INTEGER,
+      primaryKey: true,
+    },
     songId: DataTypes.INTEGER,
     playlistId: DataTypes.INTEGER,
     order: DataTypes.INTEGER

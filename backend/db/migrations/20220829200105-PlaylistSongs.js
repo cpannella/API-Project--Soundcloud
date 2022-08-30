@@ -10,26 +10,25 @@ module.exports = {
      */
     await queryInterface.createTable('PlaylistSongs', {
       id: {
+        primaryKey: true,
         type: Sequelize.INTEGER,
         unique: true,
       },
       songId: {
         type: Sequelize.INTEGER,
-        unique: true,
         references:{
           model: 'Songs',
-          key: 'songId'
         }
       },
-      playlistid:{
+      playlistId:{
         type: Sequelize.INTEGER,
         references:{
           model:'Playlists',
-          key:'playlistId'
         }
       },
       order: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        autoIncrement: true
       },
       createdAt: {
         allowNull: false,

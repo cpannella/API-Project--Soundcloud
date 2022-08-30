@@ -19,18 +19,15 @@ module.exports = {
       },
       albumId: {
         type: Sequelize.INTEGER,
-        unique: true,
         references:{
           model: 'Albums',
-          key: 'id'
         }
       },
       userId: {
         type: Sequelize.INTEGER,
-        unique: true,
         references:{
           model: 'Users',
-          key: 'id'
+
         }
       },
       title: {
