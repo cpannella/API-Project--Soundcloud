@@ -5,13 +5,14 @@ const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth')
 //Create a new song
 router.post('/', requireAuth, async (req, res) =>{
 
+   const {title, description, url, imageUrl, albumId} = req.body
 })
 
 router.get('/current', restoreUser, async (req, res) =>{
     console.log(req.params)
-    const {userId} = req.user.id
+    const userId = req.user.id
     const songs = await Song.findAll({
-      where: {userId:userId }
+      where: {userId}
     })
     res.json(songs)
 })
