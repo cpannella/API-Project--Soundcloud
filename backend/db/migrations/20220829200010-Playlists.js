@@ -32,7 +32,7 @@ module.exports = {
         unique: true
       },
       imageUrl:{
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       createdAt: {
