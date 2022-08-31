@@ -5,7 +5,7 @@ const { restoreUser } = require('../../utils/auth.js');
 const { requireAuth } = require('../../utils/auth.js');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
-
+const songsRouter = require('./songs.js')
 router.use(restoreUser);
 
 // GET /api/restore-user--------------------------------
@@ -15,17 +15,6 @@ router.get(
     return res.json(req.user);
   }
 );
-router.get('/set-token-cookie', async (_req, res) => {
-
-///GET //set-token-cookie
-  const user = await User.findOne({
-      where: {
-        username: 'Demo-lition'
-      }
-    });
-  setTokenCookie(res, user);
-  return res.json({ user });
-});
 
 
 
@@ -36,9 +25,20 @@ router.get(
   (req, res) => {
     return res.json(req.user);
   }
-);
+  );
 
 
+  // router.get('/set-token-cookie', async (_req, res) => {
+
+  // ///GET //set-token-cookie
+  //   const user = await User.findOne({
+  //       where: {
+  //         username: 'Demo-lition'
+  //       }
+  //     });
+  //   setTokenCookie(res, user);
+  //   return res.json({ user });
+  // });
 // router.post('/test', function(req, res) {
 
 // //   fetch('/api/test', {
@@ -53,7 +53,7 @@ router.get(
 // });
 
 router.use(restoreUser);
-
+router.use('/songs', songsRouter)
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);

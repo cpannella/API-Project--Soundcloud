@@ -1,7 +1,7 @@
 // backend/routes/api/session.js
 const express = require('express')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Song, Album } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -26,6 +26,15 @@ const validateSignup = [
     .withMessage('Password must be 6 characters or more.'),
   handleValidationErrors
 ];
+
+router.get('/:userId/songs', async (req , res) =>{
+  const songs = await Song.findAll({
+    where:{
+      userId : req.params.userId
+    }
+  })
+  res.json(songs)
+})
 
 
 // Sign up
