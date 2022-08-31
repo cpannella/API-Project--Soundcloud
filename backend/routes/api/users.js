@@ -1,6 +1,6 @@
 // backend/routes/api/session.js
 const express = require('express')
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { User, Song, Album } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -35,7 +35,7 @@ router.get('/:userId/songs', async (req , res) =>{
       userId : req.params.userId
     }
   })
-  res.json(songs)
+  res.json({Songs:songs})
 })
 
 
