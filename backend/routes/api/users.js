@@ -5,6 +5,8 @@ const { User, Song, Album } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
+
+
 const router = express.Router();
 
 const validateSignup = [
@@ -35,6 +37,8 @@ router.get('/:userId/songs', async (req , res) =>{
   })
   res.json(songs)
 })
+
+
 
 
 // Sign up

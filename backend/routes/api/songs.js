@@ -1,20 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const {User, Song, Comment, Album} = require('../../db/models')
-const album = require('../../db/models/album')
+const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
+//Create a new song
 
 
+router.get('/current', restoreUser, async (req, res) =>{
+    console.log(req.params)
+    const songs = await Song.findAll({})
+    res.json(songs)
+})
 
-router.get('/')
-
-// router.get('/current', requireAuth, async (req, res) =>{
-//   const songs = await Song.findAll({
-//     where: {
-//       userId : req.params.id
-//     }
-//   })
-// })
-
+//GET all details of Song from ID
 router.get('/:songId', async (req,res) =>{
   console.log(req.params)
   const {songId} = req.params
@@ -37,6 +34,11 @@ router.get('/:songId', async (req,res) =>{
     }
   return res.json(songs)
 })
+//GET All songs
+  router.get('/', async (req, res) =>{
+    const songs = await Song.findAll()
+    res.json({Songs:songs})
+  })
 
 
 module.exports = router;
