@@ -18,7 +18,7 @@ module.exports = {
         primaryKey: true
       },
       albumId: {
-        allowNull: true, 
+        allowNull: true,
         type: Sequelize.INTEGER,
         references:{
           model: 'Albums',
@@ -44,7 +44,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       imageUrl: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       createdAt: {

@@ -18,7 +18,7 @@ module.exports = {
         primaryKey: true
       },
       userId:{
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER,
         unique: true,
         references: {
