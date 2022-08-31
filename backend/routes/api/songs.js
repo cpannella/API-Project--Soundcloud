@@ -7,7 +7,10 @@ const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth')
 
 router.get('/current', restoreUser, async (req, res) =>{
     console.log(req.params)
-    const songs = await Song.findAll({})
+    const {userId} = req.params.id
+    const songs = await Song.findAll({
+      where: {userId:userId }
+    })
     res.json(songs)
 })
 
