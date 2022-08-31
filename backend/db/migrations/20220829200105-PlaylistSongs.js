@@ -13,6 +13,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
         unique: true,
+        autoIncrement: true
       },
       songId: {
         type: Sequelize.INTEGER,
