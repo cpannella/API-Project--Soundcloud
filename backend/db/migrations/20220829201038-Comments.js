@@ -23,7 +23,7 @@ module.exports = {
           model: "Songs"
         }
       },
-      userid:{
+      userId:{
         type: Sequelize.INTEGER,
         references:{
           model: 'Users'
