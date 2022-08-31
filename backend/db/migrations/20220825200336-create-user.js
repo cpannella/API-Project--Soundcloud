@@ -7,7 +7,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-  
+
       },
       username: {
         type: Sequelize.STRING(30),
@@ -32,6 +32,7 @@ module.exports = {
         unique: true
       },
       imageUrl:{
+        allowNull: true,
         type: Sequelize.STRING
       },
       createdAt: {
