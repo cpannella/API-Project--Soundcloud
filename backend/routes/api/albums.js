@@ -4,4 +4,7 @@ const {User, Song, Comment, Album} = require('../../db/models')
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
 
 
-module.exports = 
+
+
+
+module.exports = router
