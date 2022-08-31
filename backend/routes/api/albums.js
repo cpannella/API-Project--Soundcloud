@@ -4,12 +4,13 @@ const {User, Song, Comment, Album} = require('../../db/models')
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
 
 router.post('/', requireAuth, async (req, res) =>{
+  const {title, description, imageUrl} = req.body
   const userId = req.user.id
   const newAlbum = await Album.create({
-      userId: userId,
-      title: "Time",
-      description: "An album about time.",
-      imageUrl: "image url"
+      userId,
+      title,
+      description,
+      imageUrl
   })
 
   res.json(newAlbum)
