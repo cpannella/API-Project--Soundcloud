@@ -3,11 +3,13 @@ const router = express.Router()
 const {User, Song, Comment, Album} = require('../../db/models')
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
 //Create a new song
+router.post('/', requireAuth, async (req, res) =>{
 
+})
 
 router.get('/current', restoreUser, async (req, res) =>{
     console.log(req.params)
-    const {userId} = req.params.id
+    const {userId} = req.user.id
     const songs = await Song.findAll({
       where: {userId:userId }
     })
