@@ -6,6 +6,8 @@ const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth')
 
 
 //Create a new song
+
+
 router.post('/', requireAuth, async (req, res) =>{
    const userId = req.user.id
    const {title, description, url, imageUrl, albumId} = req.body
@@ -15,6 +17,7 @@ router.post('/', requireAuth, async (req, res) =>{
     url,
     imageUrl,
     albumId,
+    userId
    })
    res.json(newSong)
 })
@@ -23,12 +26,15 @@ router.put('/:songId', async (req, res) =>{
   const {songId} = req.params
   const {title, description, url, imageUrl, albumId} = req.body
   const edit = await Song.findByPk(songId,
+
+    )
+    if(!albumId){
+      edit.albumId = null
+    }
     edit.title = title,
     edit.description = description,
     edit.imageUrl = imageUrl,
     edit.url = url,
-    edit.albumId = albumId
-    )
     res.json(edit)
 })
 

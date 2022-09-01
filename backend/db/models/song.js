@@ -21,8 +21,12 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
     },
-    albumId: DataTypes.INTEGER,
+    albumId: {
+      type:DataTypes.INTEGER,
+      allowNull: true,
+    },
     userId: DataTypes.INTEGER,
     title: {
       type:DataTypes.STRING,
