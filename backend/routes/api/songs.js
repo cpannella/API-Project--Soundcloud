@@ -7,8 +7,18 @@ const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth')
 
 //Create a new song
 router.post('/:songId/comments', async (req, res) =>{
-    const {songId}
+
 })
+
+router.get('/:songId/comments', async (req, res) =>{
+  const {songId} = req.params
+  const comments = await Song.findByPk(songId,{
+  include: [{model:Comment}, {model:User} ]}
+  )
+  console.log(comments)
+  res.json({Comments: comments})
+})
+
 
 router.post('/', requireAuth, async (req, res) =>{
    const userId = req.user.id
@@ -61,14 +71,6 @@ router.delete('/:songId', requireAuth, async (req, res) =>{
   })
 })
 
-router.get('/:songId/comments', async (req, res) =>{
-  const {songId} = req.params
-  const comments = await Song.findByPk(songId,{
-  include: [{model:Comment}, {model:User, as : 'Artist'} ]}
-  )
-  console.log(comments)
-  res.json({Comments: comments})
-})
 
 
 
@@ -89,8 +91,7 @@ router.get('/:songId', async (req,res) =>{
 
   console.log(songId)
   const songs = await Song.findByPk(songId, {
-    include: [{model:User, as: "Artist",
-      attributes: ['id','username','imageUrl']
+    include: [{model:User, as: "Artist",  attributes: ['id','username','imageUrl']
     },
     {model: Album,
       attributes: ['id','title','imageUrl']}
