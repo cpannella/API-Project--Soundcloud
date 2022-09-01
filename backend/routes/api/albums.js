@@ -31,6 +31,10 @@ router.put('/:albumId', requireAuth, async (req, res) =>{
   const {albumId} = req.params
   const {title, description, imageUrl} = req.body
   const edited = await Album.findByPk(albumId)
+  if(edited.title === title){
+    res.status(200)
+    res.json({message: 'must be different name'})
+  }
   edited.title = title
   edited.description = description
   edited.imageUrl = imageUrl
