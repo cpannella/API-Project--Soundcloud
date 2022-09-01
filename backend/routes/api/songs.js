@@ -32,7 +32,7 @@ router.put('/:songId', async (req, res) =>{
     res.json(edit)
 })
 
-router.delete('/:songId', async (req, res) =>{
+router.delete('/:songId', requireAuth, async (req, res) =>{
 
   const {songId} = req.params
   console.log(songId)
@@ -53,9 +53,6 @@ router.get('/:songId/comments', async (req, res) =>{
   console.log(comments)
   res.json({Comments: comments})
 })
-
-
-
 
 
 
