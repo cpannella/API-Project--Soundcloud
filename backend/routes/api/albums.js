@@ -19,8 +19,21 @@ router.post('/', requireAuth, async (req, res) =>{
 
 router.get('/:albumId', async (req, res) =>{
   const {albumId} = req.params
-  const found = await Album.findByPk(albumId)
-  
+  const found = await Album.findByPk(albumId, {
+    include: [{model: User, as: 'Artist',
+      attributes: ['id','username','imageUrl'],
+     model: Songs}
+    ]
+   }
+  )
+  if(!found){
+    res.status(404)
+    return res.json({
+      message: "album couldn't be found",
+      statusCode: 404
+    })
+  }
+
   res.json(found)
 })
 
