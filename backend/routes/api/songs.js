@@ -26,7 +26,6 @@ router.put('/:songId', requireAuth, async (req, res) =>{
   const edit = await Song.findByPk(songId,
     )
     edit.title = title,
-    edit.userId
     edit.description = description,
     edit.imageUrl = imageUrl,
     edit.url = url,
