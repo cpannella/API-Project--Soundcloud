@@ -13,7 +13,7 @@ router.post('/:songId/comments', async (req, res) =>{
 router.get('/:songId/comments', async (req, res) =>{
   const {songId} = req.params
   const comments = await Song.findByPk(songId,{
-  include: [{model:Comment}, {model:User} ]}
+  include: [{model:Comment}, {model:User, as: 'Artist'} ]}
   )
   console.log(comments)
   res.json({Comments: comments})
