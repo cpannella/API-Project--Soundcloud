@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const {User, Song, Comment, Album} = require('../../db/models')
+const {User, Song, Comment, Album} = require('../../db/models');
+const album = require('../../db/models/album');
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
 
 router.post('/', requireAuth, async (req, res) =>{
@@ -14,6 +15,15 @@ router.post('/', requireAuth, async (req, res) =>{
   })
   res.json(newAlbum)
 })
+
+
+router.get('/:albumId', async (req, res) =>{
+  const {albumId} = req.params
+  const found = await Album.findByPk(albumId)
+  
+  res.json(found)
+})
+
 
 router.get('/current', requireAuth, async (req, res) =>{
   console.log(req.params)

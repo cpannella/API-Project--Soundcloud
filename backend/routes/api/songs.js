@@ -3,6 +3,8 @@ const express = require('express')
 const router = express.Router()
 const {User, Song, Comment, Album} = require('../../db/models')
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
+
+
 //Create a new song
 
 
@@ -20,7 +22,7 @@ router.post('/', requireAuth, async (req, res) =>{
    res.json(newSong)
 })
 
-router.put('/:songId', requireAuth, async (req, res) =>{
+router.put('/:songId', async (req, res) =>{
   const {songId} = req.params
   const {title, description, url, imageUrl, albumId} = req.body
   const edit = await Song.findByPk(songId,
@@ -48,6 +50,17 @@ router.delete('/:songId', requireAuth, async (req, res) =>{
     statusCode: 200
   })
 })
+
+router.get('/:songId/comments', async (req, res) =>{
+  const {songId} = req.params
+  const comments = await Song.findByPk(songId,{
+  include: [{model:Comment, model:User }]}
+  )
+  console.log(comments)
+  res.json({Comments: comments})
+})
+
+
 
 //GET by current user
 router.get('/current', requireAuth, async (req, res) =>{
