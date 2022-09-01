@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express')
 const router = express.Router()
 const {User, Song, Comment, Album} = require('../../db/models')
@@ -8,14 +9,41 @@ router.post('/', requireAuth, async (req, res) =>{
 
    const {title, description, url, imageUrl, albumId} = req.body
    const newSong = await Song.create({
-    title:title,
-    description: description,
-    url: url,
-    imageUrl:url,
-    albumId: null
+    title,
+    description,
+    url,
+    imageUrl,
+    albumId,
    })
    res.json(newSong)
 })
+
+router.put('/:songId', requireAuth, async (req, res) =>{
+  const {songId} = req.params
+  const {title, description, url, imageUrl, albumId} = req.body
+  const edit = await Song.findByPk(songId,
+    edit.title = title,
+    edit.description = description,
+    edit.imageUrl = imageUrl,
+    edit.url = url,
+    edit.albumId = albumId
+    )
+    res.json(edit)
+})
+
+router.delete('/:songId', requireAuth, async (req, res) =>{
+
+  const {songId} = req.params
+  console.log(songId)
+  const delet = await Song.findByPk(songId)
+  delet.destroy()
+  res.status(200)
+  res.json({
+    message: "Successfully deleted",
+    statusCode: 200
+  })
+})
+
 //GET by current user
 router.get('/current', requireAuth, async (req, res) =>{
     console.log(req.params)

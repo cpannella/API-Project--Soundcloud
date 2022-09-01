@@ -12,9 +12,18 @@ router.post('/', requireAuth, async (req, res) =>{
       description,
       imageUrl
   })
-
   res.json(newAlbum)
 })
+
+router.get('/current', requireAuth, async (req, res) =>{
+  console.log(req.params)
+  const userId = req.user.id
+  const albums = await Album.findAll({
+    where: {userId}
+  })
+  res.json(albums)
+})
+
 
 router.get('/', async (req, res) =>{
   const albums = await Album.findAll()
