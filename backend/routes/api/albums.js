@@ -13,6 +13,20 @@ router.post('/', requireAuth, async (req, res) =>{
   res.json(newAlbum)
 })
 
+//get details of album from albumId
+router.get('/:albumId', async (req, res) =>{
+  const {albumId} = req.params
+  const found = await Album.findByPk(albumId, {
+    include: [{model:User,
+      attributes: ['id','username','imageUrl']
+    },
+    {model: Song}
+    ],
+    }
+  )
+    res.json(found)
+})
+
 router.get('/current', requireAuth, async (req, res) =>{
   console.log(req.params)
   const userId = req.user.id
