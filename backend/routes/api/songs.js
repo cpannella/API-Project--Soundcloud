@@ -62,9 +62,11 @@ router.delete('/:songId', requireAuth, async (req, res) =>{
 router.post('/:songId/comments', async (req,res) =>{
   const {songId} = req.params
   const {body} = req.body
-  let newComment = await Comment.create()
-  newComment.body = body,
-  newComment.songId = songId
+  let newComment = await Comment.create({
+    body,
+    songId
+  })
+
 
   res.json(newComment)
 
