@@ -20,9 +20,7 @@ router.post('/', requireAuth, async (req, res) =>{
 router.get('/:albumId', async (req, res) =>{
   const {albumId} = req.params
   const found = await Album.findByPk(albumId, {
-    include: [{model: User, as: 'Artist',
-      attributes: ['id','username','imageUrl'],
-  },
+    include: [{model: User, as: 'Artist', attributes: ['id','username','imageUrl']},
      {model: Song}
     ]
    }
@@ -39,12 +37,11 @@ router.get('/:albumId', async (req, res) =>{
 
 
 router.get('/current', requireAuth, async (req, res) =>{
-  console.log(req.params)
   const userId = req.user.id
   const albums = await Album.findAll({
     where: {userId}
   })
-  res.json(albums)
+  res.json({Albums:albums})
 })
 
 
