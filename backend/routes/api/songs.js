@@ -95,7 +95,7 @@ router.get('/:songId/comments', async (req, res) => {
   if (!commentScope) {
     res.status(404);
     return res.json({
-      message: "Comment couldn't be found",
+      message: "Song couldn't be found",
       statusCode: 404
     })
   }
@@ -103,7 +103,7 @@ router.get('/:songId/comments', async (req, res) => {
   res.json({"Comments": [commentScope]})
 });
 
-  
+
 
 
 //GET songs by current user
