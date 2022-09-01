@@ -24,11 +24,14 @@ router.put('/:songId', requireAuth, async (req, res) =>{
   const edit = await Song.findByPk(songId,
 
     )
+    if(!albumId){
+      edit.albumId = null
+    }
     edit.title = title,
     edit.description = description,
     edit.imageUrl = imageUrl,
     edit.url = url,
-    edit.albumId = albumId
+
     res.json(edit)
 })
 
