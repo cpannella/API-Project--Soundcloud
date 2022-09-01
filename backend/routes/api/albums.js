@@ -6,7 +6,7 @@ const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth')
 router.post('/', requireAuth, async (req, res) =>{
   const {title, description, imageUrl} = req.body
   const userId = req.user.id
-  const newAlbum = await Album.create({
+  const newAlbum = await Album.build({
       userId,
       title,
       description,
