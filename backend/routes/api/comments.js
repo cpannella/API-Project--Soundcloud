@@ -24,7 +24,13 @@ router.put('/:commentId', requireAuth, async (req, res)=>{
 router.delete('/:commentId', requireAuth, restoreUser, async (req, res) =>{
   const {commentId} = req.params
   const delet = await Comment.findByPk(commentId)
-
+  if(!delet){
+    res.status(404)
+    res.json(res.json({
+      "message": "Comment couldn't be found",
+      "statusCode": 404
+    }))
+  }
   await delet.destroy()
 
   res.status(200)
