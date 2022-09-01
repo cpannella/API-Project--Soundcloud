@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Album.hasMany(models.Song, {foreignKey:'albumId'})
-      Album.belongsTo(models.User, {as: 'Artist', foreignKey: 'userId'})
+      Album.belongsTo(models.User, {foreignKey: 'userId'})
       // define association here
     }
   }
