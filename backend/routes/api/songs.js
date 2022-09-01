@@ -84,13 +84,6 @@ router.get('/:songId/comments', async (req, res) => {
 
   const commentScope = await Comment.scope([{method: ['songComment', songId]}]).findOne()
 
-  // const comments = await Song.scope(['comment']).findByPk(songId, {
-  //     include: [{model: Comment,
-  //       // attributes: ['id','userId', 'songId', 'body', 'createdAt', 'updatedAt'],
-  //         model: User,
-  //         attributes: ['id', 'username']
-  //     }]
-  // })
 
   if (!commentScope) {
     res.status(404);
