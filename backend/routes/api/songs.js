@@ -40,11 +40,9 @@ router.put('/:songId', async (req, res) =>{
       edit.albumId = null
     }
 
-    if(albumId && edit.title === title){
-      res.status(400)
-      res.json('Song must have unique name')
 
-    }
+
+    
     edit.title = title,
     edit.description = description,
     edit.imageUrl = imageUrl,

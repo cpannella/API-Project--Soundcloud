@@ -31,6 +31,9 @@ router.put('/:albumId', requireAuth, async (req, res) =>{
   const {albumId} = req.params
   const {title, description, imageUrl} = req.body
   const edited = await Album.findByPk(albumId)
+  edited.title = title
+  edited.description = description
+  edited.imageUrl = imageUrl
 
   res.json(edited)
 
