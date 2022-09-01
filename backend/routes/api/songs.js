@@ -4,6 +4,8 @@ const router = express.Router()
 const {User, Song, Comment, Album} = require('../../db/models')
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
 //Create a new song
+
+
 router.post('/', requireAuth, async (req, res) =>{
    const userId = req.user.id
    const {title, description, url, imageUrl, albumId} = req.body
@@ -31,7 +33,6 @@ router.put('/:songId', requireAuth, async (req, res) =>{
     edit.description = description,
     edit.imageUrl = imageUrl,
     edit.url = url,
-
     res.json(edit)
 })
 
