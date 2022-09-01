@@ -34,7 +34,6 @@ module.exports = {
       title: {
         allowNull: false,
         type: Sequelize.STRING,
-        unique: true
       },
       description: {
         type: Sequelize.STRING

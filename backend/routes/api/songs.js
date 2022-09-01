@@ -64,7 +64,7 @@ router.get('/:songId/comments', async (req, res) =>{
 
 //GET songs by current user
 router.get('/current', requireAuth, async (req, res) =>{
-    
+
     const userId = req.user.id
     const songs = await Song.findAll({
       where: {userId}
@@ -79,7 +79,7 @@ router.get('/:songId', async (req,res) =>{
 
   console.log(songId)
   const songs = await Song.findByPk(songId, {
-    include: [{model:User,
+    include: [{model:User, as: "Artist",
       attributes: ['id','username','imageUrl']
     },
     {model: Album,
