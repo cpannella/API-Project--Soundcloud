@@ -39,15 +39,11 @@ router.put('/:songId', async (req, res) =>{
     if(!albumId){
       edit.albumId = null
     }
-
-
-
-    
     edit.title = title,
     edit.description = description,
     edit.imageUrl = imageUrl,
     edit.url = url,
-
+    await edit.save()
     res.json(edit)
 })
 

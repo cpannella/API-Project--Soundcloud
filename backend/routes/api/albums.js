@@ -38,7 +38,7 @@ router.put('/:albumId', requireAuth, async (req, res) =>{
   edited.title = title
   edited.description = description
   edited.imageUrl = imageUrl
-
+  await edited.save()
   res.json(edited)
 
 })
