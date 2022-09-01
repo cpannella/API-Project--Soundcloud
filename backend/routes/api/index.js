@@ -7,6 +7,7 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const songsRouter = require('./songs.js')
 const albumsRouter = require('./albums.js')
+const commentsRouter = require('./comments')
 router.use(restoreUser);
 
 // GET /api/restore-user--------------------------------
@@ -57,7 +58,7 @@ router.use(restoreUser);
 router.use('/songs', songsRouter)
 router.use('/albums', albumsRouter)
 router.use('/session', sessionRouter);
-
+router.use('/comments', commentsRouter)
 router.use('/users', usersRouter);
 
 router.post('/test', (req, res) => {
