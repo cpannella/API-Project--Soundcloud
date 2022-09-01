@@ -16,6 +16,14 @@ router.post('/', requireAuth, async (req, res) =>{
   res.json(newAlbum)
 })
 
+router.get('/current', requireAuth, async (req, res) =>{
+
+  const userId = req.user.id
+  const albums = await Album.findAll({
+    where: {userId}
+  })
+  res.json({Albums:albums})
+})
 
 router.get('/:albumId', async (req, res) =>{
   const {albumId} = req.params
@@ -35,14 +43,7 @@ router.get('/:albumId', async (req, res) =>{
   res.json(found)
 })
 
-
-router.get('/current', requireAuth, async (req, res) =>{
-  const userId = req.user.id
-  const albums = await Album.findAll({
-    where: {userId}
-  })
-  res.json({Albums:albums})
-})
+//get albums from current user
 
 
 router.get('/', async (req, res) =>{

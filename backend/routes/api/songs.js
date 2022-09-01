@@ -62,9 +62,9 @@ router.get('/:songId/comments', async (req, res) =>{
 
 
 
-//GET by current user
+//GET songs by current user
 router.get('/current', requireAuth, async (req, res) =>{
-    console.log(req.params)
+    
     const userId = req.user.id
     const songs = await Song.findAll({
       where: {userId}
