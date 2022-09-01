@@ -19,7 +19,7 @@ router.post('/', requireAuth, async (req, res) =>{
    res.json(newSong)
 })
 
-router.put('/:songId', requireAuth, async (req, res) =>{
+router.put('/:songId', async (req, res) =>{
   const {songId} = req.params
   const {title, description, url, imageUrl, albumId} = req.body
   const edit = await Song.findByPk(songId,
@@ -48,7 +48,7 @@ router.delete('/:songId', requireAuth, async (req, res) =>{
 router.get('/:songId/comments', async (req, res) =>{
   const {songId} = req.params
   const comments = await Song.findByPk(songId,{
-  include: [{model:Comment, model:User}]}
+  include: [{model:Comment, model:User }]}
   )
   console.log(comments)
   res.json({Comments: comments})
