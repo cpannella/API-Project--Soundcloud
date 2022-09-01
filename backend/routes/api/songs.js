@@ -6,7 +6,9 @@ const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth')
 
 
 //Create a new song
-
+router.post('/:songId/comments', async (req, res) =>{
+    const {songId}
+})
 
 router.post('/', requireAuth, async (req, res) =>{
    const userId = req.user.id

@@ -34,10 +34,8 @@ router.put('/:albumId', requireAuth, async (req, res) =>{
   if(!edited){
     res.status(404)
     res.json({
-
         "message": "Album couldn't be found",
         "statusCode": 404
-      
     })
   }
   edited.title = title
@@ -45,7 +43,6 @@ router.put('/:albumId', requireAuth, async (req, res) =>{
   edited.imageUrl = imageUrl
   await edited.save()
   res.json(edited)
-
 })
 
 router.get('/:albumId', async (req, res) =>{
