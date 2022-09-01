@@ -34,7 +34,6 @@ router.put('/:songId', async (req, res) =>{
       res.status(404)
       res.json({ "message": "Song couldn't be found",
       "statusCode": 404})
-
     }
     if(!albumId){
       edit.albumId = null
