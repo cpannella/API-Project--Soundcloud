@@ -63,6 +63,24 @@ router.post('/:songId/comments', async (req,res) =>{
   const userId = req.user.id
   const {songId} = req.params
   const {body} = req.body
+  let find = await Song.findByPk(songId)
+  if(!find){
+    res.status(404)
+    res.json({
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    })
+  }
+  if(!req.body){
+    res.status(400)
+    res.json({
+      "message": "Validation error",
+      "statusCode": 400,
+      "errors": {
+        "body": "Comment body text is required"
+      }
+    })
+  }
   let newComment = await Comment.create({
     userId,
     body,
