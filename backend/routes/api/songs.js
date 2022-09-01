@@ -11,6 +11,7 @@ const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth')
 router.post('/', requireAuth, async (req, res) =>{
    const userId = req.user.id
    const {title, description, url, imageUrl, albumId} = req.body
+
    const newSong = await Song.create({
     title,
     description,
@@ -19,15 +20,22 @@ router.post('/', requireAuth, async (req, res) =>{
     albumId,
     userId
    })
+   res.status(201)
    res.json(newSong)
 })
 
 router.put('/:songId', async (req, res) =>{
   const {songId} = req.params
   const {title, description, url, imageUrl, albumId} = req.body
-  const edit = await Song.findByPk(songId,
 
+  const edit = await Song.findByPk(songId,
     )
+    if(!edit) {
+      res.status(404)
+      res.json({ "message": "Song couldn't be found",
+      "statusCode": 404})
+
+    }
     if(!albumId){
       edit.albumId = null
     }
@@ -35,6 +43,7 @@ router.put('/:songId', async (req, res) =>{
     edit.description = description,
     edit.imageUrl = imageUrl,
     edit.url = url,
+
     res.json(edit)
 })
 
