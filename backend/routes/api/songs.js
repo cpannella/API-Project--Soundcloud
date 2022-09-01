@@ -6,8 +6,6 @@ const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth')
 
 
 //Create a new song
-
-
 router.post('/', requireAuth, async (req, res) =>{
    const userId = req.user.id
    const {title, description, url, imageUrl, albumId} = req.body
@@ -23,7 +21,7 @@ router.post('/', requireAuth, async (req, res) =>{
    res.status(201)
    res.json(newSong)
 })
-
+//update a song by Id
 router.put('/:songId', async (req, res) =>{
   const {songId} = req.params
   const {title, description, url, imageUrl, albumId} = req.body
@@ -58,7 +56,7 @@ router.delete('/:songId', requireAuth, async (req, res) =>{
     statusCode: 200
   })
 })
-
+//create a comment for a song
 router.post('/:songId/comments', async (req,res) =>{
   const userId = req.user.id
   const {songId} = req.params
@@ -67,18 +65,8 @@ router.post('/:songId/comments', async (req,res) =>{
   if(!find){
     res.status(404)
     res.json({
-      "message": "Song couldn't be found",
+      "message": "Comment couldn't be found",
       "statusCode": 404
-    })
-  }
-  if(!req.body){
-    res.status(400)
-    res.json({
-      "message": "Validation error",
-      "statusCode": 400,
-      "errors": {
-        "body": "Comment body text is required"
-      }
     })
   }
   let newComment = await Comment.create({
@@ -87,20 +75,35 @@ router.post('/:songId/comments', async (req,res) =>{
     songId
   })
 
-
   res.json(newComment)
-
 })
 
-router.get('/:songId/comments', requireAuth, async (req, res) =>{
+
+router.get('/:songId/comments', async (req, res) => {
   const {songId} = req.params
-  const comments = await Song.findByPk(songId,{
-  include: [{model:Comment}]}
-  )
 
-  res.json({Comments: comments})
-})
+  const commentScope = await Comment.scope([{method: ['songComment', songId]}]).findOne()
 
+  // const comments = await Song.scope(['comment']).findByPk(songId, {
+  //     include: [{model: Comment,
+  //       // attributes: ['id','userId', 'songId', 'body', 'createdAt', 'updatedAt'],
+  //         model: User,
+  //         attributes: ['id', 'username']
+  //     }]
+  // })
+
+  if (!commentScope) {
+    res.status(404);
+    return res.json({
+      message: "Comment couldn't be found",
+      statusCode: 404
+    })
+  }
+
+  res.json({"Comments": [commentScope]})
+});
+
+  
 
 
 //GET songs by current user
