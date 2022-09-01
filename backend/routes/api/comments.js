@@ -8,6 +8,13 @@ router.put('/:commentId', requireAuth, async (req, res)=>{
   const {commentId} = req.params
   let {body} = req.body
   const comment = await Comment.findByPk(commentId)
+  if(!comment){
+    res.status(404)
+    res.json({
+      "message": "Comment couldn't be found",
+      "statusCode": 404
+    })
+  }
   comment.body = body
   await comment.save()
   res.json(comment)
