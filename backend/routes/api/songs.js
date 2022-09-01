@@ -15,7 +15,7 @@ router.post('/', requireAuth, async (req, res) =>{
     albumId,
     userId
    })
-   res.json(newSong)
+   res.json(newSong.albumId)
 })
 
 router.put('/:songId', requireAuth, async (req, res) =>{
