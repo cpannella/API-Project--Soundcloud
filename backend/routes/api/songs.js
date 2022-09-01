@@ -60,9 +60,11 @@ router.delete('/:songId', requireAuth, async (req, res) =>{
 })
 
 router.post('/:songId/comments', async (req,res) =>{
+  const userId = req.user.id
   const {songId} = req.params
   const {body} = req.body
   let newComment = await Comment.create({
+    userId,
     body,
     songId
   })
@@ -72,7 +74,7 @@ router.post('/:songId/comments', async (req,res) =>{
 
 })
 
-router.get('/:songId/comments', async (req, res) =>{
+router.get('/:songId/comments', requireAuth, async (req, res) =>{
   const {songId} = req.params
   const comments = await Song.findByPk(songId,{
   include: [{model:Comment}]}
