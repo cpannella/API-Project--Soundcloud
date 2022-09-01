@@ -6,9 +6,7 @@ const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth')
 
 
 //Create a new song
-router.post('/:songId/comments', async (req, res) =>{
-    
-})
+
 
 router.post('/', requireAuth, async (req, res) =>{
    const userId = req.user.id
@@ -66,7 +64,7 @@ router.get('/:songId/comments', async (req, res) =>{
   const comments = await Song.findByPk(songId,{
   include: [{model:Comment}]}
   )
-  console.log(comments)
+ 
   res.json({Comments: comments})
 })
 
