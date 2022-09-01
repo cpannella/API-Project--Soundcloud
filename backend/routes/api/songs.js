@@ -13,6 +13,7 @@ router.post('/', requireAuth, async (req, res) =>{
     url,
     imageUrl,
     albumId,
+    useId
    })
    res.json(newSong)
 })
