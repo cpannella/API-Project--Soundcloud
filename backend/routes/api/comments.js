@@ -16,7 +16,7 @@ router.put('/:commentId', requireAuth, async (req, res)=>{
     })
   }
 
-  if(edit.userId !== req.user.id){
+  if(comment.userId !== req.user.id){
     res.status(403)
     res.json({
       "message": "Forbidden",

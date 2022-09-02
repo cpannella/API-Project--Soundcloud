@@ -41,9 +41,37 @@ router.get('/:userId/songs', async (req , res) =>{
 router.get('/:userId', async (req, res) =>{
     const userId = req.params
     let artist = User.findByPk(userId)
-    
-    res.json(artist)
-})
+    const details = await User.findByPk({
+      where: {
+        userId
+      },
+      include: [
+        {
+          model: Song,
+          attribtues: []
+        },
+        {
+          model: Album,
+          attributes: []
+        }
+      ],
+      attributes: {
+        include: [
+          [
+            sequelize.fn("COUNT",
+            sequelize.col("Song.id")),
+            "totalSongs"
+          ]
+        ]
+      }
+    });
+
+    res.json(details)
+
+  });
+
+
+
 
 
 // Sign up
