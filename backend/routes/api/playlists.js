@@ -18,10 +18,7 @@ router.post('/', requireAuth, async (req, res)=>{
   res.json(playlist)
 })
 
-router.get('/', async (req, res) =>{
-  const playlists = await Playlist.findAll({
-    where})
-})
+
 
 
 module.exports = router;

@@ -35,6 +35,15 @@ router.get('/:userId/playlists', async (req , res) =>{
       userId : req.params.userId
     }
   })
+  if(!playlists){
+    res.status(404)
+    res.json({
+      {
+        "message": "Artist couldn't be found",
+        "statusCode": 404
+      }
+    })
+  }
   res.json({Playlists:playlists})
 })
 
