@@ -38,7 +38,12 @@ router.get('/:userId/songs', async (req , res) =>{
   res.json({Songs:songs})
 })
 
+router.get('/:userId', async (req, res) =>{
+    const {userId} = req.params
+    let artist = User.findByPk(userId)
 
+    res.json(artist)
+})
 
 
 // Sign up

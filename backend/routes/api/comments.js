@@ -15,6 +15,14 @@ router.put('/:commentId', requireAuth, async (req, res)=>{
       "statusCode": 404
     })
   }
+
+  if(edit.userId !== req.user.id){
+    res.status(403)
+    res.json({
+      "message": "Forbidden",
+      "statusCode": 403
+    })
+  }
   comment.body = body
   await comment.save()
   res.json(comment)
