@@ -39,9 +39,9 @@ router.get('/:userId/songs', async (req , res) =>{
 })
 
 router.get('/:userId', async (req, res) =>{
-    const {userId} = req.params
+    const userId = req.params
     let artist = User.findByPk(userId)
-
+    
     res.json(artist)
 })
 
