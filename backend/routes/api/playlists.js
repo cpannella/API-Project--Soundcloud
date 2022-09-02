@@ -1,0 +1,21 @@
+const { response } = require('express');
+const express = require('express')
+const router = express.Router()
+const {Playlist, User, Song, Comment, Album, sequelize} = require('../../db/models')
+const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
+
+
+router.post('/', async (req, res)=>{
+  const {name, imageUrl} = req.body
+
+  const playlist = Playlist.create()
+
+  res.status(201)
+  res.json(playlist)
+})
+
+
+
+
+
+module.exports = router;
