@@ -5,10 +5,11 @@ const {Playlist, User, Song, Comment, Album, sequelize} = require('../../db/mode
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
 
 
-router.post('/', async (req, res)=>{
+router.post('/', requireAuth, async (req, res)=>{
   const {name, imageUrl} = req.body
-
+  const userId = req.user.userId
   const playlist = Playlist.create({
+    userId,
     name,
     imageUrl
   })
