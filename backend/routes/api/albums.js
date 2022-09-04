@@ -48,7 +48,7 @@ router.put('/:albumId', requireAuth, async (req, res) =>{
 router.get('/:albumId', async (req, res) =>{
   const {albumId} = req.params
   const found = await Album.findByPk(albumId, {
-    include: [{model: User, attributes: ['id','username','imageUrl']},
+    include: [{model: User},
      {model: Song}
     ]
    }
