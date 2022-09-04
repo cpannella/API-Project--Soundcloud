@@ -29,23 +29,6 @@ const validateSignup = [
   handleValidationErrors
 ];
 
-router.get('/:userId/playlists', async (req , res) =>{
-  const {userId} = req.params
-  const playlists = await User.findByPk(userId{
-
-    }
-    )
-
-  // if(!playlists){
-  //   res.status(404)
-  //   res.json({
-  //     "message": "Artist couldn't be found",
-  //     "statusCode": 404
-
-  //   })
-
-  res.json({Playlists:playlists})
-})
 
 
 router.get('/:userId/songs', async (req , res) =>{
@@ -56,38 +39,6 @@ router.get('/:userId/songs', async (req , res) =>{
   })
   res.json({Songs:songs})
 })
-
-router.get('/:userId', async (req, res) =>{
-    const userId = req.params
-    let artist = User.findByPk(userId)
-    const details = await User.findByPk({
-      where: {
-        userId
-      },
-      include: [
-        {
-          model: Song,
-          attribtues: []
-        },
-        {
-          model: Album,
-          attributes: []
-        }
-      ],
-      attributes: {
-        include: [
-          [
-            sequelize.fn("COUNT",
-            sequelize.col("Song.id")),
-            "totalSongs"
-          ]
-        ]
-      }
-    });
-
-    res.json(details)
-
-  });
 
 
 
