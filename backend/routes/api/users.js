@@ -30,19 +30,20 @@ const validateSignup = [
 ];
 
 router.get('/:userId/playlists', async (req , res) =>{
-  const playlists = await Playlist.findAll({
-    where:{
-      userId : req.params.userId
-    }
-  })
-  if(!playlists){
-    res.status(404)
-    res.json({
-      "message": "Artist couldn't be found",
-      "statusCode": 404
+  const {userId} = req.params
+  const playlists = await User.findByPk(userId{
 
-    })
-  }
+    }
+    )
+
+  // if(!playlists){
+  //   res.status(404)
+  //   res.json({
+  //     "message": "Artist couldn't be found",
+  //     "statusCode": 404
+
+  //   })
+
   res.json({Playlists:playlists})
 })
 
