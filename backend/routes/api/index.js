@@ -8,7 +8,6 @@ const usersRouter = require('./users.js');
 const songsRouter = require('./songs.js')
 const albumsRouter = require('./albums.js')
 const commentsRouter = require('./comments')
-q
 router.use(restoreUser);
 
 // GET /api/restore-user--------------------------------
