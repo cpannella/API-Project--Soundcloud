@@ -72,8 +72,7 @@ router.get('/:playlistId', async (req,res) =>{
   let found = await Playlist.findByPk(playlistId, {
     include: [{model: Song}]
   })
-
-  res.json({Playlist :found})
+  res.json({Playlists :found})
 })
 
 
