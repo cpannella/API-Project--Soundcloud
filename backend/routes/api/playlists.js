@@ -1,7 +1,7 @@
 const { response } = require('express');
 const express = require('express')
 const router = express.Router()
-const {User, Song, Comment, Album, sequelize, Playlist} = require('../../db/models')
+const {User, Song, Comment, Album, sequelize, Playlist, PlaylistSong} = require('../../db/models')
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
 
 router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
