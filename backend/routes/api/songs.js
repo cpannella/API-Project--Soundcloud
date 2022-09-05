@@ -108,7 +108,7 @@ router.get('/current', requireAuth, async (req, res) =>{
     const songs = await Song.findAll({
       where: {userId}
     })
-    res.json(songs)
+    res.json({Songs:songs})
 })
 
 //GET all details of Song from ID
