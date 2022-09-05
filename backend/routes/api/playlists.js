@@ -20,14 +20,15 @@ router.put('/:playlistId', requireAuth, async (req, res) =>{
     })
   }
   let edit = await Playlist.findByPk(playlistId)
-  edit.name = name
-  edit.imageUrl = imageUrl
   if(!edit){
     res.status(400)
     res.json({
       "message": "Playlist couldn't be found",
       "statusCode": 404
     })
+  } else {
+  edit.name = name
+  edit.imageUrl = imageUrl
   }
   res.json(edit)
 })
