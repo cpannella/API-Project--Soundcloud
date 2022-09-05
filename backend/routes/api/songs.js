@@ -10,15 +10,16 @@ router.post('/', requireAuth, async (req, res) =>{
    const userId = req.user.id
    const {title, description, url, imageUrl, albumId} = req.body
 
-    // const check = await Album.findByPk(albumId)
-    // if(!check) {
-    //  res.status(404)
-    //  return res.json({
-    //   "message": "Album couldn't be found",
-    //   "statusCode": 404
-    //   })
-    // }
-
+   if(albumId && albumId !== null){
+   const find = await Album.findByPk(albumId)
+    if(!find) {
+      res.status(404)
+      res.json({
+        "message": "Album couldn't be found",
+        "statusCode": 404
+      })
+    }
+  }
 
    const newSong = await Song.create({
     title,
@@ -29,7 +30,7 @@ router.post('/', requireAuth, async (req, res) =>{
     userId
    })
    res.status(201)
-   await newSong.save()
+   
    res.json(newSong)
 })
 //update a song by Id
