@@ -31,8 +31,12 @@ router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
 router.get('/:playlistId', async (req,res) =>{
   let {playlistId} = req.params
   let found = await Playlist.findByPk(playlistId, {
-    include: [{model: Song}],
-    exclude: [{model: PlaylistSong}]
+    include: [{model: Song,
+      attributes:{
+        exclude : ['PlaylistSong']
+      }
+    }],
+
   })
   res.json(found)
 })
