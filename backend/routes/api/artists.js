@@ -22,8 +22,17 @@ router.get('/:userId/playlists', requireAuth, async (req, res) => {
 })
 
 
+
+
 router.get('/:userId/songs', async (req , res) =>{
   const {userId} = req.params
+  if(!await User.findByPk(userId)){
+    res.status(404)
+    res.json({
+      "message": "Artist couldn't be found",
+      "statusCode": 404
+    })
+    
   const songs = await Song.findAll({
     where:{
       userId : userId
