@@ -96,8 +96,23 @@ router.post('/', requireAuth, async (req, res) =>{
 })
 
 
-
-
+router.delete('/:playlistId', requireAuth, async (req, res)=>{
+  const {playlistId} = req.params
+  const delet = await Playlist.findByPk(playlistId)
+  if(!delet){
+    res.status(404)
+    res.json({
+      "message": "Playlist couldn't be found",
+      "statusCode": 404
+    })
+  }
+  await delet.destroy()
+  res.status(200)
+  res.json({
+    "message": "Successfully deleted",
+    "statusCode": 200
+  })
+})
 
 
 
