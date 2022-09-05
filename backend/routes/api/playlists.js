@@ -72,6 +72,13 @@ router.get('/:playlistId', async (req,res) =>{
   let found = await Playlist.findByPk(playlistId, {
     include: [{model: Song, through:{attributes:[]}}]
   })
+  if(!found) {
+    res.status(404)
+    res.json({
+      "message": "Playlist couldn't be found",
+      "statusCode": 404
+    })
+  }
   res.json({Playlists :found})
 })
 
