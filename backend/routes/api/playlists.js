@@ -4,6 +4,36 @@ const router = express.Router()
 const {User, Song, Comment, Album, sequelize, Playlist, PlaylistSong} = require('../../db/models')
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
 
+
+router.put('/:playlistId', requireAuth, async (req, res) =>{
+  const userId = req.user.id
+  const {name, imageUrl} = req.body
+  const {playlistId} = req.params
+  if(name === ''){
+    res.status(400)
+    res.json({
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Playlist name is required"
+      }
+    })
+  }
+  let edit = await Playlist.findByPk(playlistId)
+  edit.name = name
+  edit.imageUrl = imageUrl
+  if(!edit){
+    res.status(400)
+    res.json({
+      "message": "Playlist couldn't be found",
+      "statusCode": 404
+    })
+  }
+  res.json(edit)
+})
+
+
+
 router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
   const {playlistId} = req.params
   const {songId} = req.body
@@ -33,7 +63,7 @@ router.get('/:playlistId', async (req,res) =>{
   let found = await Playlist.findByPk(playlistId, {
     include: [{model: Song}]
   })
-  
+
   res.json(found)
 })
 
