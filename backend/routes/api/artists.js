@@ -4,7 +4,7 @@ const router = express.Router()
 const {User, Song, Comment, Album, sequelize, Playlist} = require('../../db/models')
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
 
-router.get('/:userId/playlists/songs', requireAuth, async (req, res) => {
+router.get('/:userId/playlists', requireAuth, async (req, res) => {
   const userId = req.user.id
   if(!await User.findByPk(userId)){
     res.status(404)
@@ -21,7 +21,7 @@ router.get('/:userId/playlists/songs', requireAuth, async (req, res) => {
   res.json({Playlists:playlists})
 })
 
-router.post('/', requireAuth, async (req,res)=>{
+router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
   const {playlistId} = req.params
   const {songId} = req.body
   const {userId} = req.user.id
