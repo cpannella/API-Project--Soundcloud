@@ -59,9 +59,9 @@ router.get(
   (req, res) => {
     const { user } = req;
     if (user) {
-      return res.json({
-         user
-      });
+      return res.json(
+         user.toSafeObject()
+      );
     } else return res.json({});
   }
 );
