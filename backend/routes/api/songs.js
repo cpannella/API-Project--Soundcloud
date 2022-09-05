@@ -45,12 +45,18 @@ router.put('/:songId', async (req, res) =>{
     await edit.save()
     res.json(edit)
 })
-
+///----delete--song
 router.delete('/:songId', requireAuth, async (req, res) =>{
-
   const {songId} = req.params
   console.log(songId)
   const delet = await Song.findByPk(songId)
+  if(!delet){
+    res.status(404)
+    res.json({
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    })
+  }
   delet.destroy()
   res.status(200)
   res.json({
@@ -80,13 +86,10 @@ router.post('/:songId/comments', async (req,res) =>{
   res.json(newComment)
 })
 
-
+//get comments of song by id
 router.get('/:songId/comments', async (req, res) => {
   const {songId} = req.params
-
   const commentScope = await Comment.scope([{method: ['songComment', songId]}]).findOne()
-
-
   if (!commentScope) {
     res.status(404);
     return res.json({

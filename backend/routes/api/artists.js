@@ -45,6 +45,13 @@ router.get('/:userId/songs', async (req , res) =>{
 router.get('/:userId', async (req, res) =>{
   const {userId} = req.params
   const artist = await User.findByPk(userId)
+  if(!artist){
+    res.status(404)
+    res.json({
+      "message": "Artist couldn't be found",
+      "statusCode": 404
+    })
+  }
 
   res.json(artist)
 })
