@@ -26,6 +26,15 @@ router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
   res.json(addition)
 })
 
+router.get('/:playlistId', async (req,res) =>{
+  let {playlistId} = req.params
+  let found = await Playlist.findByPk(playlistId, {
+    include: [{model: Song}]
+  })
+  res.json(found)
+})
+
+
 
 router.post('/', requireAuth, async (req, res) =>{
   const {name, imageUrl} = req.body
