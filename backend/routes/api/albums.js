@@ -5,23 +5,6 @@ const album = require('../../db/models/album');
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
 
 
-router.delete('/:albumId', requireAuth, async (req,res)=>{
-  const {albumId} = req.params
-  let delet = await Album.findByPk(albumId)
-  if(!delet){
-    res.status(404)
-    res.json({
-      "message": "Album couldn't be found",
-      "statusCode": 404
-    })
-  } else {
-    await delet.destroy()
-    res.json({
-      "message": "Successfully deleted",
-      "statusCode": 200
-    })
-  }
-})
 
 router.post('/', requireAuth, async (req, res, next) =>{
   const {title, description, imageUrl, albumId} = req.body
@@ -95,5 +78,22 @@ router.get('/', async (req, res) =>{
   res.json({Albums: albums})
 })
 
+router.delete('/:albumId', requireAuth, async (req,res)=>{
+  const {albumId} = req.params
+  let delet = await Album.findByPk(albumId)
+  if(!delet){
+    res.status(404)
+    res.json({
+      "message": "Album couldn't be found",
+      "statusCode": 404
+    })
+  } else {
+    await delet.destroy()
+    res.json({
+      "message": "Successfully deleted",
+      "statusCode": 200
+    })
+  }
+})
 
 module.exports = router
