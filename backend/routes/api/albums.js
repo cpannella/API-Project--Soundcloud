@@ -24,7 +24,6 @@ router.delete('/:albumId', requireAuth, async (req,res)=>{
 })
 
 router.post('/', requireAuth, async (req, res, next) =>{
-
   const {title, description, imageUrl, albumId} = req.body
   const userId = req.user.id
   if(!await Album.findByPk(albumId)){
@@ -44,14 +43,13 @@ router.post('/', requireAuth, async (req, res, next) =>{
 })
 
 router.get('/current', requireAuth, async (req, res) =>{
-
   const userId = req.user.id
   const albums = await Album.findAll({
     where: {userId}
   })
   res.json({Albums:albums})
 })
-
+//edit by id
 router.put('/:albumId', requireAuth, async (req, res) =>{
   const userId = req.user.id
   const {albumId} = req.params
@@ -70,11 +68,11 @@ router.put('/:albumId', requireAuth, async (req, res) =>{
   await edited.save()
   res.json(edited)
 })
-
+//get by album id
 router.get('/:albumId', async (req, res) =>{
   const {albumId} = req.params
   const found = await Album.findByPk(albumId, {
-    include: [{model: User, attributes: ['id','username','imageUrl']},
+    include: [{model: User, as: 'Artist', attributes: ['id','username','imageUrl']},
      {model: Song}
     ]
    }
