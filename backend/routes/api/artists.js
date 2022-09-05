@@ -5,7 +5,7 @@ const {User, Song, Comment, Album, sequelize, Playlist} = require('../../db/mode
 const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth');
 
 router.get('/:userId/playlists', requireAuth, async (req, res) => {
-  const userId = req.user.id
+  const {userId} = req.params
   if(!await User.findByPk(userId)){
     res.status(404)
     res.json({
