@@ -11,7 +11,7 @@ router.get('/:userId/playlists', requireAuth, async (req, res) => {
       userId : userId
     }
   })
-  res.json(playlists)
+  res.json({Playlists:playlists})
 })
 
 
