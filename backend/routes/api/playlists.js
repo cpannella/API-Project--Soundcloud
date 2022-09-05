@@ -33,7 +33,7 @@ router.get('/:playlistId', async (req,res) =>{
   let found = await Playlist.findByPk(playlistId, {
     include: [{model: Song}]
   })
-  delete found.songs[0]['PlaylistSong']
+  
   res.json(found)
 })
 
