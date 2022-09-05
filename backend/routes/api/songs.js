@@ -41,7 +41,8 @@ router.put('/:songId', async (req, res) =>{
     )
     if(!edit) {
       res.status(404)
-      res.json({ "message": "Song couldn't be found",
+      res.json({
+      "message": "Song couldn't be found",
       "statusCode": 404})
     }
     if(!albumId){
@@ -183,13 +184,8 @@ router.get('/:songId', async (req,res) =>{
   let result = {};
 
 result.songs = await Song.findAll({
-  attributes: [
-    'id',
-    'userId',
-    'albumId',
-    'title',
-    'description',
-    'url',
+  attributes: ['id','userId', 'albumId', 'title','description',
+'url',
     'createdAt',
     'updatedAt',
     'imageUrl'
