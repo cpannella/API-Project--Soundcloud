@@ -8,7 +8,12 @@ router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
   const {playlistId} = req.params
   const {songId} = req.body
   const {userId} = req.user.id
-
+  if(!await Playlist.findByPk(playlistId)){
+    res.status(404)
+    res.json({
+  "message": "Playlist couldn't be found",
+  "statusCode": 404
+  })
   const playlistAdd = await PlaylistSong.create({songId, playlistId})
   const addition = await PlaylistSong.findOne({
     where: {
@@ -16,12 +21,6 @@ router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
       playlistId: playlistId
     },
     attributes : ['id','songId','playlistId']
-  })
-  if(!addition) {
-    res.status(404)
-    res.json({
-      "message": "Playlist couldn't be found",
-      "statusCode": 404
     })
   }
   res.json(addition)
