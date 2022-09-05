@@ -30,6 +30,7 @@ router.put('/:playlistId', requireAuth, async (req, res) =>{
   edit.name = name
   edit.imageUrl = imageUrl
   }
+  await edit.save()
   res.json(edit)
 })
 
