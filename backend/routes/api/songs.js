@@ -139,8 +139,63 @@ router.get('/:songId', async (req,res) =>{
 })
 //GET All songs
   router.get('/', async (req, res) =>{
-    const songs = await Song.findAll()
-    res.json({Songs:songs})
+
+    let errorResult = {errors: [], count: 0, pageCount: 0};
+    let {page, size, createdAt, title} = req.query
+
+    if (!size) size = 20
+    if (!page) page = 1
+
+    size = parseInt(size)
+    page = parseInt(page)
+
+    const pagination = {}
+
+    if (Number.isInteger(page) && Number.isInteger(size) && page >= 1 && size >= 1) {
+      pagination.limit = size;
+      pagination.offset = size * (page - 1)
+    } else if (size < 0 || page < 0 || page > 10 || !createdAt) {
+    errorResult.errors.push({
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "page": "Page must be greater than or equal to 0",
+        "size": "Size must be greater than or equal to 0",
+        "createdAt": "CreatedAt is invalid"
+      }
+    })
+  }
+  if (errorResult.errors.length) {
+    errorResult.count = await Song.count()
+    res.status(400);
+    res.json(errorResult)
+    return;
+  }
+  let result = {};
+
+result.songs = await Song.findAll({
+  attributes: [
+    'id',
+    'userId',
+    'albumId',
+    'title',
+    'description',
+    'url',
+    'createdAt',
+    'updatedAt',
+    'imageUrl'
+  ],
+      ...pagination
+    });
+
+    result.page = page || 1
+    result.size = size
+
+    res.json({
+      "Songs": result.songs,
+      "page": result.page,
+      "size": result.size
+    })
   })
 
 
