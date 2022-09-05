@@ -17,6 +17,13 @@ router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
     },
     attributes : ['id','songId','playlistId']
   })
+  if(!addition) {
+    res.status(404)
+    res.json({
+      "message": "Playlist couldn't be found",
+      "statusCode": 404
+    })
+  }
   res.json(addition)
 })
 
