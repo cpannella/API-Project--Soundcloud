@@ -8,9 +8,11 @@ const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth')
 
 router.post('/', requireAuth, async (req, res) =>{
   const {name, imageUrl} = req.body
+  const userId = req.user.id
   const playlist = await Playlist.create({
     name,
-    imageUrl
+    imageUrl,
+    userId
   })
   res.status(201)
   res.json(playlist)
