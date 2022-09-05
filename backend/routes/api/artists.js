@@ -32,7 +32,7 @@ router.get('/:userId/songs', async (req , res) =>{
       "message": "Artist couldn't be found",
       "statusCode": 404
     })
-    
+  }
   const songs = await Song.findAll({
     where:{
       userId : userId
