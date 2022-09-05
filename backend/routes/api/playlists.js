@@ -73,7 +73,7 @@ router.get('/:playlistId', async (req,res) =>{
     include: [{model: Song}]
   })
 
-  res.json(found)
+  res.json({Playlists:found})
 })
 
 
