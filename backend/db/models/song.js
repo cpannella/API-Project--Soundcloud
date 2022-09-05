@@ -46,6 +46,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Song',
+    defaultScope: {
+      attributes:{
+        exclude: [{model:Playlistsong}]
+      }
+    }
   });
   return Song;
 };
