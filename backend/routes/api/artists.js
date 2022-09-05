@@ -23,9 +23,10 @@ router.get('/:userId/playlists', requireAuth, async (req, res) => {
 
 
 router.get('/:userId/songs', async (req , res) =>{
+  const {userId} = req.params
   const songs = await Song.findAll({
     where:{
-      userId : req.params.id
+      userId : userId
     }
   })
   res.json({Songs:songs})
