@@ -13,7 +13,9 @@ router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
     res.json({
   "message": "Playlist couldn't be found",
   "statusCode": 404
+
   })
+}
   const playlistAdd = await PlaylistSong.create({songId, playlistId})
   const addition = await PlaylistSong.findOne({
     where: {
@@ -22,7 +24,7 @@ router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
     },
     attributes : ['id','songId','playlistId']
     })
-  }
+  
   res.json(addition)
 })
 

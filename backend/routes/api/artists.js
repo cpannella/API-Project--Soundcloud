@@ -42,5 +42,12 @@ router.get('/:userId/songs', async (req , res) =>{
 })
 
 
+router.get('/:userId', async (req, res) =>{
+  const {userId} = req.params
+  const artist = await User.findByPk(userId)
+  
+})
+
+
 
 module.exports = router
