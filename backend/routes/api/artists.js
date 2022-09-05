@@ -21,19 +21,5 @@ router.get('/:userId/playlists', requireAuth, async (req, res) => {
   res.json({Playlists:playlists})
 })
 
-router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
-  const {playlistId} = req.params
-  const {songId} = req.body
-  const {userId} = req.user.id
 
-  const playlistAdd = await PlaylistSong.create({songId, playlistId})
-  const addition = await PlaylistSong.findOne({
-    where: {
-      songId: songId,
-      playlistId: playlistId
-    },
-    attributes : ['id','songId','playlistId']
-  })
-  res.json(addition)
-})
 module.exports = router
