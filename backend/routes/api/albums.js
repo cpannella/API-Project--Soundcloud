@@ -9,11 +9,15 @@ const { requireAuth, restoreSession, restoreUser } = require('../../utils/auth')
 router.post('/', requireAuth, async (req, res, next) =>{
   const {title, description, imageUrl, albumId} = req.body
   const userId = req.user.id
-  if(!await Album.findByPk(albumId)){
-    res.status(404)
+
+  if(title === ''){
+    res.status(400)
     res.json({
-      "message": "Album couldn't be found",
-      "statusCode": 404
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "title": "Album title is required"
+      }
     })
   }
   const newAlbum = await Album.create({
@@ -22,6 +26,7 @@ router.post('/', requireAuth, async (req, res, next) =>{
       description,
       imageUrl
   })
+  res.status(201)
   res.json(newAlbum)
 })
 
