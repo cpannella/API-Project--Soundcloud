@@ -30,7 +30,6 @@ router.post('/', requireAuth, async (req, res) =>{
     userId
    })
    res.status(201)
-   
    res.json(newSong)
 })
 //update a song by Id
@@ -92,7 +91,7 @@ router.post('/:songId/comments', async (req,res) =>{
     body,
     songId
   })
-
+  res.status(201)
   res.json(newComment)
 })
 
