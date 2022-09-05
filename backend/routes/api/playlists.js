@@ -59,6 +59,13 @@ router.post('/:playlistId/songs', requireAuth, async (req,res)=>{
 
   res.json(addition)
 })
+router.get('/current', requireAuth, async (req, res) =>{
+  const userId = req.user.id
+    const playlists = await Playlist.findAll({
+      where: {userId}
+    })
+    res.json(playlists)
+})
 
 router.get('/:playlistId', async (req,res) =>{
   let {playlistId} = req.params
@@ -69,13 +76,6 @@ router.get('/:playlistId', async (req,res) =>{
   res.json(found)
 })
 
-router.get('/current', requireAuth, async (req, res) =>{
-  const userId = req.user.id
-    const playlists = await Playlist.findAll({
-      where: {userId}
-    })
-    res.json(playlists)
-})
 
 router.post('/', requireAuth, async (req, res) =>{
   const {name, imageUrl} = req.body
