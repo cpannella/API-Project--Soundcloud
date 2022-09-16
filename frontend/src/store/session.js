@@ -2,6 +2,14 @@ import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const SIGNUP = 'session/SIGNUP'
+
+const signUp = (user) => {
+  return {
+    type: SIGNUP,
+    payload: user
+  }
+}
 
 const setUser = (user) => {
   return {
@@ -43,23 +51,24 @@ export const restoreUser = () => async dispatch => {
 };
 // ...
 //------------------------------------signup user
-// export const signup = (user) => async (dispatch) => {
-//   const { username, email, password, firstName, lastName } = user;
-//   const response = await csrfFetch("/api/users", {
-//     method: "POST",
-//     body: JSON.stringify({
-//       username,
-//       email,
-//       password,
-//       firstName,
-//       lastName
-//     }),
-//   });
-//   const data = await response.json();
-//   dispatch(setUser(data.user));
-//   return response;
-// };
-// ...
+export const signup = (user) => async (dispatch) => {
+  const { username, email, password, firstName, lastName } = user;
+  console.log('this is the signup thunk',user)
+  const response = await csrfFetch("/api/users", {
+    method: "POST",
+    body: JSON.stringify({
+      username,
+      email,
+      password,
+      firstName,
+      lastName
+    }),
+  });
+  const data = await response.json();
+  dispatch(setUser(data));
+  return response;
+};
+
 
 
 const initialState = { user: null };
@@ -74,6 +83,7 @@ const sessionReducer = (state = initialState, action) => {
       newState.user = action.payload;
       console.log('this is the newState obj', newState)
       return newState;
+
     case REMOVE_USER:
       newState = {...state};
       delete newState.user
