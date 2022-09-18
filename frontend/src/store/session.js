@@ -25,7 +25,7 @@ const removeUser = () => {
 };
 // ------------------------------login
 export const login = (user) => async (dispatch) => {
-  console.log('this is the login thunk')
+
   const { credential, password } = user;
   const response = await csrfFetch('/api/session', {
     method: 'POST',
@@ -35,9 +35,9 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  console.log('this is data from the login thunk', data)//---
+  
   dispatch(setUser(data));
-  console.log(response)
+
   return response;
 };
 
@@ -53,7 +53,7 @@ export const restoreUser = () => async dispatch => {
 //------------------------------------signup user
 export const signup = (user) => async (dispatch) => {
   const { username, email, password, firstName, lastName } = user;
-  console.log('this is the signup thunk',user)
+
   const response = await csrfFetch("/api/users", {
     method: "POST",
     body: JSON.stringify({
@@ -84,13 +84,13 @@ const initialState = { user: null };
 
 const sessionReducer = (state = {user: null}, action) => {
   let newState;
-  console.log('this is the reducer working with the state', state)
+
   switch (action.type) {
     case SET_USER:
       newState = {...state}
-      console.log('this is the action', action.payload)
+
       newState.user = action.payload;
-      console.log('this is the newState obj', newState)
+
       return newState;
 
     case REMOVE_USER:

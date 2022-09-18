@@ -58,7 +58,7 @@ router.put('/:songId', async (req, res) =>{
 ///----delete--song
 router.delete('/:songId', requireAuth, async (req, res) =>{
   const {songId} = req.params
-  console.log(songId)
+
   const delet = await Song.findByPk(songId)
   if(!delet){
     res.status(404)
@@ -126,10 +126,10 @@ router.get('/current', requireAuth, async (req, res) =>{
 
 //GET all details of Song from ID
 router.get('/:songId', async (req,res) =>{
-  console.log(req.params)
+
   const {songId} = req.params
 
-  console.log(songId)
+  
   const songs = await Song.findByPk(songId, {
     include: [{model:User, as: 'Artist',
       attributes: ['id','username','imageUrl']

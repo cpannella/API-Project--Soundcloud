@@ -14,9 +14,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <><div>
-      <p>Hello From App</p>
-    </div>
+    <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
