@@ -69,24 +69,33 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
+//-----------------------------logout
+
+export const logout = () => async (dispatch) => {
+  const response = await csrfFetch('/api/session', {
+    method: 'DELETE',
+  });
+  dispatch(removeUser());
+  return response;
+};
 
 
 const initialState = { user: null };
 
-const sessionReducer = (state = initialState, action) => {
+const sessionReducer = (state = {user: null}, action) => {
   let newState;
   console.log('this is the reducer working with the state', state)
   switch (action.type) {
     case SET_USER:
-      newState = {...state};
-      console.log('this is the action',action.payload)
+      newState = {...state}
+      console.log('this is the action', action.payload)
       newState.user = action.payload;
       console.log('this is the newState obj', newState)
       return newState;
 
     case REMOVE_USER:
       newState = {...state};
-      delete newState.user
+      newState.user = null
       return newState;
     default:
       return state;

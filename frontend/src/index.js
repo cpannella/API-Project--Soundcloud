@@ -17,7 +17,6 @@ if (process.env.NODE_ENV !== 'production') {
   restoreCSRF()
   window.store = store;
   window.csrfFetch= csrfFetch
-  console.log('banana')
   window.sessionActions = sessionActions;
 }
 
