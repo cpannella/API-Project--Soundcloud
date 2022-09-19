@@ -14,21 +14,24 @@ function Navigation({ isLoaded }){
     );
   } else {
     sessionLinks = (
+      <div className='session-links'>
       <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/login" className="login-button">Log In</NavLink>
+        <NavLink to="/signup" className='signup' >Sign Up</NavLink>
       </>
+      </div>
     );
   }
 
   return (
     <div className='nav-bar'>
-      <ul>
-        <li>
-          <NavLink exact to="/">Home</NavLink>
+
+          <NavLink exact to="/" style={{color: '#ccc', background: "#111111" }}>Home</NavLink>
+          <input className='search-bar' type="search" placeholder='Search'></input>
           {isLoaded && sessionLinks}
-        </li>
-      </ul>
+
+
+
     </div>
   );
 }
