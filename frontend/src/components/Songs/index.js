@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import { getSongs } from '../../store/songs';
 import './songs.css'
+import CreateSongForm from './createSongForm';
+import EditSongForm from './EditSongform';
 
 
 
@@ -11,6 +13,7 @@ const SongPage = () => {
   const dispatch = useDispatch()
 
   const songs = useSelector(state =>  state.songs)
+  const sessionUser = useSelector(state => state.session.user);
 
   const songList = Object.values(songs)
   console.log('workable state', songList)
@@ -26,24 +29,29 @@ const SongPage = () => {
 
   return (
     <div >
-      <h1 className="header-placeholder">Songs Component</h1>
+      <CreateSongForm/>
+      <EditSongForm/>
       <div>
       <ul>
         {songList.map((song) =>{
           return (
-            <div className="song-container">
+            <div  key={song.id} className="song-container">
                 <h2>{song.title}</h2>
 
                 <h3 className="song-description">{song.description}</h3>
 
               <h4>Uploaded by {song.userId}</h4>
-              <img src={song.imageUrl}></img>
+              <img alt={song.imageUrl}></img>
+              <div className="button-div">
+              <button>Leave a comment</button>
+              <button>Edit Song</button>
+              </div>
             </div>
           )
         })}
       </ul>
       </div>
-      <p>Songs go here</p>
+
 
     </div>
   )

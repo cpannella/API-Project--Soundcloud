@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createSong } from '../../store/songs';
+import { editSong } from '../../store/songs';
+
 import './songs.css'
 
-
-const CreateSongForm = ({song}) => {
+const EditSongForm = ({song}) => {
   const history = useHistory()
   const dispatch = useDispatch()
   console.log('does this render?')
@@ -23,22 +23,24 @@ const CreateSongForm = ({song}) => {
   const onSubmit = async (e) => {
     e.preventDefault()
     const payload = {
+      ...song,
       title,
       description,
       imageUrl,
       url
     }
+    console.log(payload)
 
-    let createdSong = await dispatch(createSong(payload))
-      if(createdSong) {
-        history.push(`/songs/${createdSong.id}`)
+    let updateSong = await dispatch(editSong(payload))
+      if(updateSong) {
+        history.push(`/songs/${updateSong.id}`)
         // hideForm()
     }
   }
 
   return (
     <div className="new-song-form">
-      <h2>Upload a song</h2>
+      <h2>Edit a song</h2>
       <form onSubmit={onSubmit}>
         <div>
           <label htmlFor='title'>Title:</label>
@@ -82,4 +84,4 @@ const CreateSongForm = ({song}) => {
   );
 }
 
-export default CreateSongForm
+export default EditSongForm

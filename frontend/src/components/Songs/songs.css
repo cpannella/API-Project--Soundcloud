@@ -4,3 +4,8 @@
   flex-direction: column;
 
 }
+
+.new-song-form {
+  display: flex;
+  justify-content: center;
+}
