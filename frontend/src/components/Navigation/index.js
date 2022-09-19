@@ -16,8 +16,8 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <div className='session-links'>
       <>
-        <NavLink to="/login" className="login-button">Log In</NavLink>
-        <NavLink to="/signup" className='signup' >Sign Up</NavLink>
+        <NavLink to="/login" className="login-button" style={{color: '#ccc', padding: '50px'}}>Log In</NavLink>
+        <NavLink to="/signup" className='login-' style={{color: '#fff', backgroundColor: '#f50'}}>Sign Up</NavLink>
       </>
       </div>
     );
