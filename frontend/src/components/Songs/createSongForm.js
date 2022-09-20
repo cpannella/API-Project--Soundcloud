@@ -81,8 +81,8 @@ const CreateSongForm = ({song}) => {
         <div>
           <label htmlFor='audio'>album:</label>
           <input
-            id='audio'
-            type='text'
+            id='albumId'
+            type='number'
             onChange={e => setAlbumId(e.target.value)}
             value={albumId}
           />
