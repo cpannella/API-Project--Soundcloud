@@ -112,12 +112,11 @@ export default function songReducer(state = initialState, action ){
   switch(action.type){
     case GET_SONGS:
                         // console.log('newState spread out---------', newState)
-                                        // console.log(action.songs.Songs, 'console.log your way to freedom')
 
       action.songs.forEach(song => {
         newState[song.id] = song
       })
-                        //spreading new state
+                     
       newState = {...newState}
                         // console.log(newState)
       return newState
