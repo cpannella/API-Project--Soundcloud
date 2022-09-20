@@ -18,7 +18,7 @@ const CreateSongForm = ({song}) => {
   const [description, setDescription] = useState(''); //description
   const [imageUrl, setImageUrl] = useState(''); //imageUrl
   const [url, setUrl] = useState('') //AudioUrl
-  const [albumId, setAlbumId] = useState(null)
+
 
 
   const onSubmit = async (e) => {
@@ -27,8 +27,7 @@ const CreateSongForm = ({song}) => {
       title,
       description,
       imageUrl,
-      url,
-      albumId
+      url
     }
 
     let createdSong = await dispatch(createSong(payload))
@@ -78,15 +77,7 @@ const CreateSongForm = ({song}) => {
             value={url}
           />
         </div>
-        <div>
-          <label htmlFor='audio'>album:</label>
-          <input
-            id='audio'
-            type='text'
-            onChange={e => setAlbumId(e.target.value)}
-            value={albumId}
-          />
-        </div>
+        
         <button>Submit</button>
       </form>
     </div>
