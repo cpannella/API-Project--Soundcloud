@@ -23,6 +23,7 @@ const CreateSongForm = ({song}) => {
 
   const onSubmit = async (e) => {
     e.preventDefault()
+    console.log('this is the albumId------------', albumId)
     const payload = {
       title,
       description,
