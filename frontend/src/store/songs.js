@@ -35,10 +35,10 @@ const postSong = (song) => {
   }
 }
 
-const deleter = (data) => {
+const deleter = (id) => {
   return {
   type: DELETE_SONG,
-  data
+  id
   }
 }
 
@@ -98,6 +98,18 @@ export const createSong = (data) => async dispatch => {
       console.log('error')
     }
 
+  export const deleteSong = (id) => async dispatch => {
+    console.log('this is the delete song thunk--------------', id)
+    const response = await csrfFetch(`/api/songs/${id}`, {method: 'DELETE'})
+    console.log('this is the response obj------------', response)
+    
+    if(response.ok) {
+      const deletedItemId = await response.json()
+      dispatch(deleter(deletedItemId))
+
+      return deletedItemId
+    }
+  }
 
 const initialState = {}
 //Songs are in form of array, need to normalize data.
@@ -109,25 +121,29 @@ export default function songReducer(state = initialState, action ){
   switch(action.type){
     case GET_SONGS:
       newState = {...state, ...action.songs.Songs}
-      // console.log('newState spread out---------', newState)
-      // console.log(action.songs.Songs, 'console.log your way to freedom')
-      //normalizing song array into object
+                        // console.log('newState spread out---------', newState)
+                                        // console.log(action.songs.Songs, 'console.log your way to freedom')
+
       action.songs.Songs.forEach(song => {
         newState[song.id] = song
       })
-      //spreading new state
+                        //spreading new state
       newState = {...newState}
-      // console.log(newState)
+                        // console.log(newState)
       return newState
 
     case POST_SONG:
-    console.log('this is the post_Song action initializing')
-    newState = {...state}
-    console.log('this is the new state before action', newState)
-    newState[action.song.id] = action.song
-    console.log('the post song action after action', newState)
-    return newState
-
+                      // console.log('this is the post_Song action initializing')
+      newState = {...state}
+                      // console.log('this is the new state before action', newState)
+      newState[action.song.id] = action.song
+                      // console.log('the post song action after action', newState)
+      return newState
+    case DELETE_SONG:
+      newState = {...state}
+      console.log('newState delete action------', newState)
+      delete newState[action.song.id]
+      console.log('newState post deleteion ---------', newState)
 
     default:
     return state;

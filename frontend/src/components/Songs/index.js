@@ -10,7 +10,7 @@ import SongDetail from './songDetails';
 
 
 const SongPage = () => {
-  const { songId } = useParams()
+  const { id } = useParams()
   const dispatch = useDispatch()
 
   const songs = useSelector(state =>  state.songs)
@@ -25,7 +25,7 @@ const SongPage = () => {
 
   useEffect(() => {
     dispatch(getSongs())
-  }, [dispatch])
+  }, [dispatch, id])
 
 
 
@@ -46,7 +46,7 @@ const SongPage = () => {
               <img alt={song.imageUrl}></img>
               <div className="button-div">
               <button>Leave a comment</button>
-              
+
               </div>
             </div>
           )

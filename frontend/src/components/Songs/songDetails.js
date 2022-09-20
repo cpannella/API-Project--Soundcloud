@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getOneSong } from '../../store/songs';
+import { useParams, useHistory } from 'react-router-dom';
+import { deleteSong, getOneSong } from '../../store/songs';
 import  EditSongForm  from './EditSongform'
 import './songs.css'
 
@@ -13,15 +13,17 @@ const SongDetail = () => {
   const songs = useSelector(state =>  state.songs)
   const sessionUser = useSelector(state => state.session.user);
   const songList = Object.values(songs)
+  const history = useHistory()
 
+  const filtered = songList.filter(song => song.id === +id)
+  const song = filtered[0]
 
   useEffect(() => {
     dispatch(getOneSong(id))
   }, [dispatch, id])
 
-  const filtered = songList.filter(song => song.id === +id)
-  const song = filtered[0]
-  console.log('THIS IS THE FILTERED CALL', filtered)
+  // console.log('THIS IS THE FILTERED CALL', filtered)
+  console.log('this is the song.id--------------------', song.id)
   return (
     <div className="song-details">
       <h1>SONG DETAILS</h1>
@@ -31,9 +33,10 @@ const SongDetail = () => {
 
       <p>Album</p>
       <img alt={song.imageUrl}></img>
-      {
-    <button onClick={()=> setShowEditSongForm(true)}>Edit song</button>
-     }
+      <div>
+      {<button onClick={()=> setShowEditSongForm(true)}>Edit song</button>}
+      <button onClick={(e)=> {dispatch(deleteSong(song.id), history.push('/'))} }>Delete song</button>
+      </div>
   {showEditsongForm ? <EditSongForm/> : null}
     </div>
   )
