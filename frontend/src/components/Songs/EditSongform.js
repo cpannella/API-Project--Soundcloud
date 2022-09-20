@@ -15,7 +15,7 @@ const EditSongForm = ({song}) => {
   const sessionUser = useSelector(state => state.session.user)
 
   //form inputs
-  const [showForm, setShowForm] = useState(true) //only showform if user is logged in
+  const [showEditsongForm, setShowEditSongForm] = useState(false)
   const [title, setTitle] = useState(''); //title
   const [description, setDescription] = useState(''); //description
   const [imageUrl, setImageUrl] = useState(''); //imageUrl
@@ -33,9 +33,10 @@ const EditSongForm = ({song}) => {
       url
     }
     console.log(payload)
-
+    console.log('testing set show edit', setShowEditSongForm(false))
     let updateSong = await dispatch(editSong(payload))
       if(updateSong) {
+
         history.push(`/songs/${updateSong.id}`)
         // hideForm()
     }
@@ -81,8 +82,9 @@ const EditSongForm = ({song}) => {
             value={url}
           />
         </div>
-        <button>Submit</button>
-        
+        <button onClick={()=> setShowEditSongForm(false)}>Submit</button>
+        {showEditsongForm ? false : null}
+
       </form>
     </div>
   );

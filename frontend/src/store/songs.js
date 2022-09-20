@@ -1,10 +1,10 @@
 import { csrfFetch } from "./csrf"
 
-const GET_SONGS = '/api/songs'
-const GET_ONE_SONG = 'api/songs/:songId'
-// const EDIT_SONG = 'api/songs/:songId'
-const DELETE_SONG = 'api/songs/:songId'
-const POST_SONG = 'api/songs'
+const GET_SONGS = 'songs/GET_SONGS'
+const GET_ONE_SONG = 'songs/GET_ONE_SONG'
+
+const DELETE_SONG = 'songs/DELETE_SONG'
+const POST_SONG = 'songs/POST_SONG'
 
 
 const get = (songs) => {
@@ -13,7 +13,6 @@ const get = (songs) => {
     songs
   }
 }
-
 // const getById = (id) => {
 //   return {
 //   type: GET_ONE_SONG,
@@ -21,12 +20,7 @@ const get = (songs) => {
 //   }
 // }
 
-// const edit = (data) => {
-//   return {
-//   type: EDIT_SONG,
-//   data
-//   }
-// }
+
 
 const postSong = (song) => {
   return {
@@ -47,8 +41,8 @@ export const getSongs = () => async dispatch => {
   const response = await csrfFetch(`/api/songs`)
   console.log('get songs thunk response', response )
   if(response.ok) {
-    const songs  = await response.json()
-    dispatch(get(songs))
+    const data  = await response.json()
+    dispatch(get(data.Songs))
   } else {
     console.log('fooey')
   }
@@ -102,12 +96,9 @@ export const createSong = (data) => async dispatch => {
     console.log('this is the delete song thunk--------------', id)
     const response = await csrfFetch(`/api/songs/${id}`, {method: 'DELETE'})
     console.log('this is the response obj------------', response)
-    
-    if(response.ok) {
-      const deletedItemId = await response.json()
-      dispatch(deleter(deletedItemId))
 
-      return deletedItemId
+    if(response.ok) {
+      dispatch(deleter(id))
     }
   }
 
@@ -120,11 +111,10 @@ export default function songReducer(state = initialState, action ){
   // console.log('this is the action.songList', action.songs)
   switch(action.type){
     case GET_SONGS:
-      newState = {...state, ...action.songs.Songs}
                         // console.log('newState spread out---------', newState)
                                         // console.log(action.songs.Songs, 'console.log your way to freedom')
 
-      action.songs.Songs.forEach(song => {
+      action.songs.forEach(song => {
         newState[song.id] = song
       })
                         //spreading new state
@@ -142,7 +132,7 @@ export default function songReducer(state = initialState, action ){
     case DELETE_SONG:
       newState = {...state}
       console.log('newState delete action------', newState)
-      delete newState[action.song.id]
+      delete newState[action.id]
       console.log('newState post deleteion ---------', newState)
 
     default:

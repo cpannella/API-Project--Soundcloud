@@ -18,7 +18,7 @@ const CreateSongForm = ({song}) => {
   const [description, setDescription] = useState(''); //description
   const [imageUrl, setImageUrl] = useState(''); //imageUrl
   const [url, setUrl] = useState('') //AudioUrl
-  const [albumId, setAlbumId] = useState('')
+  const [albumId, setAlbumId] = useState(null)
 
 
   const onSubmit = async (e) => {

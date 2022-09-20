@@ -30,14 +30,14 @@ const SongDetail = () => {
       <h2> {song.title} </h2>
       <h3>{song.description}</h3>
 
-
       <p>Album</p>
       <img alt={song.imageUrl}></img>
+      
       <div>
-      {<button onClick={()=> setShowEditSongForm(true)}>Edit song</button>}
-      <button onClick={(e)=> {dispatch(deleteSong(song.id), history.push('/'))} }>Delete song</button>
+        {<button onClick={()=> setShowEditSongForm(true)}>Edit song</button>}
+        <button onClick={(e)=> {dispatch(deleteSong(song.id), history.push('/'))} }>Delete song</button>
       </div>
-  {showEditsongForm ? <EditSongForm/> : null}
+          {showEditsongForm ? <EditSongForm/> : null}
     </div>
   )
 
