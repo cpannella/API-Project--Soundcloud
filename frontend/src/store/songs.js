@@ -14,12 +14,12 @@ const get = (songs) => {
   }
 }
 
-const getById = (id) => {
-  return {
-  type: GET_ONE_SONG,
-  id
-  }
-}
+// const getById = (id) => {
+//   return {
+//   type: GET_ONE_SONG,
+//   id
+//   }
+// }
 
 // const edit = (data) => {
 //   return {
@@ -55,10 +55,12 @@ export const getSongs = () => async dispatch => {
 }
 
 export const getOneSong = (id) => async dispatch => {
+  console.log('the get one song THUNK')
   const response = await csrfFetch(`/api/songs/${id}`)
   if(response.ok) {
     const song = await response.json()
     dispatch(postSong(song))
+    return song
   }
 }
 
@@ -81,6 +83,7 @@ export const createSong = (data) => async dispatch => {
 
 
   export const editSong = (data) => async dispatch => {
+    console.log('THIS IS THE DATA----------------', data)
     console.log('editSong thunk')
     const response = await csrfFetch(`/api/songs/${data.id}`, {
       method: "PUT",

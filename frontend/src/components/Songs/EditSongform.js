@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+
+import { useHistory, useParams } from 'react-router-dom';
 import { editSong } from '../../store/songs';
 
 import './songs.css'
 
 const EditSongForm = ({song}) => {
+  const {id} = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
-  console.log('does this render?')
+  console.log(id)
   const songs = useSelector(state =>  state.songs)
   const sessionUser = useSelector(state => state.session.user)
 
@@ -20,10 +22,11 @@ const EditSongForm = ({song}) => {
   const [url, setUrl] = useState('') //AudioUrl
 
 
+  console.log(song, 'THIS IS THE SONG')
   const onSubmit = async (e) => {
     e.preventDefault()
     const payload = {
-      ...song,
+      id,
       title,
       description,
       imageUrl,
