@@ -24,7 +24,11 @@ const CreateSongForm = ({song}) => {
   useEffect(()=> {
     const errors = [];
     if(!title.length) errors.push('Song must have title')
-    if((imageUrl && !imageUrl.endsWith('jpg')) || (imageUrl && !imageUrl.endsWith('png'))) errors.push("Must be valid image type")
+    if((imageUrl.includes('.jpg')) || (imageUrl.includes('png'))) {
+     } else {
+      errors.push("Must be valid image type")
+     }
+
     setValidationErrors(errors)
   }, [title, imageUrl])
 
