@@ -18,6 +18,15 @@ const CreateSongForm = ({song}) => {
   const [description, setDescription] = useState(''); //description
   const [imageUrl, setImageUrl] = useState(''); //imageUrl
   const [url, setUrl] = useState('') //AudioUrl
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [validationErrors, setValidationErrors] = useState([]);
+
+  useEffect(()=> {
+    const errors = [];
+    if(!title.length) errors.push('Song must have title')
+    if((imageUrl && !imageUrl.endsWith('jpg')) || (imageUrl && !imageUrl.endsWith('png'))) errors.push("Must be valid image type")
+    setValidationErrors(errors)
+  }, [title, imageUrl])
 
 
 
@@ -29,6 +38,8 @@ const CreateSongForm = ({song}) => {
       imageUrl,
       url
     }
+    setHasSubmitted(true)
+    if(validationErrors.length) return alert('Can not Submit')
 
     let createdSong = await dispatch(createSong(payload))
       if(createdSong) {
@@ -40,6 +51,16 @@ const CreateSongForm = ({song}) => {
   return (
     <div className="new-song-form">
       <h2>Upload a song</h2>
+      {hasSubmitted && validationErrors.length > 0 && (
+        <div>
+          The following errors were found:
+          <ul>
+            {validationErrors.map(error => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       <form onSubmit={onSubmit}>
         <div>
           <label htmlFor='title'>Title:</label>
@@ -77,7 +98,7 @@ const CreateSongForm = ({song}) => {
             value={url}
           />
         </div>
-        
+
         <button>Submit</button>
       </form>
     </div>
