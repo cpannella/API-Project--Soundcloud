@@ -22,9 +22,8 @@ const SongPage = () => {
     dispatch(getSongs())
   }, [dispatch, id])
 
-
-
-  return (
+  if(!sessionUser) return null
+  else return (
     <div >
       <CreateSongForm/>
       <div>

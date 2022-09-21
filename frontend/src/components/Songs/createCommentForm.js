@@ -1,38 +1,34 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import  createComment  from '../../store/songs';
+import { useParams } from 'react-router-dom'
+import  {createComment}  from '../../store/comments';
 import './songs.css'
 
 
 const CreateCommentForm = ({songs}) => {
+  const {id} = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
   const comments = useSelector(state =>  state.comments)
   const sessionUser = useSelector(state => state.session.user)
-
-  const [showForm, setShowForm] = useState(true) //only showform if user is logged in
+  const [showForm, setShowForm] = useState(true)
   const [body, setBody] = useState('')
 
 
-
-
+  const songId = parseInt(id)
   const onSubmit = async (e) => {
-    console.log('submit data start')
     e.preventDefault()
     const payload = {
+      songId,
       body
     }
-    console.log('flerpidy derp tracing data')
-                                  //this dispatch is causing my song reducer to run.
-    let createdComment = await dispatch(createComment(payload))//error is happening with this call,
 
-
-    console.log('this is the created comment', createdComment)
-      if(createdComment) {
-        history.push(`/songs/${createdComment.id}`)
-        // hideForm()
+  let createdComment = await dispatch(createComment(payload, songId))//error is happening with this call,
+    if(createdComment) {
+    history.push(`/songs/${createdComment.id}`)
     }
+   setBody('')
   }
 
   return (

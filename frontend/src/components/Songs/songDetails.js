@@ -16,10 +16,14 @@ const SongDetail = () => {
   const songList = Object.values(songs)
   const history = useHistory()
 
+  if(!sessionUser){
+    history.push('/')
+  }
+
   const filtered = songList.filter(song => song.id === +id)
   const song = filtered[0]
-  
-  const artist = song.Artist
+  console.log('this is the song object--------------', song)
+  // const artist = song.Artist
 
   useEffect(() => {
     dispatch(getOneSong(id))

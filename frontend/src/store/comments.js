@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf"
 
 
 const GET_COMMENT = 'comments/GET_COMMENT'
-const REMOVE_COMMENT = 'comments/DELETE_COMMENT'
+const DELETE_COMMENT = 'comments/DELETE_COMMENT'
 const ADD_COMMENT = 'comments/ADD_COMMENT'
 
 
@@ -23,18 +23,17 @@ const add = (comment) => {
 }
 
 const remove = (commentId, songId) => {
-
   return {
-    type: REMOVE_COMMENT,
+    type: DELETE_COMMENT,
     commentId,
     songId
   }
 }
 
 export const getComments = (songId) => async dispatch => {
-
+  console.log('comment thunk')
   const response = await csrfFetch(`/api/songs/${songId}/comments`)
-  if(!response) console.log("error")
+
   if(response.ok) {
     const commentsObj = await response.json()
     const comments = commentsObj.Comments
@@ -55,8 +54,17 @@ export const createComment = (comment, songId) => async dispatch => {
     dispatch(add(comment))
     return comment
   }
-
 }
+
+export const deleteComment = (id) => async dispatch => {
+  const response = await csrfFetch(`/api/comments/${id}`, {
+    method: 'DELETE'
+  })
+  if(response.ok){
+    dispatch(remove(id))
+  }
+}
+
 
 
 
@@ -64,7 +72,7 @@ const initialState = {}
 
 export default function commentReducer(state = initialState, action ){
   let newState = {}
-  console.log('comment reducer firing here')
+
   switch(action.type){
     case GET_COMMENT:
       action.comments.forEach(comment => {
@@ -75,10 +83,13 @@ export default function commentReducer(state = initialState, action ){
     case ADD_COMMENT:
 
       newState = {...state}
-      console.log('this is the state reducer', newState)
+
       newState[action.comment.id] = action.comment
       return newState
-
+    case DELETE_COMMENT:
+      newState = {...state}
+      delete newState[action.id]
+      return newState
     default:
       return state;
       }

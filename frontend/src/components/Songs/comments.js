@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import './comments.css'
-import { getComments } from '../../store/comments';
+import { getComments, deleteComment } from '../../store/comments';
 import CreateCommentForm from './createCommentForm';
+
 
 
 export const Comments = ({songs}) => {
@@ -31,6 +32,7 @@ return  (
         <div className="single-comment-container">
           <ul>
              <li>{comment.body}</li>
+             <button onClick={()=> {dispatch(deleteComment(comment.id))}}>Delete comment</button>
           </ul>
 
         </div>
