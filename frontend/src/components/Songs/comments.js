@@ -11,16 +11,26 @@ export const Comments = ({song, songId}) => {
   const dispatch = useDispatch()
     const comments = useSelector(state => state.comments)
     const details = Object.values(comments)
-    console.log('these are the details ')
+    const filtered = details.filter(comment => comment.id === +id )
+
 
 useEffect(() => {
-  // console.log('is data starting here1?')
   dispatch(getComments(id))
 }, [dispatch, song])
 
 return  (
-  <div>
+  <div className="comment-container">
     <h3>Comments go here</h3>
+    <button>View Comments</button>
+    {details.map(comment =>{
+      return (
+        <div className="single-comment-container">
+          <ul>
+             <li>{comment.body}</li>
+          </ul>
+        </div>
+      )
+    } )}
   </div>
 )
 

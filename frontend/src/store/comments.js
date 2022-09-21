@@ -34,11 +34,10 @@ const remove = (commentId, songId) => {
 export const getComments = (songId) => async dispatch => {
 
   const response = await csrfFetch(`/api/songs/${songId}/comments`)
-  console.log('this is the thunk response-----------------------------', response)
+
   if(response.ok) {
     const commentsObj = await response.json()
     const comments = commentsObj.Comments
-    console.log('this is the comment json console.log',comments)
     dispatch(get(comments, songId))
   }
 }
@@ -50,14 +49,10 @@ export default function commentReducer(state = initialState, action ){
 
   switch(action.type){
     case GET_COMMENT:
-      console.log('action log--------------------------', action.comments)
-      action.comments.forEach(comment => {
-        newState[comment.id] = comment
-      })
-      
-      console.log('this is the newstate-----------',newState)
+        action.comments.forEach(comment => {
+          newState[comment.id] = comment
+        })
       return newState
-
 
       default:
         return state;

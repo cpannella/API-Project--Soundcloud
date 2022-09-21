@@ -31,16 +31,13 @@ const SongPage = () => {
       <ul>
         {songList.map((song) =>{
           return (
-            <div  key={song.id} className="song-container">
+            <div key={song.id} className="song-container">
                 <h2>{song.title}</h2>
               <NavLink key={song.id} to={`/songs/${song.id}`}>View Song Details Here</NavLink>
 
-                
-
               <h4>Uploaded by {song.userId}</h4>
-              <img alt={song.imageUrl}></img>
-              <div className="button-div">
-
+                <img alt={song.imageUrl}></img>
+                <div className="button-div">
 
               </div>
             </div>

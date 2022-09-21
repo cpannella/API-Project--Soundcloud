@@ -51,7 +51,7 @@ function LoginFormPage() {
         />
       </label>
       <button type="submit">Log In</button>
-      <button type="submit" onClick={()=> dispatch(sessionActions.login({ credential: 'new@user.io', password: "password" }))
+      <button type="submit" onClick={()=> dispatch(sessionActions.login({ credential: 'demo@user.io', password: "password" }))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
