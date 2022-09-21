@@ -1,8 +1,9 @@
+// frontend/src/components/Navigation/index.js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-
+import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -11,30 +12,28 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-
       <ProfileButton user={sessionUser} />
-
     );
   } else {
     sessionLinks = (
-      <div className='session-links'>
-
-        <NavLink to="/login" className="login-button" style={{color: '#ccc', padding: '50px'}}>Log In</NavLink>
-        <NavLink to="/signup" className='login-' style={{color: '#fff', backgroundColor: '#f50'}}>Sign Up</NavLink>
-
-      </div>
-
+      <>
+        <LoginFormModal />
+        <NavLink to="/signup">Sign Up</NavLink>
+      </>
     );
   }
 
   return (
-    <div className='nav-bar'>
-          <NavLink exact to="/" style={{color: '#ccc', background: "#111111" }}>Home</NavLink>
-          <input className='search-bar' type="search" placeholder='Search'></input>
-          <button>Upload Song</button>
-          {isLoaded && sessionLinks}
-    </div>
+    <ul>
+      <li>
+        <NavLink exact to="/">Home</NavLink>
+        {isLoaded && sessionLinks}
+      </li>
+    </ul>
   );
 }
 
 export default Navigation;
+
+{/* <input className='search-bar' type="search" placeholder='Search'></input>
+<button>Upload Song</button> */}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
+import LoginForm from "./components/LoginFormModal";
 import SignupFormPage from "./components/SignUpFormPage";
 import SongPage from './components/Songs'
 import * as sessionActions from "./store/session";
@@ -21,7 +21,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/login">
-            <LoginFormPage />
+            
           </Route>
           <Route path="/signup">
             <SignupFormPage />
