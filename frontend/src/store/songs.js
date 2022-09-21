@@ -13,16 +13,10 @@ const get = (songs) => {
     songs
   }
 }
-// const getById = (id) => {
-//   return {
-//   type: GET_ONE_SONG,
-//   id
-//   }
-// }
-
 
 
 const postSong = (song) => {
+  console.log('data point----------------3')
   return {
     type: POST_SONG,
     song
@@ -39,7 +33,6 @@ const deleter = (id) => {
 //song retrieval
 export const getSongs = () => async dispatch => {
   const response = await csrfFetch(`/api/songs`)
-  console.log('get songs thunk response', response )
   if(response.ok) {
     const data  = await response.json()
     dispatch(get(data.Songs))
@@ -49,7 +42,6 @@ export const getSongs = () => async dispatch => {
 }
 
 export const getOneSong = (id) => async dispatch => {
-  console.log('the get one song THUNK')
   const response = await csrfFetch(`/api/songs/${id}`)
   if(response.ok) {
     const song = await response.json()
@@ -61,7 +53,6 @@ export const getOneSong = (id) => async dispatch => {
 
 //song creation-----------------------------------
 export const createSong = (data) => async dispatch => {
-  console.log('createSong thunk')
   const response = await csrfFetch(`/api/songs`, {
     method: "POST",
     headers : { "Content-Type":"application/json"},
@@ -77,8 +68,6 @@ export const createSong = (data) => async dispatch => {
 
 
   export const editSong = (data) => async dispatch => {
-    console.log('THIS IS THE DATA----------------', data)
-    console.log('editSong thunk')
     const response = await csrfFetch(`/api/songs/${data.id}`, {
       method: "PUT",
       headers : { "Content-Type":"application/json"},
@@ -93,10 +82,7 @@ export const createSong = (data) => async dispatch => {
     }
 
   export const deleteSong = (id) => async dispatch => {
-    console.log('this is the delete song thunk--------------', id)
     const response = await csrfFetch(`/api/songs/${id}`, {method: 'DELETE'})
-    console.log('this is the response obj------------', response)
-
     if(response.ok) {
       dispatch(deleter(id))
     }
@@ -111,30 +97,22 @@ export default function songReducer(state = initialState, action ){
   // console.log('this is the action.songList', action.songs)
   switch(action.type){
     case GET_SONGS:
-                        // console.log('newState spread out---------', newState)
-
       action.songs.forEach(song => {
         newState[song.id] = song
       })
-                     
       newState = {...newState}
-                        // console.log(newState)
       return newState
 
     case POST_SONG:
-                      // console.log('this is the post_Song action initializing')
       newState = {...state}
-                      // console.log('this is the new state before action', newState)
       newState[action.song.id] = action.song
-                      // console.log('the post song action after action', newState)
       return newState
+
     case DELETE_SONG:
       newState = {...state}
-      console.log('newState delete action------', newState)
       delete newState[action.id]
-      console.log('newState post deleteion ---------', newState)
 
     default:
-    return state;
+      return state;
   }
 }

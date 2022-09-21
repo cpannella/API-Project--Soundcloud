@@ -15,13 +15,8 @@ const SongPage = () => {
 
   const songs = useSelector(state =>  state.songs)
   const sessionUser = useSelector(state => state.session.user);
-
-  console.log(songs, 'SONGS on the song index')
   const songList = Object.values(songs)
-  console.log('THIS IS THE SONGLIST OBJECT', songList)
-  // console.log('workable state', songList)
-  //destructure each object while iterating?
-    //
+
 
   useEffect(() => {
     dispatch(getSongs())
@@ -37,15 +32,15 @@ const SongPage = () => {
         {songList.map((song) =>{
           return (
             <div  key={song.id} className="song-container">
-              <NavLink key={song.id} to={`/songs/${song.id}`}>{song.title}</NavLink>
                 <h2>{song.title}</h2>
+              <NavLink key={song.id} to={`/songs/${song.id}`}>View Song Details Here</NavLink>
 
-                <h3 className="song-description">{song.description}</h3>
+                
 
               <h4>Uploaded by {song.userId}</h4>
               <img alt={song.imageUrl}></img>
               <div className="button-div">
-              <button>Leave a comment</button>
+
 
               </div>
             </div>
