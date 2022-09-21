@@ -16,7 +16,7 @@ const get = (songs) => {
 
 
 const postSong = (song) => {
-  console.log('data point----------------3')
+
   return {
     type: POST_SONG,
     song
@@ -94,7 +94,9 @@ const initialState = {}
 export default function songReducer(state = initialState, action ){
 
   let newState = {}
+  console.log('the song reducer is firing')
   // console.log('this is the action.songList', action.songs)
+  console.log('this is the action object in song reducer', action)
   switch(action.type){
     case GET_SONGS:
       action.songs.forEach(song => {

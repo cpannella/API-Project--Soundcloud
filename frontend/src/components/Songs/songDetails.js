@@ -18,9 +18,10 @@ const SongDetail = () => {
 
   const filtered = songList.filter(song => song.id === +id)
   const song = filtered[0]
+  
+  const artist = song.Artist
 
   useEffect(() => {
-    console.log('start point -1')
     dispatch(getOneSong(id))
   }, [dispatch, id])
 
@@ -32,17 +33,18 @@ const SongDetail = () => {
       <h2> {song.title} </h2>
       <h3>{song.description}</h3>
 
-      <p>Album</p>
+      <p>Uploaded by</p>
       <img alt={song.imageUrl}></img>
 
       <div>
         {<button onClick={()=> setShowEditSongForm(true)}>Edit song</button>}
         <button onClick={(e)=> {dispatch(deleteSong(song.id), history.push('/'))} }>Delete song</button>
       </div>
-       <div>
-        <Comments id={id}/>
-       </div>
           {showEditsongForm ? <EditSongForm/> : null}
+       <div>
+        <button>View Comments</button>
+        <Comments song={songs}/>
+       </div>
     </div>
   )
 

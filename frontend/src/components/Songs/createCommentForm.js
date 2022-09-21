@@ -1,86 +1,58 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createSong } from '../../store/songs';
+import  createComment  from '../../store/songs';
 import './songs.css'
 
 
-const CreateSongForm = ({comment}) => {
+const CreateCommentForm = ({songs}) => {
   const history = useHistory()
   const dispatch = useDispatch()
-  // console.log('does this render?')
-  const songs = useSelector(state =>  state.songs)
+  const comments = useSelector(state =>  state.comments)
   const sessionUser = useSelector(state => state.session.user)
 
-  //form inputs
   const [showForm, setShowForm] = useState(true) //only showform if user is logged in
-  const [title, setTitle] = useState(''); //title
-  const [description, setDescription] = useState(''); //description
-  const [imageUrl, setImageUrl] = useState(''); //imageUrl
-  const [url, setUrl] = useState('') //AudioUrl
+  const [body, setBody] = useState('')
+
+
 
 
   const onSubmit = async (e) => {
+    console.log('submit data start')
     e.preventDefault()
     const payload = {
-      title,
-      description,
-      imageUrl,
-      url
+      body
     }
+    console.log('flerpidy derp tracing data')
+                                  //this dispatch is causing my song reducer to run.
+    let createdComment = await dispatch(createComment(payload))//error is happening with this call,
 
-    let createdSong = await dispatch(createSong(payload))
-      if(createdSong) {
-        history.push(`/songs/${createdSong.id}`)
+
+    console.log('this is the created comment', createdComment)
+      if(createdComment) {
+        history.push(`/songs/${createdComment.id}`)
         // hideForm()
     }
   }
 
   return (
-    <div className="new-song-form">
-      <h2>Upload a song</h2>
+    <div className="new-comment-form">
+
       <form onSubmit={onSubmit}>
         <div>
-          <label htmlFor='title'>Title:</label>
+          <label htmlFor='title'>What do you think of this song?:</label>
           <input
             id='title'
             type='text'
-            onChange={e => setTitle(e.target.value)}
-            value={title}
+            placeholder="Tell us how you feel here!"
+            onChange={e => setBody(e.target.value)}
+            value={body}
           />
         </div>
-        <div>
-          <label htmlFor='description'>Description:</label>
-          <input
-            id='description'
-            type='text'
-            onChange={e => setDescription(e.target.value)}
-            value={description}
-          />
-        </div>
-        <div>
-          <label htmlFor='imageUrl'>imageUrl:</label>
-          <input
-            id='imageUrl'
-            type='text'
-            onChange={e => setImageUrl(e.target.value)}
-            value={imageUrl}
-          />
-        </div>
-        <div>
-          <label htmlFor='audio'>audio:</label>
-          <input
-            id='audio'
-            type='text'
-            onChange={e => setUrl(e.target.value)}
-            value={url}
-          />
-        </div>
-
         <button>Submit</button>
       </form>
     </div>
   );
 }
 
-export default CreateSongForm
+export default CreateCommentForm
