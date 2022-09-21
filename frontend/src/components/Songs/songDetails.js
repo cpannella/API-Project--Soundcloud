@@ -10,6 +10,7 @@ import './songs.css'
 const SongDetail = () => {
   const  {id} = useParams();
   const [showEditsongForm, setShowEditSongForm] = useState(false)
+  const [showComments, setShowComments] = useState(false)
   const dispatch = useDispatch()
   const songs = useSelector(state =>  state.songs)
   const sessionUser = useSelector(state => state.session.user);
@@ -22,9 +23,8 @@ const SongDetail = () => {
 
   const filtered = songList.filter(song => song.id === +id)
   const song = filtered[0]
-  console.log('this is the song object--------------', song)
-  // const artist = song.Artist
-
+  const artist = song.Artist
+  console.log('-------------------------------', artist)
   useEffect(() => {
     dispatch(getOneSong(id))
   }, [dispatch, id])
@@ -37,7 +37,7 @@ const SongDetail = () => {
       <h2> {song.title} </h2>
       <h3>{song.description}</h3>
 
-      <p>Uploaded by</p>
+      <p>Uploaded by {artist.username}</p>
       <img alt={song.imageUrl}></img>
 
       <div>
@@ -46,8 +46,9 @@ const SongDetail = () => {
       </div>
           {showEditsongForm ? <EditSongForm/> : null}
        <div>
-        <button>View Comments</button>
-        <Comments song={songs}/>
+        <button onClick={()=> setShowComments(true)}>View Comments</button>
+        <button onClick={()=> setShowComments(false)}>Hide Comments</button>
+          {showComments ? <Comments song={songs}/> :null}
        </div>
     </div>
   )

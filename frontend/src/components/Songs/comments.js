@@ -9,35 +9,33 @@ import CreateCommentForm from './createCommentForm';
 
 export const Comments = ({songs}) => {
   const {id} = useParams()
-
   const dispatch = useDispatch()
     const comments = useSelector(state => state.comments)
     const details = Object.values(comments)
-    const filtered = details.filter(comment => comment.id === +id )
-    const thing = songs
+    const filtered = details.filter(comment => comment.songId === id )
 
 
-useEffect(() => {
-  dispatch(getComments(id))
-}, [dispatch])
+  useEffect(() => {
+    dispatch(getComments(id))
+  }, [dispatch, id])
+  if(!details.length) return null
 
 
-return  (
+  
+   return  (
   <div className="comment-container">
-    <h3>Comments go here</h3>
-    <button>View Comments</button>
+    <h3>Comment section</h3>
     <CreateCommentForm/>
-    {details.map(comment =>{
+    {filtered.map(comment =>{
       return (
         <div className="single-comment-container">
           <ul>
              <li>{comment.body}</li>
              <button onClick={()=> {dispatch(deleteComment(comment.id))}}>Delete comment</button>
           </ul>
-
         </div>
       )
-    } )}
+    })}
   </div>
 )
 

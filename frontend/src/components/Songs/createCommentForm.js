@@ -14,27 +14,45 @@ const CreateCommentForm = ({songs}) => {
   const sessionUser = useSelector(state => state.session.user)
   const [showForm, setShowForm] = useState(true)
   const [body, setBody] = useState('')
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [validationErrors, setValidationErrors] = useState([]);
 
+  useEffect(()=>{
+    const errors = []
+    if(!body.length) errors.push('Comment can not be blank')
+    setValidationErrors(errors)
+  },[body])
 
-  const songId = parseInt(id)
   const onSubmit = async (e) => {
     e.preventDefault()
     const payload = {
-      songId,
+      id,
       body
     }
 
-  let createdComment = await dispatch(createComment(payload, songId))//error is happening with this call,
+  setHasSubmitted(true)
+  if(validationErrors.length) return alert('Can not Submit')
+
+  let createdComment = await dispatch(createComment(payload, id))
     if(createdComment) {
-    history.push(`/songs/${createdComment.id}`)
-    }
-   setBody('')
+    history.push(`/songs/${id}`)
   }
+    setBody('')
+}
 
   return (
     <div className="new-comment-form">
-
       <form onSubmit={onSubmit}>
+      {hasSubmitted && validationErrors.length > 0 && (
+        <div>
+          The following errors were found:
+          <ul>
+            {validationErrors.map(error => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
         <div>
           <label htmlFor='title'>What do you think of this song?:</label>
           <input

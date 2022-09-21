@@ -28,7 +28,6 @@ const CreateSongForm = ({song}) => {
      } else {
       errors.push("Must be valid image type")
      }
-
     setValidationErrors(errors)
   }, [title, imageUrl])
 

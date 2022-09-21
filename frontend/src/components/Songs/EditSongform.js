@@ -10,7 +10,7 @@ const EditSongForm = ({song}) => {
   const {id} = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
-  console.log(id)
+  
   const songs = useSelector(state =>  state.songs)
   const sessionUser = useSelector(state => state.session.user)
 
@@ -21,19 +21,24 @@ const EditSongForm = ({song}) => {
   const [imageUrl, setImageUrl] = useState(''); //imageUrl
   const [url, setUrl] = useState('') //AudioUrl
   const [validationErrors, setValidationErrors] = useState([])
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   useEffect(()=> {
     const errors = [];
     if(!title.length) errors.push('Song must have title')
-    if((imageUrl && !imageUrl.endsWith('jpg')) || imageUrl && !imageUrl.endsWith('png')) errors.push("Must be valid image type")
-    
-  })
+    if((imageUrl.includes('.jpg')) || (imageUrl.includes('png'))) {
+     } else {
+      errors.push("Must be valid image type")
+     }
+    setValidationErrors(errors)
+  }, [title, imageUrl])
 
 
 
-  console.log(song, 'THIS IS THE SONG')
+
   const onSubmit = async (e) => {
     e.preventDefault()
+    setShowEditSongForm(false)
     const payload = {
       id,
       title,
@@ -41,18 +46,27 @@ const EditSongForm = ({song}) => {
       imageUrl,
       url
     }
-    console.log(payload)
-    console.log('testing set show edit', setShowEditSongForm(false))
+    setHasSubmitted(true)
+    if(validationErrors.length) return alert('Fix form errors!')
+
     let updateSong = await dispatch(editSong(payload))
       if(updateSong) {
-
-        history.push(`/songs/${updateSong.id}`)
-        // hideForm()
+       history.push(`/songs/${updateSong.id}`)
     }
   }
 
   return (
     <div className="new-song-form">
+      {hasSubmitted && validationErrors.length > 0 && (
+        <div>
+          The following errors were found:
+          <ul>
+            {validationErrors.map(error => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       <h2>Edit a song</h2>
       <form onSubmit={onSubmit}>
         <div>
@@ -91,9 +105,7 @@ const EditSongForm = ({song}) => {
             value={url}
           />
         </div>
-        <button onClick={()=> setShowEditSongForm(false)}>Submit</button>
-        {showEditsongForm ? false : null}
-
+        <button >Submit</button>
       </form>
     </div>
   );
