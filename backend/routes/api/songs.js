@@ -37,8 +37,10 @@ router.put('/:songId', async (req, res) =>{
   const {songId} = req.params
   const {title, description, url, imageUrl, albumId} = req.body
 
-  const edit = await Song.findByPk(songId,
-    )
+  const edit = await Song.findByPk(songId, {
+    include: [{model:User, as: 'Artist',
+      attributes: ['id','username','imageUrl']
+    }]})
     if(!edit) {
       res.status(404)
       res.json({

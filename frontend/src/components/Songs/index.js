@@ -16,7 +16,7 @@ const SongPage = () => {
   const songs = useSelector(state =>  state.songs)
   const sessionUser = useSelector(state => state.session.user);
   const songList = Object.values(songs)
-
+  console.log('songlist----------------', songList)
 
   useEffect(() => {
     dispatch(getSongs())
@@ -34,8 +34,8 @@ const SongPage = () => {
                 <h2>{song.title}</h2>
               <NavLink key={song.id} to={`/songs/${song.id}`}>View Song Details Here</NavLink>
 
-              <h4>Uploaded by {song.userId}</h4>
-                <img alt={song.imageUrl}></img>
+              <h4></h4>
+                <img alt={song.imageUrl} src={song.imageUrl}></img>
                 <div className="button-div">
 
               </div>

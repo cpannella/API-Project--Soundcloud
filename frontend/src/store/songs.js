@@ -16,7 +16,6 @@ const get = (songs) => {
 
 
 const postSong = (song) => {
-
   return {
     type: POST_SONG,
     song
@@ -45,6 +44,7 @@ export const getOneSong = (id) => async dispatch => {
   const response = await csrfFetch(`/api/songs/${id}`)
   if(response.ok) {
     const song = await response.json()
+
     dispatch(postSong(song))
     return song
   }
@@ -73,8 +73,10 @@ export const createSong = (data) => async dispatch => {
       headers : { "Content-Type":"application/json"},
       body: JSON.stringify(data)
     })
+
     if(response.ok) {
       const song = await response.json()
+      console.log('song--------------',song)
       dispatch(postSong(song))
       return song
     }
@@ -105,6 +107,7 @@ export default function songReducer(state = initialState, action ){
     case POST_SONG:
       newState = {...state}
       newState[action.song.id] = action.song
+      console.log(newState)
       return newState
 
     case DELETE_SONG:

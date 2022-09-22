@@ -24,21 +24,21 @@ const SongDetail = () => {
   const filtered = songList.filter(song => song.id === +id)
   const song = filtered[0]
   const artist = song.Artist
-  console.log('-------------------------------', artist)
+  
+
   useEffect(() => {
     dispatch(getOneSong(id))
   }, [dispatch, id])
 
-  // console.log('THIS IS THE FILTERED CALL', filtered)
-  // console.log('this is the song.id--------------------', song.id)
+
   return (
     <div className="song-details">
       <h1>SONG DETAILS</h1>
       <h2> {song.title} </h2>
       <h3>{song.description}</h3>
 
-      <p>Uploaded by {artist.username}</p>
-      <img alt={song.imageUrl}></img>
+      <p>Uploaded by {artist?.username}</p>
+      <img alt={song.imageUrl} src={song.imageUrl}></img>
 
       <div>
         {<button onClick={()=> setShowEditSongForm(true)}>Edit song</button>}

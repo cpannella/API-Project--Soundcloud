@@ -12,21 +12,19 @@ export const Comments = ({songs}) => {
   const dispatch = useDispatch()
     const comments = useSelector(state => state.comments)
     const details = Object.values(comments)
-    const filtered = details.filter(comment => comment.songId === id )
-
+    const filtered = details.filter(comment => comment.songId === +id )
+    console.log('filtered------------', filtered)
+    console.log('this is the details object', details)
 
   useEffect(() => {
     dispatch(getComments(id))
   }, [dispatch, id])
-  if(!details.length) return null
 
-
-  
    return  (
   <div className="comment-container">
     <h3>Comment section</h3>
     <CreateCommentForm/>
-    {filtered.map(comment =>{
+    {details.map(comment =>{
       return (
         <div className="single-comment-container">
           <ul>
