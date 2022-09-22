@@ -7,21 +7,18 @@ import CreateCommentForm from './createCommentForm';
 
 
 
-export const Comments = ({songs}) => {
+export const Comments = ({comment}) => {
   const {id} = useParams()
   const dispatch = useDispatch()
     const comments = useSelector(state => state.comments)
     const details = Object.values(comments)
-    const filtered = details.filter(comment => comment.songId === id )
-
+    const filtered = details.filter(comment => comment.songId == id )
+   
 
   useEffect(() => {
     dispatch(getComments(id))
-  }, [dispatch, id])
-  if(!details.length) return null
+  }, [dispatch,id])
 
-
-  
    return  (
   <div className="comment-container">
     <h3>Comment section</h3>
