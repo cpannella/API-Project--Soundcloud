@@ -16,7 +16,8 @@ const SongPage = () => {
   const songs = useSelector(state =>  state.songs)
   const sessionUser = useSelector(state => state.session.user);
   const songList = Object.values(songs)
-  console.log('songlist----------------', songList)
+  const comments = useSelector((state) => state.comments);
+  const user = useSelector((state) => state.session.user)
 
   useEffect(() => {
     dispatch(getSongs())

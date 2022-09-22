@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
-import  {createComment}  from '../../store/comments';
+import  {createComment, getComments}  from '../../store/comments';
 import './songs.css'
 
 
@@ -11,10 +11,14 @@ const CreateCommentForm = ({songs}) => {
   const history = useHistory()
   const dispatch = useDispatch()
   const comments = useSelector(state =>  state.comments)
+  console.log('this is the comments slice of state ', comments)
   const sessionUser = useSelector(state => state.session.user)
   const [showForm, setShowForm] = useState(true)
   const [body, setBody] = useState('')
 
+  useEffect(()=>{
+    dispatch(getComments(id))
+  }, [dispatch])
 
   const songId = parseInt(id)
   const onSubmit = async (e) => {

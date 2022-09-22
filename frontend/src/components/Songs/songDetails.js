@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { deleteSong, getOneSong } from '../../store/songs';
 import  EditSongForm  from './EditSongform'
 import {Comments} from './comments.js'
+import { getComments } from '../../store/comments';
 import './songs.css'
 
 
@@ -24,10 +25,12 @@ const SongDetail = () => {
   const filtered = songList.filter(song => song.id === +id)
   const song = filtered[0]
   const artist = song.Artist
-  
+  const comments = useSelector((state) => state.comments);
+  const user = useSelector((state) => state.session.user)
 
   useEffect(() => {
     dispatch(getOneSong(id))
+    dispatch(getComments(id))
   }, [dispatch, id])
 
 
@@ -48,7 +51,9 @@ const SongDetail = () => {
        <div>
         <button onClick={()=> setShowComments(true)}>View Comments</button>
         <button onClick={()=> setShowComments(false)}>Hide Comments</button>
-          {showComments ? <Comments song={songs}/> :null}
+          {showComments ? <Comments song={songs}
+                                    comment={comments}
+                                    id={id}/> :null}
        </div>
     </div>
   )
