@@ -7,6 +7,7 @@ import SongPage from './components/Songs'
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SongDetail from "./components/Songs/songDetails";
+import Player from "./components/AudioPlayer"
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/login">
-            
+
           </Route>
           <Route path="/signup">
             <SignupFormPage />
@@ -34,6 +35,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Player/>
     </>
   );
 }

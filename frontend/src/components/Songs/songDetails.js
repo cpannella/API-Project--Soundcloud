@@ -33,6 +33,11 @@ const SongDetail = () => {
     dispatch(getComments(id))
   }, [dispatch, id])
 
+  //onClick i need to retrieve the single song data
+
+    //load it into the audio player
+
+      //have it persist through the pages
 
   return (
     <div className="song-details">
@@ -46,9 +51,11 @@ const SongDetail = () => {
       <div>
         {<button onClick={()=> setShowEditSongForm(true)}>Edit song</button>}
         <button onClick={(e)=> {dispatch(deleteSong(song.id), history.push('/'))} }>Delete song</button>
+        <button >Play song</button>
       </div>
-          {showEditsongForm ? <EditSongForm/> : null}
+          {showEditsongForm ? <EditSongForm song={song}/> : null}
        <div>
+
         <button onClick={()=> setShowComments(true)}>View Comments</button>
         <button onClick={()=> setShowComments(false)}>Hide Comments</button>
           {showComments ? <Comments song={songs}

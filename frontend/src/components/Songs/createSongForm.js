@@ -8,7 +8,7 @@ import './songs.css'
 const CreateSongForm = ({song}) => {
   const history = useHistory()
   const dispatch = useDispatch()
-  
+
   const songs = useSelector(state =>  state.songs)
   const sessionUser = useSelector(state => state.session.user)
 
@@ -24,10 +24,10 @@ const CreateSongForm = ({song}) => {
   useEffect(()=> {
     const errors = [];
     if(!title.length) errors.push('Song must have title')
-    if((imageUrl.includes('.jpg')) || (imageUrl.includes('png'))) {
-     } else {
-      errors.push("Must be valid image type")
-     }
+    // if((imageUrl.includes('.jpg')) || (imageUrl.includes('png'))) {
+    //  } else {
+    //   errors.push("Must be valid image type")
+    //  }
     setValidationErrors(errors)
   }, [title, imageUrl])
 

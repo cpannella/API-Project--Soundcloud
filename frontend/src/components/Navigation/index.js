@@ -24,13 +24,14 @@ function Navigation({ isLoaded }){
       </>
     );
   }
-  
+
 
   return (
     <div className='nav-bar'>
           <NavLink exact to="/" style={{color: '#ccc', background: "#111111" }}>Home</NavLink>
           <input className='search-bar' type="search" placeholder='Search'></input>
           <button>Upload Song</button>
+          
           {isLoaded && sessionLinks}
     </div>
   );

@@ -6,10 +6,10 @@ import './songs.css'
 import CreateSongForm from './createSongForm';
 import EditSongForm from './EditSongform';
 import SongDetail from './songDetails';
+import Player from '../AudioPlayer'
 
 
-
-const SongPage = () => {
+ const SongPage = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
 
@@ -28,24 +28,23 @@ const SongPage = () => {
     <div >
       <CreateSongForm/>
       <div>
-      <ul>
-        {songList.map((song) =>{
-          return (
-            <div key={song.id} className="song-container">
-                <h2>{song.title}</h2>
-              <NavLink key={song.id} to={`/songs/${song.id}`}>View Song Details Here</NavLink>
+        <ul>
+          {songList.map((song) =>{
+            return (
+              <div key={song.id} className="song-container">
+                  <h2>{song.title}</h2>
+                <NavLink key={song.id} to={`/songs/${song.id}`}>View Song Details Here</NavLink>
 
-              <h4></h4>
-                <img alt={song.imageUrl} src={song.imageUrl}></img>
-                <div className="button-div">
-
+                <h4></h4>
+                  <img alt={song.imageUrl} src={song.imageUrl}></img>
+                  <div className="button-div">
+                  <button>Play song</button>
+                </div>
               </div>
-            </div>
-          )
-        })}
-      </ul>
+            )
+          })}
+        </ul>
       </div>
-
     </div>
   )
 }

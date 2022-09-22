@@ -28,7 +28,7 @@ const EditSongForm = ({song}) => {
     if(!title.length) errors.push('Song must have title')
     if((imageUrl.includes('.jpg')) || (imageUrl.includes('png'))) {
      } else {
-      errors.push("Must be valid image type")
+      errors.push("Must be valid image type .jpg or .png")
      }
     setValidationErrors(errors)
   }, [title, imageUrl])
@@ -51,8 +51,9 @@ const EditSongForm = ({song}) => {
 
     let updateSong = await dispatch(editSong(payload))
       if(updateSong) {
-       history.push(`/songs/${updateSong.id}`)
+       history.push(`/`)
     }
+    
   }
 
   return (
