@@ -11,7 +11,7 @@ const CreateCommentForm = ({songs}) => {
   const history = useHistory()
   const dispatch = useDispatch()
   const comments = useSelector(state =>  state.comments)
-  console.log('this is the comments slice of state ', comments)
+  
   const sessionUser = useSelector(state => state.session.user)
   const [showForm, setShowForm] = useState(true)
   const [body, setBody] = useState('')

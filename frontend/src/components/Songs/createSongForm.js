@@ -8,7 +8,7 @@ import './songs.css'
 const CreateSongForm = ({song}) => {
   const history = useHistory()
   const dispatch = useDispatch()
-  // console.log('does this render?')
+  
   const songs = useSelector(state =>  state.songs)
   const sessionUser = useSelector(state => state.session.user)
 

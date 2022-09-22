@@ -36,7 +36,7 @@ export const getSongs = () => async dispatch => {
     const data  = await response.json()
     dispatch(get(data.Songs))
   } else {
-    console.log('fooey')
+
   }
 }
 
@@ -63,7 +63,7 @@ export const createSong = (data) => async dispatch => {
     dispatch(postSong(song))
     return song
   }
-    console.log('error')
+
   }
 
 
@@ -76,11 +76,11 @@ export const createSong = (data) => async dispatch => {
 
     if(response.ok) {
       const song = await response.json()
-      console.log('song--------------',song)
+
       dispatch(postSong(song))
       return song
     }
-      console.log('error')
+
     }
 
   export const deleteSong = (id) => async dispatch => {
@@ -107,7 +107,7 @@ export default function songReducer(state = initialState, action ){
     case POST_SONG:
       newState = {...state}
       newState[action.song.id] = action.song
-      console.log(newState)
+    
       return newState
 
     case DELETE_SONG:

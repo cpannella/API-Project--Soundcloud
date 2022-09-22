@@ -17,16 +17,14 @@ function Navigation({ isLoaded }){
 
     );
   } else {
-    sessionLinks = (
-      <div className='session-links'>
-
-        <NavLink to="/login" className="login-button" style={{color: '#ccc', padding: '50px'}}>Log In</NavLink>
-        <NavLink to="/signup" className='login-' style={{color: '#fff', backgroundColor: '#f50'}}>Sign Up</NavLink>
-
-      </div>
-
+      sessionLinks = (
+      <>
+        <LoginFormModal />
+        <NavLink to="/signup">Sign Up</NavLink>
+      </>
     );
   }
+  
 
   return (
     <div className='nav-bar'>
