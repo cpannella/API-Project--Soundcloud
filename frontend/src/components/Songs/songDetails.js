@@ -5,6 +5,7 @@ import { deleteSong, getOneSong } from '../../store/songs';
 import  EditSongForm  from './EditSongform'
 import {Comments} from './comments.js'
 import { getComments } from '../../store/comments';
+import { useAudio } from '../../context/audioPlayer';
 import './songs.css'
 
 
@@ -17,6 +18,7 @@ const SongDetail = () => {
   const sessionUser = useSelector(state => state.session.user);
   const songList = Object.values(songs)
   const history = useHistory()
+  const {url, setUrl} = useAudio()
 
   if(!sessionUser){
     history.push('/')
@@ -24,6 +26,7 @@ const SongDetail = () => {
 
   const filtered = songList.filter(song => song.id === +id)
   const song = filtered[0]
+  console.log('song', song)
   const artist = song.Artist
   const comments = useSelector((state) => state.comments);
   const user = useSelector((state) => state.session.user)
@@ -51,7 +54,7 @@ const SongDetail = () => {
       <div>
         {<button onClick={()=> setShowEditSongForm(true)}>Edit song</button>}
         <button onClick={(e)=> {dispatch(deleteSong(song.id), history.push('/'))} }>Delete song</button>
-        <button >Play song</button>
+        <button onClick={()=> {setUrl(song.url)}}>Play song</button>
       </div>
           {showEditsongForm ? <EditSongForm song={song}/> : null}
        <div>

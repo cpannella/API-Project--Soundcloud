@@ -7,17 +7,18 @@ import CreateSongForm from './createSongForm';
 import EditSongForm from './EditSongform';
 import SongDetail from './songDetails';
 import Player from '../AudioPlayer'
+import { useAudio } from '../../context/audioPlayer';
 
 
  const SongPage = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
-
   const songs = useSelector(state =>  state.songs)
   const sessionUser = useSelector(state => state.session.user);
   const songList = Object.values(songs)
   const comments = useSelector((state) => state.comments);
   const user = useSelector((state) => state.session.user)
+  const { url, setUrl} = useAudio()
 
   useEffect(() => {
     dispatch(getSongs())
@@ -38,7 +39,7 @@ import Player from '../AudioPlayer'
                 <h4></h4>
                   <img alt={song.imageUrl} src={song.imageUrl}></img>
                   <div className="button-div">
-                  <button>Play song</button>
+                  <button onClick={()=> setUrl(song.url)}>Play song</button>
                 </div>
               </div>
             )

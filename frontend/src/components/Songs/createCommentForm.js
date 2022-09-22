@@ -11,7 +11,7 @@ const CreateCommentForm = ({songs}) => {
   const history = useHistory()
   const dispatch = useDispatch()
   const comments = useSelector(state =>  state.comments)
-  
+
   const sessionUser = useSelector(state => state.session.user)
   const [showForm, setShowForm] = useState(true)
   const [body, setBody] = useState('')
@@ -42,7 +42,7 @@ const CreateCommentForm = ({songs}) => {
           <label htmlFor='title'>What do you think of this song?:</label>
           <input
             id='title'
-            type='text'
+            type='textarea'
             placeholder="Tell us how you feel here!"
             onChange={e => setBody(e.target.value)}
             value={body}
