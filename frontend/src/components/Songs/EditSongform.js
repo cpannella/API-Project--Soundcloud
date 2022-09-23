@@ -53,11 +53,11 @@ const EditSongForm = ({song}) => {
       if(updateSong) {
        history.push(`/`)
     }
-    
+
   }
 
   return (
-    <div className="new-song-form">
+    <div className="edit-song-form">
       {hasSubmitted && validationErrors.length > 0 && (
         <div>
           The following errors were found:

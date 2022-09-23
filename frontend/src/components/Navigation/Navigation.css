@@ -19,7 +19,8 @@
 a{ text-decoration: none;}
 
 .nav-bar{
-  
+  position: fixed;
+  top: 0px;
   display: flex;
   justify-content: space-evenly;
   background: #333;

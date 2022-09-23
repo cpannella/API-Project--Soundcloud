@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
 import  {createComment, getComments}  from '../../store/comments';
-import './songs.css'
+import './createComment.css'
 
 
 const CreateCommentForm = ({songs}) => {
@@ -11,10 +11,10 @@ const CreateCommentForm = ({songs}) => {
   const history = useHistory()
   const dispatch = useDispatch()
   const comments = useSelector(state =>  state.comments)
-
   const sessionUser = useSelector(state => state.session.user)
   const [showForm, setShowForm] = useState(true)
   const [body, setBody] = useState('')
+  const [validationErrors, setValidationErrors] = useState([])
 
   useEffect(()=>{
     dispatch(getComments(id))

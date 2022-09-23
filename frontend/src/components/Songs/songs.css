@@ -5,9 +5,13 @@
   border: 1px solid gray
 }
 
+
+
+
 .song-container > img {
   width: 180px;
   height:180px;
+  padding: 40px
 }
 
 .song-details > img {
@@ -20,6 +24,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border: 1px solid black;
+  padding: 20px
 }
 
 .new-song-form {

@@ -12,6 +12,7 @@ const Player = () => {
   return (
   <AudioPlayer className='audio-player'
     showSkipControls={false}
+    showJumpControls={false}
     src={url}
     onPlay={e => console.log("onPlay")}
     // other props here

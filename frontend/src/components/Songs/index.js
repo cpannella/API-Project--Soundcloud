@@ -27,8 +27,8 @@ import { useAudio } from '../../context/audioPlayer';
   if(!sessionUser) return null
   else return (
     <div >
-      <CreateSongForm/>
-      <div>
+      
+      <div className='songPage-container'>
         <ul>
           {songList.map((song) =>{
             return (

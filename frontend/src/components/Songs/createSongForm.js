@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createSong } from '../../store/songs';
-import './songs.css'
+import './createSong.css'
 
 
 const CreateSongForm = ({song}) => {
@@ -24,10 +24,11 @@ const CreateSongForm = ({song}) => {
   useEffect(()=> {
     const errors = [];
     if(!title.length) errors.push('Song must have title')
-    // if((imageUrl.includes('.jpg')) || (imageUrl.includes('png'))) {
-    //  } else {
-    //   errors.push("Must be valid image type")
-    //  }
+    if((imageUrl && imageUrl.includes('.jpg')) || (imageUrl && imageUrl.includes('png'))) {
+     } else {
+      errors.push("Must be valid image type")
+     }
+    if(!description.length) errors.push("Don't be lame, say something about the song you're uploading")
     setValidationErrors(errors)
   }, [title, imageUrl])
 
@@ -63,46 +64,48 @@ const CreateSongForm = ({song}) => {
           </ul>
         </div>
       )}
-      <form onSubmit={onSubmit}>
-        <div>
-          <label htmlFor='title'>Title:</label>
-          <input
-            id='title'
-            type='text'
-            onChange={e => setTitle(e.target.value)}
-            value={title}
-          />
-        </div>
-        <div>
-          <label htmlFor='description'>Description:</label>
-          <input
-            id='description'
-            type='text'
-            onChange={e => setDescription(e.target.value)}
-            value={description}
-          />
-        </div>
-        <div>
-          <label htmlFor='imageUrl'>imageUrl:</label>
-          <input
-            id='imageUrl'
-            type='text'
-            onChange={e => setImageUrl(e.target.value)}
-            value={imageUrl}
-          />
-        </div>
-        <div>
-          <label htmlFor='audio'>audio:</label>
-          <input
-            id='audio'
-            type='text'
-            onChange={e => setUrl(e.target.value)}
-            value={url}
-          />
-        </div>
+      <div>
+        <form onSubmit={onSubmit}>
+          <div>
+            <label htmlFor='title'>Title:</label>
+            <input
+              id='title'
+              type='text'
+              onChange={e => setTitle(e.target.value)}
+              value={title}
+            />
+          </div>
+          <div>
+            <label htmlFor='description'>Description:</label>
+            <input
+              id='description'
+              type='text'
+              onChange={e => setDescription(e.target.value)}
+              value={description}
+            />
+          </div>
+          <div>
+            <label htmlFor='imageUrl'>imageUrl:</label>
+            <input
+              id='imageUrl'
+              type='text'
+              onChange={e => setImageUrl(e.target.value)}
+              value={imageUrl}
+            />
+          </div>
+          <div>
+            <label htmlFor='audio'>audio:</label>
+            <input
+              id='audio'
+              type='text'
+              onChange={e => setUrl(e.target.value)}
+              value={url}
+            />
+          </div>
 
-        <button>Submit</button>
-      </form>
+          <button>Submit</button> <button onClick={()=> history.push('/')}>Cancel</button>
+        </form>
+      </div>
     </div>
   );
 }

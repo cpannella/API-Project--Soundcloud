@@ -19,14 +19,8 @@ const SongDetail = () => {
   const songList = Object.values(songs)
   const history = useHistory()
   const {url, setUrl} = useAudio()
-
-  if(!sessionUser){
-    history.push('/')
-  }
-
   const filtered = songList.filter(song => song.id === +id)
   const song = filtered[0]
-  console.log('song', song)
   const artist = song.Artist
   const comments = useSelector((state) => state.comments);
   const user = useSelector((state) => state.session.user)
@@ -34,36 +28,36 @@ const SongDetail = () => {
   useEffect(() => {
     dispatch(getOneSong(id))
     dispatch(getComments(id))
-  }, [dispatch, id])
+  }, [dispatch])
 
-  //onClick i need to retrieve the single song data
-
-    //load it into the audio player
-
-      //have it persist through the pages
+  if(!sessionUser){
+    history.push('/')
+    return null
+  }
 
   return (
     <div className="song-details">
       <h1>SONG DETAILS</h1>
       <h2> {song.title} </h2>
       <h3>{song.description}</h3>
-
       <p>Uploaded by {artist?.username}</p>
       <img alt={song.imageUrl} src={song.imageUrl}></img>
 
       <div>
-        {<button onClick={()=> setShowEditSongForm(true)}>Edit song</button>}
+        {user.id === song.userId &&
+        <button onClick={()=> setShowEditSongForm(true)}>Edit song</button>
+        }
+        {user.id === song.userId &&
         <button onClick={(e)=> {dispatch(deleteSong(song.id), history.push('/'))} }>Delete song</button>
+        }
         <button onClick={()=> {setUrl(song.url)}}>Play song</button>
       </div>
           {showEditsongForm ? <EditSongForm song={song}/> : null}
-       <div>
+      <div>
 
         <button onClick={()=> setShowComments(true)}>View Comments</button>
         <button onClick={()=> setShowComments(false)}>Hide Comments</button>
-          {showComments ? <Comments song={songs}
-                                    comment={comments}
-                                    id={id}/> :null}
+          {showComments ? <Comments/> :null}
        </div>
     </div>
   )
