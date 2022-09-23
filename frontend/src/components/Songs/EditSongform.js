@@ -6,20 +6,22 @@ import { editSong } from '../../store/songs';
 
 import './songs.css'
 
-const EditSongForm = ({song}) => {
+const EditSongForm = () => {
   const {id} = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
 
   const songs = useSelector(state =>  state.songs)
   const sessionUser = useSelector(state => state.session.user)
+  const songsArr = Object.values(songs)
+  const song = songsArr.filter(song => song.id == +id)
+  const target = song[0]
 
-  //form inputs
   const [showEditsongForm, setShowEditSongForm] = useState(false)
-  const [title, setTitle] = useState(''); //title
-  const [description, setDescription] = useState(''); //description
-  const [imageUrl, setImageUrl] = useState(''); //imageUrl
-  const [url, setUrl] = useState('') //AudioUrl
+  const [title, setTitle] = useState(target.title); //title
+  const [description, setDescription] = useState(target.description); //description
+  const [imageUrl, setImageUrl] = useState(target.imageUrl); //imageUrl
+  const [url, setUrl] = useState(target.url) //AudioUrl
   const [validationErrors, setValidationErrors] = useState([])
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
