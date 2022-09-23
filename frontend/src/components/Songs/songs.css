@@ -1,20 +1,17 @@
 .song-container{
-  padding-top: 40px;
-  padding-bottom: 40px;
+
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid gray
-
+  border: 1px solid gray;
+  margin-bottom: 10px;
+  max-width:200px;
 }
-
-
-
 
 .song-container > img {
   width: 180px;
   height:180px;
-  padding: 40px
+
 }
 
 .song-details > img {
@@ -28,7 +25,8 @@
   align-items: center;
   flex-direction: column;
   border: 1px solid black;
-  padding: 20px
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .new-song-form {

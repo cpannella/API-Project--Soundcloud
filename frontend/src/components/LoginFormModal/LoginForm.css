@@ -1,0 +1,10 @@
+.login-button {
+  background-color: black;
+  border-radius: 7.5px;
+  color: #FFFFFF;
+  border: 0.5px white solid;
+  position: relative;
+  left: 35px;
+}
+
+
