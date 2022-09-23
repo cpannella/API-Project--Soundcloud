@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginForm from "./components/LoginFormModal";
 import SignupFormPage from "./components/SignUpFormPage";
@@ -9,8 +9,10 @@ import Navigation from "./components/Navigation";
 import SongDetail from "./components/Songs/songDetails";
 import Player from "./components/AudioPlayer"
 import CreateSongForm from "./components/Songs/createSongForm";
+import SplashPage from "./components/SplashPage";
 
 function App() {
+  const sessionUser = useSelector(state => state.session.user )
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -20,6 +22,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+
       {isLoaded && (
         <Switch>
           <Route path="/login">
@@ -32,6 +35,9 @@ function App() {
              <CreateSongForm/>
           </Route>
           <Route exact path='/'>
+            {!sessionUser &&
+            <SplashPage/>
+            }
             <SongPage/>
           </Route>
           <Route exact path='/songs/:id'>

@@ -1,8 +1,11 @@
 .song-container{
+  padding-top: 40px;
+  padding-bottom: 40px;
   display: flex;
   align-items: center;
   flex-direction: column;
   border: 1px solid gray
+
 }
 
 
