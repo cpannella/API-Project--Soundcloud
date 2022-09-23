@@ -53,7 +53,6 @@ const EditSongForm = ({song}) => {
       if(updateSong) {
        history.push(`/`)
     }
-
   }
 
   return (

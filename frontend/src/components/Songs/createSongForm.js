@@ -29,8 +29,12 @@ const CreateSongForm = ({song}) => {
       errors.push("Must be valid image type")
      }
     if(!description.length) errors.push("Don't be lame, say something about the song you're uploading")
+    if(url.includes('mp3')) {
+    } else {
+      errors.push('Must be an mp3 file')
+    }
     setValidationErrors(errors)
-  }, [title, imageUrl])
+  }, [title, imageUrl, url])
 
 
   const onSubmit = async (e) => {

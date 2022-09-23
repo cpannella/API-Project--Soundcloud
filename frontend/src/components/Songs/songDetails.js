@@ -21,7 +21,7 @@ const SongDetail = () => {
   const {url, setUrl} = useAudio()
   const filtered = songList.filter(song => song.id === +id)
   const song = filtered[0]
-  const artist = song.Artist
+  const artist = song?.Artist
   const comments = useSelector((state) => state.comments);
   const user = useSelector((state) => state.session.user)
 

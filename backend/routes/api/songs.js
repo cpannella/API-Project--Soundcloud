@@ -101,7 +101,7 @@ router.post('/:songId/comments', async (req,res) =>{
 //get comments of song by id
 router.get('/:songId/comments', async (req, res) => {
   const {songId} = req.params
-  const commentScope = await Comment.scope([{method: ['songComment', songId]}]).findOne({
+  const commentScope = await Comment.scope([{method: ['songComment', songId]}]).findAll({
     include: [{model: User}]
   })
   if (!commentScope) {
@@ -112,7 +112,7 @@ router.get('/:songId/comments', async (req, res) => {
     })
   }
 
-  res.json({"Comments": [commentScope]})
+  res.json({"Comments": commentScope})
 });
 
 

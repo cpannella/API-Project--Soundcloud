@@ -15,6 +15,16 @@ const CreateCommentForm = ({songs}) => {
   const [showForm, setShowForm] = useState(true)
   const [body, setBody] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
+  const [hasSubmitted, setHasSubmitted] = useState(false)
+
+
+
+  useEffect(()=>{
+    const errors = []
+    if(!body.length) errors.push('Field can not be empty')
+    setValidationErrors(errors)
+  }, [body])
+
 
   useEffect(()=>{
     dispatch(getComments(id))
@@ -27,7 +37,8 @@ const CreateCommentForm = ({songs}) => {
       songId,
       body
     }
-
+    setHasSubmitted(true)
+    if(validationErrors.length) return alert('can not submit')
   let createdComment = await dispatch(createComment(payload, songId))
     if(createdComment) {
     history.push(`/songs/${id}`)
@@ -39,6 +50,16 @@ const CreateCommentForm = ({songs}) => {
     <div className="new-comment-form">
       <form onSubmit={onSubmit}>
         <div>
+        {hasSubmitted && validationErrors.length > 0 && (
+        <div>
+          The following errors were found:
+          <ul>
+            {validationErrors.map(error => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
           <label htmlFor='title'>What do you think of this song?:</label>
           <input
             id='title'

@@ -12,7 +12,5 @@ export const AudioProvider = (props) => {
     <AudioPlayerContext.Provider value={{url, setUrl}}>
       {props.children}
     </AudioPlayerContext.Provider>
-    )
-
-
-}
+   )
+  }
