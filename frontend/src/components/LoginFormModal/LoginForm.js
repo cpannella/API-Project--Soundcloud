@@ -25,13 +25,18 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
+    <form className="login-form"onSubmit={handleSubmit}>
+      <ul className="error-field">
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
+      <div>
+      <h1 className="login-banner">Log in</h1>
+      </div>
       <label>
-        Username or Email
+
         <input
+          placeholder="Your email or username here"
+          className="username-field"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
@@ -39,16 +44,18 @@ function LoginForm() {
         />
       </label>
       <label>
-        Password
+
         <input
+          className="password-field"
+          placeholder="Your password here"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Log In</button>
-      <button type="submit" onClick={()=> dispatch(sessionActions.login({ credential: 'demo@user.io', password: "password" }))
+      <button className="login-submit-button" type="submit">Log In</button>
+      <button className="demo-user-button" type="submit" onClick={()=> dispatch(sessionActions.login({ credential: 'demo@user.io', password: "password" }))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);

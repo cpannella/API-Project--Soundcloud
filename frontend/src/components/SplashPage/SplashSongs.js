@@ -17,6 +17,7 @@ import { useAudio } from '../../context/audioPlayer';
   const comments = useSelector((state) => state.comments);
   const user = useSelector((state) => state.session.user)
   const { url, setUrl} = useAudio()
+  console.log("this is the songList-------------------",songList)
 
   useEffect(() => {
     dispatch(getSongs())
@@ -27,22 +28,23 @@ import { useAudio } from '../../context/audioPlayer';
     <div >
       <div>
       <div className='SplashSongPage-container'>
-        <ul>
+
           {songList.map((song) =>{
             return (
-              <div key={song.id} className="song-container">
+              <div key={song.id} className="splash-song-container">
 
 
                 <h4></h4>
-                  <img alt={song.imageUrl} src={song.imageUrl}></img>
-                  <div className="button-div">
-                  <h3>{song.title}</h3>
-                  <button onClick={()=> setUrl(song.url)}>Play song</button>
+                  <img onClick={()=>{setUrl(song.url)}}alt={song.imageUrl} src={song.imageUrl}></img>
+                  <div className="song-button-div">
+                  <p className="title-box">{song.title}</p>
+                  <p className="artist-splash">{song.Artist.username}</p>
+                  {/* <button onClick={()=> setUrl(song.url)}>Play song</button> */}
                 </div>
               </div>
             )
           })}
-        </ul>
+
         </div>
       </div>
     </div>

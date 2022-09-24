@@ -19,20 +19,14 @@ function Navigation({ isLoaded }){
       </>
     );
   } else {
-      sessionLinks = (
-      <>
-        <LoginFormModal/>
-        <SignUpFormModal/>
-
-      </>
-    );
+     return null
   }
 
 
   return (
     <div className='nav-bar'>
           <NavLink exact to="/" style={{color: '#ccc', background: "#111111" }}>Home</NavLink>
-          <input className='search-bar' type="search" placeholder='Search'></input>
+          <input className='search-bar' type="search" placeholder='Search' ></input>
           {isLoaded && sessionLinks}
     </div>
   );

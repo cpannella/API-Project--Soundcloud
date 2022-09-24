@@ -15,12 +15,14 @@ function App() {
   const sessionUser = useSelector(state => state.session.user )
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showNavigation, setShowNavigation] = useState(true)
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
     <>
+      
       <Navigation isLoaded={isLoaded} />
 
       {isLoaded && (
@@ -35,9 +37,9 @@ function App() {
              <CreateSongForm/>
           </Route>
           <Route exact path='/'>
-            {!sessionUser &&
-            <SplashPage/>
-            }
+            {!sessionUser && <SplashPage/>}
+
+
             <SongPage/>
           </Route>
           <Route exact path='/songs/:id'>

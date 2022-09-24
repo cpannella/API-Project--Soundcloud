@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
+import LoginFormModal from '../LoginFormModal';
+import SignUpFormModal from '../SignUpFormPage';
+import banner from "./concert.jpg"
 import "./splashPage.css"
 import SplashSongPage from './SplashSongs';
 
@@ -13,17 +16,26 @@ const SplashPage = () => {
 
   return (
   <div className="container-div">
+    <div className="modal-button-div">
+      <LoginFormModal/>
+    </div>
+    <div className="signup-modal-div">
+      <SignUpFormModal/>
+    </div>
+
+      <div className="banner-text-div">
+        <h1 className="banner-text">Discover new music at Sonic Cloud</h1>
+      </div>
       <div className="main-div">
-        <h1>
-          sdaasdasdasdasdE</h1>
-        SLIDER HERE
+        <img src={banner} style={{height: 400, width: 1014}} ></img>
+        {/* <p className="banner-text">Discover what's popping before it  </p> */}
       </div>
-      <div>
-        <h1>UPLOAD YOUR OWN SONG BUTTON HERE</h1>
+      <div className="button-div">
+
         <button className='splash-upload'>Upload now</button>
+        <h1 className="trending-text">Hear what's trending for free in the Sonic-Cloud community </h1>
       </div>
-      <div>
-        <h1>Hear what's trending for free in the Sonic-Cloud community </h1>
+      <div className="component-container">
         <SplashSongPage/>
       </div>
   </div>
