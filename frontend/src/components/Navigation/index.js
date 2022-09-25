@@ -11,10 +11,13 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
   const history = useHistory()
   let sessionLinks;
+  if(!sessionUser){
+    history.push('/')
+  }
   if (sessionUser) {
     sessionLinks = (
       <>
-      <button onClick={()=> history.push('/upload')}>Upload Song</button>
+      <button className="upload-button"onClick={()=> history.push('/upload')}>Upload</button>
       <ProfileButton user={sessionUser} />
       </>
     );

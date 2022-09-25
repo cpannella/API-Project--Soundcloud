@@ -26,7 +26,7 @@ import button from './playButton2.jpg'
     dispatch(getSongs())
   }, [dispatch])
 
-  if(!sessionUser) return null
+  if(!sessionUser || sessionUser == {}) return null
   else return (
 
 

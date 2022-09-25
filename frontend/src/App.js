@@ -19,17 +19,15 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-
+  
   return (
     <>
-      
+
       <Navigation isLoaded={isLoaded} />
 
       {isLoaded && (
         <Switch>
-          <Route path="/login">
 
-          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
@@ -37,10 +35,8 @@ function App() {
              <CreateSongForm/>
           </Route>
           <Route exact path='/'>
-            {!sessionUser && <SplashPage/>}
+            {!sessionUser && <SplashPage/> ? <SplashPage/> : <SongPage/>}
 
-
-            <SongPage/>
           </Route>
           <Route exact path='/songs/:id'>
             <SongDetail/>

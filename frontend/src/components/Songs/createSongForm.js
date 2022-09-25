@@ -28,7 +28,7 @@ const CreateSongForm = ({song}) => {
      } else {
       errors.push("Must be valid image type")
      }
-    if(!description.length) errors.push("Don't be lame, say something about the song you're uploading")
+
     if(url.includes('mp3')) {
     } else {
       errors.push('Must be an mp3 file')
@@ -56,59 +56,70 @@ const CreateSongForm = ({song}) => {
   }
 
   return (
-    <div className="new-song-form">
-      <h2>Upload a song</h2>
-      {hasSubmitted && validationErrors.length > 0 && (
-        <div>
-          The following errors were found:
-          <ul>
-            {validationErrors.map(error => (
-              <li key={error}>{error}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-      <div>
-        <form onSubmit={onSubmit}>
-          <div>
-            <label htmlFor='title'>Title:</label>
-            <input
-              id='title'
-              type='text'
-              onChange={e => setTitle(e.target.value)}
-              value={title}
-            />
+    <div className="new-song-form-div">
+      <img ></img>
+        <div className="upload-form-container">
+      <div >
+          <form className="new-song-form"onSubmit={onSubmit}>
+        {hasSubmitted && validationErrors.length > 0 && (
+          <div className="error-container">
+            <p className="error-banner">The following errors were found:</p>
+            <ul>
+              {validationErrors.map(error => (
+                <li key={error}>{error}</li>
+                ))}
+            </ul>
           </div>
-          <div>
-            <label htmlFor='description'>Description:</label>
-            <input
-              id='description'
-              type='text'
-              onChange={e => setDescription(e.target.value)}
-              value={description}
-            />
-          </div>
-          <div>
-            <label htmlFor='imageUrl'>imageUrl:</label>
-            <input
-              id='imageUrl'
-              type='text'
-              onChange={e => setImageUrl(e.target.value)}
-              value={imageUrl}
-            />
-          </div>
-          <div>
-            <label htmlFor='audio'>audio:</label>
-            <input
-              id='audio'
-              type='text'
-              onChange={e => setUrl(e.target.value)}
-              value={url}
-            />
-          </div>
+        )}
+          <h2 className="create-song-banner">Upload a song</h2>
+            <div>
+              <label htmlFor='title'></label>
+              <input
+                className="upload-input"
+                id='title'
+                placeholder="Put your song name here"
+                type='text'
+                onChange={e => setTitle(e.target.value)}
+                value={title}
+              />
+            </div>
+            <div>
+              <label htmlFor='description'></label>
+              <input
+                className="upload-description"
+                placeholder="Say something cool about your song"
+                id='description'
+                type='text'
+                onChange={e => setDescription(e.target.value)}
+                value={description}
+              />
+            </div>
+            <div>
+              <label htmlFor='imageUrl'></label>
+              <input
+                placeholder="Drop your image link here"
+                className="upload-imageUrl"
+                id='imageUrl'
+                type='text'
+                onChange={e => setImageUrl(e.target.value)}
+                value={imageUrl}
+              />
+            </div>
+            <div>
+              <label htmlFor='audio'></label>
+              <input
+                className="upload-url"
+                placeholder="Drop your audio link here"
+                id='audio'
+                type='text'
+                onChange={e => setUrl(e.target.value)}
+                value={url}
+              />
+            </div>
 
-          <button>Submit</button> <button onClick={()=> history.push('/')}>Cancel</button>
-        </form>
+            <button className="upload-submit">Submit</button> <button className="upload-cancel"onClick={()=> history.push('/')}>Cancel</button>
+          </form>
+        </div>
       </div>
     </div>
   );
