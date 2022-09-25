@@ -9,13 +9,17 @@ import './editSong.css'
 const EditSongForm = () => {
   console.log('anything')
   const {id} = useParams()
+  console.log('this is the id', id)
   const history = useHistory()
   const dispatch = useDispatch()
 
   const songs = useSelector(state =>  state.songs)
+  console.log('these are the songs', songs)
   const sessionUser = useSelector(state => state.session.user)
   const songsArr = Object.values(songs)
+  console.log('this is hte songs array', songsArr)
   const song = songsArr.filter(song => song.id == +id)
+  console.log('this is the filtered call', song)
   const target = song[0]
   console.log('this is the target------------', target)
 
@@ -75,7 +79,7 @@ const EditSongForm = () => {
       )}
       <h2>Edit a song</h2>
         <div>
-          <label htmlFor='title'>New title</label>
+          <label htmlFor='title'>Edit your title</label>
           <input
             className="edit-fields"
             id='title'
@@ -85,7 +89,7 @@ const EditSongForm = () => {
           />
         </div>
         <div>
-          <label htmlFor='description'>New description</label>
+          <label htmlFor='description'>Edit description</label>
           <input
             className="edit-fields"
             id='description'
@@ -95,7 +99,7 @@ const EditSongForm = () => {
           />
         </div>
         <div>
-          <label htmlFor='imageUrl'>New image</label>
+          <label htmlFor='imageUrl'>Edit image</label>
           <input
             className="edit-fields"
             id='imageUrl'
@@ -105,7 +109,7 @@ const EditSongForm = () => {
           />
         </div>
         <div>
-          <label htmlFor='audio'>New song</label>
+          <label htmlFor='audio'>Edit song</label>
           <input
             className="edit-fields"
             id='audio'
@@ -115,7 +119,7 @@ const EditSongForm = () => {
           />
         </div>
         <button className="edit-submit " type="submit">Submit</button>
-        
+        <button className= "edit-cancel" onClick={()=>{history.push(`/songs/${target.id}`)}}>Cancel</button>
       </form>
       </div>
     </div>

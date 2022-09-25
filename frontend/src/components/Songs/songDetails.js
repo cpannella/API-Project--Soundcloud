@@ -16,11 +16,13 @@ const SongDetail = () => {
   const [showComments, setShowComments] = useState(false)
   const dispatch = useDispatch()
   const songs = useSelector(state =>  state.songs)
+
   const sessionUser = useSelector(state => state.session.user);
   const songList = Object.values(songs)
   const history = useHistory()
   const {url, setUrl} = useAudio()
   const filtered = songList.filter(song => song.id === +id)
+
   const song = filtered[0]
   const artist = song?.Artist
   const comments = useSelector((state) => state.comments);
@@ -46,7 +48,7 @@ const SongDetail = () => {
             <h3>{song.description}</h3>
             <p>Uploaded by {artist?.username}</p>
             {user.id === song.userId &&
-              <button className="detail-edit-button" onClick={()=> history.push(`/edit/$`)}>Edit song</button>
+              <button className="detail-edit-button" onClick={()=> history.push(`/edit/${song.id}`)}>Edit song</button>
               }
               {user.id === song.userId &&
               <button className="detail-delete-button"onClick={(e)=> {dispatch(deleteSong(song.id), history.push('/'))} }>Delete song</button>

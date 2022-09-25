@@ -1,5 +1,5 @@
 .song-details-content{
-
+  background: linear-gradient(45deg, white, rgb(245, 238, 238));
   padding-left: 50px;
   padding-top: 100px;
   display: grid;
@@ -120,6 +120,7 @@
 
 
 .comment-div{
+  padding-top: 0;
   background-color: white;
   width: 1124px;
   padding-bottom: 100px;
@@ -130,5 +131,9 @@
   padding-left: 50px;
 }
 .detail-comment{
+  visibility: hidden;
+}
+
+.detail-navlink{
   visibility: hidden;
 }

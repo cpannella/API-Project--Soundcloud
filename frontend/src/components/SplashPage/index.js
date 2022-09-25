@@ -32,7 +32,7 @@ const SplashPage = () => {
       </div>
       <div className="button-div">
 
-        <button className='splash-upload'>Upload now</button>
+       
         <h1 className="trending-text">Hear what's trending for free in the Sonic-Cloud community </h1>
       </div>
       <div className="component-container">

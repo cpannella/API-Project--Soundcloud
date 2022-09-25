@@ -25,7 +25,7 @@ export const Comments = ({comment}) => {
 return comments && (
 
   <div className="comment-container">
-    <h3>Comment section</h3>
+    
     <CreateCommentForm/>
     {filtered.map((comment, i) =>{
       console.log('this is the comment being mapped', comment.User)

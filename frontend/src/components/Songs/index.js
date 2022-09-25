@@ -46,7 +46,7 @@ import button from './playButton2.jpg'
                             {song.Artist.username}
                         </div>
                     </div>
-                  <NavLink className="navlink" key={song.id} to={`/songs/${song.id}`}>View Song Details Here</NavLink>
+                  <NavLink className="detail-navlink" key={song.id} to={`/songs/${song.id}`}>View Song Details Here</NavLink>
                   <h4></h4>
 
                     <div className="song-button-div">
