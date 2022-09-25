@@ -43,7 +43,7 @@ const CreateCommentForm = ({songs}) => {
     if(createdComment) {
     history.push(`/songs/${id}`)
     }
-   setBody('')
+   setBody(' ')
   }
 
   return (

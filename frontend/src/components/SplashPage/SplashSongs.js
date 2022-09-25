@@ -17,7 +17,7 @@ import { useAudio } from '../../context/audioPlayer';
   const comments = useSelector((state) => state.comments);
   const user = useSelector((state) => state.session.user)
   const { url, setUrl} = useAudio()
-  console.log("this is the songList-------------------",songList)
+  
 
   useEffect(() => {
     dispatch(getSongs())

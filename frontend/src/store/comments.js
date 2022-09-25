@@ -53,16 +53,16 @@ export const createComment = (comment, songId) => async dispatch => {
 
   if(response.ok) {
     const newComment =  await response.json()
-    console.log(newComment, 'this is the response')
+
     const updatedResponse = await csrfFetch(`/api/songs/${songId}/comments`)
     const {Comments} = await updatedResponse.json()
-    console.log('THIS IS THE COMMENTS', Comments)
+
     const actualComment = Comments.find((comment) => {
-      console.log("THE CONSOLE LOG INSIDE THE FIND",comment.id, newComment.id)
+
       return comment.id === newComment.id
 
     })
-    console.log('THIS IS THE ACTUAL COMMENT', actualComment)
+
     dispatch(add(actualComment))
 
   }
@@ -91,15 +91,13 @@ export default function commentReducer(state = initialState, action ){
         obj[comment.id] = comment;
         return obj
       },{})
-      console.log('this is the newComments obj ------------', newComments)
-      // (comment => {
-      // newState[comment.id] = comment
-      // })
+
+ 
 
       return {...newComments}
 
     case ADD_COMMENT:
-      console.log('this is the action object', action)
+
       newState = {...state}
       newState[action.comment.id] = action.comment
 

@@ -7,21 +7,21 @@ import { editSong } from '../../store/songs';
 import './editSong.css'
 
 const EditSongForm = () => {
-  console.log('anything')
+
   const {id} = useParams()
-  console.log('this is the id', id)
+
   const history = useHistory()
   const dispatch = useDispatch()
 
   const songs = useSelector(state =>  state.songs)
-  console.log('these are the songs', songs)
+
   const sessionUser = useSelector(state => state.session.user)
   const songsArr = Object.values(songs)
-  console.log('this is hte songs array', songsArr)
+
   const song = songsArr.filter(song => song.id == +id)
-  console.log('this is the filtered call', song)
+
   const target = song[0]
-  console.log('this is the target------------', target)
+  
 
   const [showEditSongForm, setShowEditSongForm] = useState(false)
   const [title, setTitle] = useState(target.title); //title
@@ -119,7 +119,7 @@ const EditSongForm = () => {
           />
         </div>
         <button className="edit-submit " type="submit">Submit</button>
-        
+
       </form>
       </div>
     </div>

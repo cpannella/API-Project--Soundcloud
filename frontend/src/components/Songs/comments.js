@@ -11,10 +11,9 @@ export const Comments = ({comment}) => {
   const {id} = useParams()
   const dispatch = useDispatch()
   const comments = useSelector(state => state.comments)
-  console.log('ALL COMMENTS-------------', comments)
   const details = Object.values(comments)
   const filtered = details.filter(comment => comment.songId == id )
-  // console.log("this is the filtered data---------------",filtered)
+
   const user = useSelector((state) => state.session.user)
 
 
@@ -25,10 +24,10 @@ export const Comments = ({comment}) => {
 return comments && (
 
   <div className="comment-container">
-    
+
     <CreateCommentForm/>
     {filtered.map((comment, i) =>{
-      console.log('this is the comment being mapped', comment.User)
+      
 
       return (
         <div className="single-comment-container">

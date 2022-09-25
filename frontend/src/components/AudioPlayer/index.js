@@ -8,7 +8,7 @@ import './player.css'
 
 const Player = () => {
   const { url, setUrl } = useAudio()
-  console.log('this is the audio player')
+  
   return (
   <AudioPlayer className='audio-player'
     showSkipControls={false}
