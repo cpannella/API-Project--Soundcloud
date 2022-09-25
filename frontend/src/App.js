@@ -10,6 +10,7 @@ import SongDetail from "./components/Songs/songDetails";
 import Player from "./components/AudioPlayer"
 import CreateSongForm from "./components/Songs/createSongForm";
 import SplashPage from "./components/SplashPage";
+import EditSongForm from "./components/Songs/EditSongform";
 
 function App() {
   const sessionUser = useSelector(state => state.session.user )
@@ -19,7 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-  
+
   return (
     <>
 
@@ -37,6 +38,9 @@ function App() {
           <Route exact path='/'>
             {!sessionUser && <SplashPage/> ? <SplashPage/> : <SongPage/>}
 
+          </Route>
+          <Route exact path='/edit/:id'>
+            <EditSongForm/>
           </Route>
           <Route exact path='/songs/:id'>
             <SongDetail/>

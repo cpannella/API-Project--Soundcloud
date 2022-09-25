@@ -60,7 +60,7 @@ const CreateCommentForm = ({songs}) => {
           </ul>
         </div>
       )}
-          <label htmlFor='title'>What do you think of this song?:</label>
+          <label htmlFor='title'></label>
           <input
             id='title'
             type='textarea'
@@ -69,7 +69,7 @@ const CreateCommentForm = ({songs}) => {
             value={body}
           />
         </div>
-        <button>Submit</button>
+        <button className="comment-submit">Submit</button>
       </form>
     </div>
   );

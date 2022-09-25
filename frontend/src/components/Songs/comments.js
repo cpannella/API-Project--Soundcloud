@@ -11,7 +11,7 @@ export const Comments = ({comment}) => {
   const {id} = useParams()
   const dispatch = useDispatch()
   const comments = useSelector(state => state.comments)
-  // console.log('ALL COMMENTS-------------', comments)
+  console.log('ALL COMMENTS-------------', comments)
   const details = Object.values(comments)
   const filtered = details.filter(comment => comment.songId == id )
   // console.log("this is the filtered data---------------",filtered)
@@ -27,20 +27,17 @@ return comments && (
   <div className="comment-container">
     <h3>Comment section</h3>
     <CreateCommentForm/>
-
     {filtered.map((comment, i) =>{
-
-
       console.log('this is the comment being mapped', comment.User)
 
       return (
         <div className="single-comment-container">
             <div>
-              <p>{comment.User.username}</p>
-              <p>{comment.body}</p>
+              <p className="comment-data-top">{comment.User.username}</p>
+              <p className="comment-data">{comment.body}</p>
             </div>
              {user.id === comment.userId &&
-             <button onClick={()=> {dispatch(deleteComment(comment.id))}}>Delete comment</button>
+             <button className="delete-Comment"onClick={()=> {dispatch(deleteComment(comment.id))}}>Delete</button>
             }
         </div>
       )

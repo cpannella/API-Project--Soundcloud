@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { editSong } from '../../store/songs';
 
-import './songs.css'
+import './editSong.css'
 
 const EditSongForm = () => {
+  console.log('anything')
   const {id} = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
@@ -16,8 +17,9 @@ const EditSongForm = () => {
   const songsArr = Object.values(songs)
   const song = songsArr.filter(song => song.id == +id)
   const target = song[0]
+  console.log('this is the target------------', target)
 
-  const [showEditsongForm, setShowEditSongForm] = useState(false)
+  const [showEditSongForm, setShowEditSongForm] = useState(false)
   const [title, setTitle] = useState(target.title); //title
   const [description, setDescription] = useState(target.description); //description
   const [imageUrl, setImageUrl] = useState(target.imageUrl); //imageUrl
@@ -37,7 +39,6 @@ const EditSongForm = () => {
 
 
 
-
   const onSubmit = async (e) => {
     e.preventDefault()
     setShowEditSongForm(false)
@@ -53,14 +54,17 @@ const EditSongForm = () => {
 
     let updateSong = await dispatch(editSong(payload))
       if(updateSong) {
-       history.push(`/`)
+       history.push(`/songs/${target.id}`)
     }
   }
 
   return (
-    <div className="edit-song-form">
+    <div className="edit-song-form-container">
+      <div>
+
+      <form className="edit-song-form" onSubmit={onSubmit}>
       {hasSubmitted && validationErrors.length > 0 && (
-        <div>
+        <div className="edit-error-messages">
           The following errors were found:
           <ul>
             {validationErrors.map(error => (
@@ -70,10 +74,10 @@ const EditSongForm = () => {
         </div>
       )}
       <h2>Edit a song</h2>
-      <form onSubmit={onSubmit}>
         <div>
-          <label htmlFor='title'>Title:</label>
+          <label htmlFor='title'>New title</label>
           <input
+            className="edit-fields"
             id='title'
             type='text'
             onChange={e => setTitle(e.target.value)}
@@ -81,8 +85,9 @@ const EditSongForm = () => {
           />
         </div>
         <div>
-          <label htmlFor='description'>Description:</label>
+          <label htmlFor='description'>New description</label>
           <input
+            className="edit-fields"
             id='description'
             type='text'
             onChange={e => setDescription(e.target.value)}
@@ -90,8 +95,9 @@ const EditSongForm = () => {
           />
         </div>
         <div>
-          <label htmlFor='imageUrl'>imageUrl:</label>
+          <label htmlFor='imageUrl'>New image</label>
           <input
+            className="edit-fields"
             id='imageUrl'
             type='text'
             onChange={e => setImageUrl(e.target.value)}
@@ -99,16 +105,19 @@ const EditSongForm = () => {
           />
         </div>
         <div>
-          <label htmlFor='audio'>audio:</label>
+          <label htmlFor='audio'>New song</label>
           <input
+            className="edit-fields"
             id='audio'
             type='text'
             onChange={e => setUrl(e.target.value)}
             value={url}
           />
         </div>
-        <button >Submit</button>
+        <button className="edit-submit " type="submit">Submit</button>
+        
       </form>
+      </div>
     </div>
   );
 }

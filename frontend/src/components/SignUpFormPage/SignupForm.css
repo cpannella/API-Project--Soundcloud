@@ -28,7 +28,8 @@
 .signup-lastName,
 .signup-password,
 .confirm-password {
-  font-size: 24px;;
+  font-size: 24px;
+  border-radius: 7px;
 }
 
 .signup-submit-button{

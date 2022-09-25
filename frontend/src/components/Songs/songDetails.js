@@ -7,6 +7,7 @@ import {Comments} from './comments.js'
 import { getComments } from '../../store/comments';
 import { useAudio } from '../../context/audioPlayer';
 import './songs.css'
+import button from './playButton2.jpg'
 
 
 const SongDetail = () => {
@@ -36,29 +37,34 @@ const SongDetail = () => {
   }
 
   return (
-    <div className="song-details">
-      <h1>SONG DETAILS</h1>
-      <h2> {song.title} </h2>
-      <h3>{song.description}</h3>
-      <p>Uploaded by {artist?.username}</p>
-      <img alt={song.imageUrl} src={song.imageUrl}></img>
-
-      <div>
-        {user.id === song.userId &&
-        <button onClick={()=> setShowEditSongForm(true)}>Edit song</button>
-        }
-        {user.id === song.userId &&
-        <button onClick={(e)=> {dispatch(deleteSong(song.id), history.push('/'))} }>Delete song</button>
-        }
-        <button onClick={()=> {setUrl(song.url)}}>Play song</button>
+    <div className="song-details-page">
+      <div className="song-details-container">
+        <div className="song-details-content">
+          <div>
+            <img className="playButton"src={button} onClick={()=> {setUrl(song.url)}}></img>
+            <h2> {song.title} </h2>
+            <h3>{song.description}</h3>
+            <p>Uploaded by {artist?.username}</p>
+            {user.id === song.userId &&
+              <button className="detail-edit-button" onClick={()=> history.push(`/edit/$`)}>Edit song</button>
+              }
+              {user.id === song.userId &&
+              <button className="detail-delete-button"onClick={(e)=> {dispatch(deleteSong(song.id), history.push('/'))} }>Delete song</button>
+              }
+          </div>
+          <img className="song-detail-image"alt={song.imageUrl} src={song.imageUrl}></img>
+        </div>
       </div>
-          {showEditsongForm ? <EditSongForm song={song}/> : null}
-      <div>
-
-        <button onClick={()=> setShowComments(true)}>View Comments</button>
-        <button onClick={()=> setShowComments(false)}>Hide Comments</button>
-          {showComments ? <Comments/> :null}
-       </div>
+          <div className="songDetail-comment-edit">
+                <div>
+                {showEditsongForm ? <EditSongForm song={song}/> : null}
+                </div>
+              <div className="comment-div">
+              <button className="detail-comment"onClick={()=> setShowComments(true)}>View Comments</button>
+              <button className="detail-comment"onClick={()=> setShowComments(false)}>Hide Comments</button>
+                {comments ? <Comments/> :null}
+            </div>
+          </div>
     </div>
   )
 

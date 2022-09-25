@@ -1,0 +1,19 @@
+.comment-container{
+  padding-left: 40px;
+}
+
+.comment-data{
+  margin-top:0;
+}
+.comment-data-top{
+  margin-bottom: 0;
+}
+
+.delete-Comment{
+  height:25px;
+  width:100px;
+  background-color: #f50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
