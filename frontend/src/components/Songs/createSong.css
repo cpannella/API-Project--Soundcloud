@@ -1,4 +1,6 @@
-
+.error-container{
+  color: red;
+}
 
 .new-song-form-div{
   display: flex;

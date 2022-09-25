@@ -66,3 +66,7 @@
   font-size: 24px;
   border-radius: 7px;
 }
+
+.error-field{
+  color: red;
+}

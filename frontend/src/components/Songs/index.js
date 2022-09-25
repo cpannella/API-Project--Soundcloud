@@ -31,7 +31,7 @@ import button from './playButton2.jpg'
 
 
         <div className='songPage-container'>
-          <p>Hear the latest posts on Sonic Cloud</p>
+          <p className="songs-banner">Hear the latest posts on Sonic Cloud</p>
             {songList.map((song) =>{
               return (
                 <div key={song.id} className="song-container">
@@ -40,10 +40,9 @@ import button from './playButton2.jpg'
                     <div className="details-container">
                     <img className="play-button"src={button} onClick={()=> setUrl(song.url)}></img>
 
-                        <div>
-
-                            <p>{song.title}</p>
-                            {song.Artist.username}
+                        <div className="songstuff">
+                            <p className="title-field">{song.title}</p>
+                            <p className="artist-name">{song.Artist.username}</p>
                         </div>
                     </div>
                   <NavLink className="detail-navlink" key={song.id} to={`/songs/${song.id}`}>View Song Details Here</NavLink>

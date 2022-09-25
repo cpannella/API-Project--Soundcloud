@@ -119,7 +119,7 @@ const EditSongForm = () => {
           />
         </div>
         <button className="edit-submit " type="submit">Submit</button>
-        <button className= "edit-cancel" onClick={()=>{history.push(`/songs/${target.id}`)}}>Cancel</button>
+        
       </form>
       </div>
     </div>

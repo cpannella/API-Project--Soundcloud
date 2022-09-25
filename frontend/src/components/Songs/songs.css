@@ -59,7 +59,7 @@
 
 .song-container{
   position: relative;
-  border: none;
+  right: 40px;
   display: grid;
   grid-template-columns: 20% 33% 33%;
   align-items: center;
@@ -74,8 +74,11 @@
 }
 
 .details-container{
+  display: flex;
+  flex-direction: row;
+
   position:relative;
-  bottom: 17px;
+  bottom: 45px;
   right: 17px;
 }
 
@@ -86,6 +89,7 @@
   min-height: 180px;
 }
 .song-details > img {
+  position:relative;
   width: 180px;
   height: 180px
 }
@@ -123,6 +127,7 @@
   padding-top: 0;
   background-color: white;
   width: 1124px;
+  position: relative;
   padding-bottom: 100px;
 }
 
@@ -136,4 +141,34 @@
 
 .detail-navlink{
   visibility: hidden;
+}
+
+.another-comment-div{
+  position: relative;
+  left: 8px;
+}
+
+.title-field{
+  font-size:20px;
+  color: #333;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.artist-name{
+  color: #999999;
+  margin-top: 5px;
+}
+
+.songstuff{
+  position: relative;
+  left: 20px;
+}
+
+
+.songs-banner{
+  position: relative;
+  color:#999999;
+  right: 20px;
+  bottom: 10px;
 }

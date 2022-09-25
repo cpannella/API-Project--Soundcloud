@@ -51,7 +51,7 @@ const CreateCommentForm = ({songs}) => {
       <form onSubmit={onSubmit}>
         <div>
         {hasSubmitted && validationErrors.length > 0 && (
-        <div>
+        <div className="comment-error-messages">
           The following errors were found:
           <ul>
             {validationErrors.map(error => (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
-
+import profile from './profileicon.jpg'
 import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
@@ -36,13 +36,13 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <div className="profile-button">
-      <button onClick={openMenu}>
-      <i className="fa-regular-fa user-music"></i>
-      </button>
+      <div>
+      <img className="profile-button" src={profile} onClick={openMenu}></img>
+
       </div>
       <div className="dropDown-menu">
       {showMenu && (
+        
         <ul className="profile-dropdown">
           <li className="dropdownText">{user.username}</li>
           <hr className="break"></hr>

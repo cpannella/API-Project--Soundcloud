@@ -62,9 +62,11 @@ const SongDetail = () => {
                 {showEditsongForm ? <EditSongForm song={song}/> : null}
                 </div>
               <div className="comment-div">
+                <div className="another-comment-div">
               <button className="detail-comment"onClick={()=> setShowComments(true)}>View Comments</button>
               <button className="detail-comment"onClick={()=> setShowComments(false)}>Hide Comments</button>
                 {comments ? <Comments/> :null}
+                </div>
             </div>
           </div>
     </div>

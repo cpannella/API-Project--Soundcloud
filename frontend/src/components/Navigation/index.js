@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import SignUpFormModal from '../SignUpFormPage';
+import icon from './icon.PNG'
 
 
 function Navigation({ isLoaded }){
@@ -28,7 +29,8 @@ function Navigation({ isLoaded }){
 
   return (
     <div className='nav-bar'>
-          <NavLink exact to="/" style={{color: '#ccc', background: "#111111" }}>Home</NavLink>
+          
+          <img onClick={()=> history.push('/')}className="app-icon"src={icon}></img>
           <input className='search-bar' type="search" placeholder='Search' ></input>
           {isLoaded && sessionLinks}
     </div>
