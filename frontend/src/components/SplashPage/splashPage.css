@@ -24,7 +24,7 @@
 }
 .title-box{
   margin:0;
-  font-size:14px
+  font-size:18px
 }
 .splash-song-container > img {
   width: 180px;
@@ -99,7 +99,9 @@ text-decoration: none;
 }
 
 .artist-splash {
-  margin: 0
+  margin: 0;
+  font-size: 15px;
+  color: #999999;
 }
 .splash-song-container > img:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);

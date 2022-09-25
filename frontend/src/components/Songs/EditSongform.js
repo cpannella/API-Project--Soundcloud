@@ -21,7 +21,7 @@ const EditSongForm = () => {
   const song = songsArr.filter(song => song.id == +id)
 
   const target = song[0]
-  
+
 
   const [showEditSongForm, setShowEditSongForm] = useState(false)
   const [title, setTitle] = useState(target.title); //title
@@ -39,7 +39,13 @@ const EditSongForm = () => {
       errors.push("Must be valid image type .jpg or .png")
      }
     setValidationErrors(errors)
-  }, [title, imageUrl])
+    if(url.includes('mp3')){
+
+    }
+    else {
+      errors.push('Must be valid mp3 format')
+    }
+  }, [title, imageUrl, url])
 
 
 

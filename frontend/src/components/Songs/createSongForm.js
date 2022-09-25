@@ -117,7 +117,7 @@ const CreateSongForm = ({song}) => {
               />
             </div>
 
-            <button className="upload-submit">Submit</button> <button className="upload-cancel"onClick={()=> history.push('/')}>Cancel</button>
+            <button className="upload-submit">Submit</button> 
           </form>
         </div>
       </div>
