@@ -25,9 +25,9 @@ const CreateCommentForm = ({songs}) => {
   }, [body])
 
 
-  // useEffect(()=>{
-  //   dispatch(getComments(id))
-  // }, [dispatch])
+  useEffect(()=>{
+    dispatch(getComments(id))
+  }, [dispatch])
 
   const songId = parseInt(id)
   const onSubmit = async (e) => {
@@ -37,7 +37,7 @@ const CreateCommentForm = ({songs}) => {
       body
     }
     setHasSubmitted(true)
-    if(validationErrors.length) return alert('can not submit')
+    // if(validationErrors.length) return alert('can not submit')
   let createdComment = await dispatch(createComment(payload, songId))
     if(createdComment) {
     history.push(`/songs/${id}`)
