@@ -19,8 +19,8 @@ const CreateCommentForm = ({songs}) => {
 
 
 
-  useEffect(()=>{
-    const errors = []
+
+  const errors = []
     if(!body.length) errors.push('Field can not be empty')
     setValidationErrors(errors)
   }, [body])
@@ -43,8 +43,10 @@ const CreateCommentForm = ({songs}) => {
     if(createdComment) {
     history.push(`/songs/${id}`)
     }
-   setBody(' ')
+   setBody('')
   }
+
+
 
   return (
     <div className="new-comment-form">
