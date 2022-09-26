@@ -3,7 +3,7 @@
   height: 70px;
   position: relative;
   bottom: 20px;
-  left:195px;
+  left:305px;
 }
 
 .session-links{
@@ -17,7 +17,7 @@
   margin: 0;
   padding: 0;
   position: relative;
-  right: 25px;
+  right: 15px;
   bottom: 20px;
   width: 80px;
   height: 69px;
@@ -29,7 +29,7 @@
   bottom: 20px;
   background-color: black;
   color: #CCCCCC;
-  left: 42px;
+  left: 60px;
   height:70px;
   width: 100px;
   font-size: 18px;
