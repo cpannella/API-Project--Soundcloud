@@ -31,12 +31,14 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+<div align="center">!
+
+  <a href="[https://github.com/github_username/repo_name](https://github.dev/cpannella/API-Project--Soundcloud)">
+    <img src="[icon ico](https://user-images.githubusercontent.com/103207922/192176563-0ff752f5-dd64-4775-a139-7406f050831b.PNG)
+">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Sonic Cloud</h3>
 
   <p align="center">
     project_description
