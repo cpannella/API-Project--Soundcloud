@@ -36,8 +36,7 @@ function App() {
              <CreateSongForm/>
           </Route>
           <Route exact path='/'>
-            {!sessionUser && <SplashPage/> ? <SplashPage/> : <SongPage/>}
-
+            {!sessionUser?.username && <SplashPage/> ? <SplashPage/> : <SongPage/>}
           </Route>
           <Route exact path='/edit/:id'>
             <EditSongForm/>

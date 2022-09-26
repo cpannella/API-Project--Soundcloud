@@ -15,21 +15,21 @@ function Navigation({ isLoaded }){
   if(!sessionUser){
     history.push('/')
   }
-  if (sessionUser) {
+  if (!sessionUser?.username) {
+    return null
+  } else {
     sessionLinks = (
       <>
       <button className="upload-button"onClick={()=> history.push('/upload')}>Upload</button>
       <ProfileButton user={sessionUser} />
       </>
-    );
-  } else {
-     return null
+      );
   }
 
 
   return (
     <div className='nav-bar'>
-          
+
           <img onClick={()=> history.push('/')}className="app-icon"src={icon}></img>
           <input className='search-bar' type="search" placeholder='Search' ></input>
           {isLoaded && sessionLinks}
