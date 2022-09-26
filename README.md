@@ -119,14 +119,7 @@ Here's how you can access Sonic Cloud
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -135,6 +128,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 - [x] Feature 1 - Songs - Users can upload, edit, delete songs.
     - [x] Nested Feature - Comments - Users can post and delete comments on songs.
+  - [] Feature 2 - Albums - Users will be able to upload, edit, share Albums
+    - [] Feature 3 - Playlists - Users will be able to create playlists from different songs on the website.
+  
 
 
 
