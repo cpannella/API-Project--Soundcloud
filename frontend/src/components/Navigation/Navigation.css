@@ -3,9 +3,13 @@
   height: 70px;
   position: relative;
   bottom: 20px;
-  left:275px;
+  left:290px;
+
 }
 
+.profile-button:hover, .app-icon:hover, .upload-button:hover{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+}
 .session-links{
   padding: 10px;
   color: #ccc;
@@ -112,7 +116,7 @@ a{ text-decoration: none;}
   padding: 0;
   position: relative;
   top: 34px;
-  right:165px;
+  right:175px;
   background: #333;;
   height: 160px;
   width: 140px;

@@ -44,10 +44,18 @@
 .playButton{
   width: 80px;
   height:80px;
+
+}
+.playButton:hover{
+  box-shadow: 0 2px 5px rgba(223, 221, 221, 0.8);
 }
 .song-details-content > img {
   width: 350px;
   height: 350px;
+}
+
+.play-button:hover{
+  box-shadow: 0 2px 5px rgba(223, 221, 221, 0.8);
 }
 
 .song-details-container{
