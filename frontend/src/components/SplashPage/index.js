@@ -27,12 +27,12 @@ const SplashPage = () => {
         <h1 className="banner-text">Discover new music at Sonic Cloud</h1>
       </div>
       <div className="main-div">
-        <img src={banner} style={{height: 400, width: 1014}} ></img>
+        <img className="fugazi"src={banner} style={{height: 400, width: 1014}} ></img>
         {/* <p className="banner-text">Discover what's popping before it  </p> */}
       </div>
       <div className="button-div">
 
-       
+
         <h1 className="trending-text">Hear what's trending for free in the Sonic-Cloud community </h1>
       </div>
       <div className="component-container">
