@@ -47,10 +47,11 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
+Sonic Cloud is a Souncloud clone, this project 
 [Sonic Cloud](https://sonic-cloud.herokuapp.com/)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+![soundcloud screenshot](https://user-images.githubusercontent.com/103207922/192181655-2ff61eda-3317-4b28-932d-495c12b50ee2.PNG)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
