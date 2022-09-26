@@ -49,10 +49,12 @@
 ## About The Project
 Sonic Cloud is a Souncloud clone, this project will soon be developed into a complete clone of the original website.
 [Sonic Cloud](https://sonic-cloud.herokuapp.com/)
-Here is a screenshot of the splash page where you can check out some of the music that's already loaded for free. 
+
 ![soundcloud screenshot](https://user-images.githubusercontent.com/103207922/192181655-2ff61eda-3317-4b28-932d-495c12b50ee2.PNG)
 
-
+Here is a screenshot of the splash page where you can check out some of the music that's already loaded for free. 
+  
+  
   
   ![website screenshot](https://user-images.githubusercontent.com/103207922/192182263-245500e2-38a7-450a-9f46-6fc2aeedaf49.PNG)
 
