@@ -88,11 +88,11 @@ This is an example of how to list things you need to use the software and how to
 ### Installation
 
 
-   1.Clone the repo
+   1 .Clone the repo
    ```sh
    git clone [https://github.com/github_username/repo_name.git](https://github.com/cpannella/API-Project--Soundcloud.git)
    ```
-   2.Install NPM packages
+   2 .Install NPM packages
    ```sh
    npm install
 
@@ -119,7 +119,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] Feature 1 - Songs - Users can upload, edit, delete songs.
     - [x] Nested Feature - Comments - Users can post and delete comments on songs.
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -143,11 +143,6 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -155,9 +150,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Your Name - Christopher Pannella - 
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [My Github](https://github.com/cpannella/API-Project--Soundcloud)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
