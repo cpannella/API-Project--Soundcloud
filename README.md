@@ -60,6 +60,12 @@ Here is a screenshot of the splash page where you can check out some of the musi
 
   
   
+  
+  Check out the Song details page where you can edit or delete songs (if you uploaded them), and leave coments.
+  
+  ![website screenshot](https://user-images.githubusercontent.com/103207922/192182501-589c2193-faf8-4195-8a9b-84142f76d6e5.PNG)
+
+  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
