@@ -53,7 +53,7 @@ Sonic Cloud is a Souncloud clone, this project will soon be developed into a com
 
 ![soundcloud screenshot](https://user-images.githubusercontent.com/103207922/192181655-2ff61eda-3317-4b28-932d-495c12b50ee2.PNG)
 
-Here is a screenshot of the splash page where you can check out some of the music that's already loaded for free. 
+  ## Splash page  
 
 
 
@@ -62,7 +62,7 @@ Here is a screenshot of the splash page where you can check out some of the musi
 
 
 
-  Check out the Song details page where you can edit or delete songs (if you uploaded them), and leave coments.
+  ### Check out the Song details page where you can edit or delete songs (if you uploaded them), and leave coments.
 
   ![website screenshot](https://user-images.githubusercontent.com/103207922/192182501-589c2193-faf8-4195-8a9b-84142f76d6e5.PNG)
 
