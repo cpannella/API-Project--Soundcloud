@@ -128,8 +128,8 @@ Here's how you can access Sonic Cloud
 
 - [x] Feature 1 - Songs - Users can upload, edit, delete songs.
     - [x] Nested Feature - Comments - Users can post and delete comments on songs.
-  - [] Feature 2 - Albums - Users will be able to upload, edit, share Albums
-    - [] Feature 3 - Playlists - Users will be able to create playlists from different songs on the website.
+  - [ ] Feature 2 - Albums - Users will be able to upload, edit, share Albums
+    - [ ] Feature 3 - Playlists - Users will be able to create playlists from different songs on the website.
   
 
 
