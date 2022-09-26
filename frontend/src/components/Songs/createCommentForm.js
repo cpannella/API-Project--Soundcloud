@@ -18,11 +18,11 @@ const CreateCommentForm = ({songs}) => {
   const [hasSubmitted, setHasSubmitted] = useState(false)
 
 
-  useEffect(()=>{
-    const errors = []
-    if(!body.length) errors.push('Field can not be empty')
-    setValidationErrors(errors)
-  }, [body])
+  // useEffect(()=>{
+  //   const errors = []
+  //   if(!body.length) errors.push('Field can not be empty')
+  //   setValidationErrors(errors)
+  // }, [body])
 
 
   useEffect(()=>{
