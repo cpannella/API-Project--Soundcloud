@@ -47,7 +47,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Sonic Cloud is a Souncloud clone, this project 
+Sonic Cloud is a Souncloud clone, this project will soon be developed into a complete clone of the original website.
 [Sonic Cloud](https://sonic-cloud.herokuapp.com/)
 
 ![soundcloud screenshot](https://user-images.githubusercontent.com/103207922/192181655-2ff61eda-3317-4b28-932d-495c12b50ee2.PNG)
@@ -74,7 +74,7 @@ Here's how you can access Sonic Cloud
 
 ### Prerequisites
 
-* npm
+ npm
   ```sh
   npm install npm@latest -g
   ```
@@ -91,6 +91,9 @@ Here's how you can access Sonic Cloud
    npm install
 
    ```
+  3. CD into the frontend folder and start the frontend server,
+  4. CD into the backend server and start the backend.
+  5.Navigate to Sonic Cloud at https://localhost:3000
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
