@@ -25,6 +25,7 @@ const CreateCommentForm = ({songs}) => {
   }, [body])
 
 
+
   useEffect(()=>{
     dispatch(getComments(id))
   }, [dispatch])
@@ -42,9 +43,9 @@ const CreateCommentForm = ({songs}) => {
     if(createdComment) {
     history.push(`/songs/${id}`)
     }
-   setBody(' ')
+   setBody('')
    //found it, retyped it then pasted everything back in
-   // went through line by line 
+   // went through line by line
    //the orignal setBody( ) after submitting the comment w
    //was defaulted to SetBody(' '), which has a length of 1. This is why
    //this error occurs
