@@ -4,6 +4,7 @@ import SignUpForm from './SignUpForm';
 
 function SignUpFormModal() {
   const [showModal, setShowModal] = useState(false);
+  console.log('pancakes')
 
   return (
     <>
