@@ -1,14 +1,13 @@
 .song-details-content{
   background: linear-gradient(45deg, white, rgb(245, 238, 238));
-  padding-left: 50px;
+  padding-left: 5vh;
   padding-top: 100px;
   display: grid;
   grid-template-columns: 60% 20% 20%;
   justify-self: space-around;
 }
 .song-detail-image{
-  padding-left:50px;
-  padding-bottom:20px;
+ padding-bottom: 2vh;
 }
 .song-detail-image:hover{
   cursor:default;
@@ -23,6 +22,7 @@
   justify-content: center;
 }
 .song-details-page{
+  width: 75%;
   margin: auto;
 }
 .detail-edit-button{
@@ -64,33 +64,31 @@
 .song-details-container{
   margin: auto;
   background-color: white;
-  width: 1124px;
-  min-width: 200px;
+  width: 140vh;
 }
 
 .song-container{
   position: relative;
-  right: 40px;
+
   display: grid;
   grid-template-columns: 20% 33% 33%;
   align-items: center;
   flex-direction: row;
-  width: 900px;
+  width: 100%;
   margin-bottom: 10px;
   justify-content: space-around;
 }
 .play-button{
-  max-width: 70px;
+  max-width: 80px;
   border-radius: 100
 }
 
 .details-container{
   display: flex;
   flex-direction: row;
-
   position:relative;
   bottom: 45px;
-  right: 17px;
+
 }
 
 .song-container > img {
@@ -122,22 +120,19 @@
   position:relative;
   z-index: 0;
   margin: auto;
-  padding-top:100px;
-  padding-left: 100px;
-  padding-bottom: 70px;
+  padding-top:5%;
+  padding-bottom: 5%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: #FFFFFF;
-  max-width: 1014px;
-  width: 1014px;
+  width: 65%;
 }
-
 
 .comment-div{
   padding-top: 0;
   background-color: white;
-  width: 1124px;
+  width: 140vh;
   position: relative;
   padding-bottom: 100px;
 }
@@ -172,14 +167,13 @@
 }
 
 .songstuff{
-  position: relative;
-  left: 20px;
+  padding-left: 2vh;
 }
 
 
 .songs-banner{
-  position: relative;
   color:#999999;
-  right: 20px;
-  bottom: 10px;
+  margin-top: 0;
+  padding-left: 2vh;
+  padding-top: 1vh;
 }

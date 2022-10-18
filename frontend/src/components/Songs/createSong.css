@@ -14,9 +14,9 @@
 .new-song-form{
   border-radius: 2px;
   position: relative;
-  height: 600px;
-  width: 600px;
-  display: flex;
+  height: 70vh;
+  width: 70vh;
+  display:vhflex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;

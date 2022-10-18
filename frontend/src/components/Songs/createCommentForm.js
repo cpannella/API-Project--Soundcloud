@@ -32,23 +32,19 @@ const CreateCommentForm = ({songs}) => {
 
   const songId = parseInt(id)
   const onSubmit = async (e) => {
+
     e.preventDefault()
     const payload = {
       songId,
       body
     }
-    setHasSubmitted(true)
+    setHasSubmitted(false)
     if(validationErrors.length) return alert('can not submit')
   let createdComment = await dispatch(createComment(payload, songId))
     if(createdComment) {
     history.push(`/songs/${id}`)
     }
    setBody('')
-   //found it, retyped it then pasted everything back in
-   // went through line by line
-   //the orignal setBody( ) after submitting the comment w
-   //was defaulted to SetBody(' '), which has a length of 1. This is why
-   //this error occurs
   }
 
 
@@ -74,6 +70,7 @@ const CreateCommentForm = ({songs}) => {
             id='title'
             type='textarea'
             placeholder="Tell us how you feel here!"
+            required pattern="(?!\s+$)[a-zA-Z,'. ! ? -]+"
             onChange={e => setBody(e.target.value)}
             value={body}
           />

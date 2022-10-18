@@ -36,7 +36,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <div>
+      <div className="some-div">
       <img className="profile-button" src={profile} onClick={openMenu}></img>
 
       </div>

@@ -1,9 +1,23 @@
+.spacers{
+  width: 40vh;
+}
+
+.nav-container{
+  display: flex;
+  width: 65%;
+  justify-content: space-between;
+}
+
 .app-icon{
-  width: 100px;
-  height: 70px;
+  width: 15vh;
+  height: 100%;
   position: relative;
-  bottom: 20px;
-  left:285px;
+
+}
+
+.home-buttons{
+  display:flex;
+  width: fit-content;
 
 }
 
@@ -11,31 +25,23 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
 }
 .session-links{
-  padding: 10px;
+
   color: #ccc;
   border: 1px solid blac
 }
 
 .profile-button{
-
   margin: 0;
   padding: 0;
-  position: relative;
-  right: 15px;
-  bottom: 20px;
-  width: 80px;
-  height: 69px;
+  width: 10vh;
+  height: 99%;
 }
 
 .upload-button{
-
-  position: relative;
-  bottom: 20px;
   background-color: black;
   color: #CCCCCC;
-  left: 75px;
-  height:70px;
-  width: 100px;
+  height:10vh;
+  width: 15vh;
   font-size: 18px;
 }
 .session-links > a.signup-button{
@@ -43,7 +49,6 @@
   background:#f50
 }
 .signup-button {
-
   background: '#f50'
 }
 
@@ -54,11 +59,11 @@ a{ text-decoration: none;}
   z-index: 1;
   top: 0px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   background: #333;
   width: 100%;
-  height: 30px;
-  padding: 20px
+  height: 10vh;
+
 }
 
 .search-bar {
@@ -71,30 +76,26 @@ a{ text-decoration: none;}
 
 
 .dropDown-menu{
+  display: flex;
   position: relative;
-  right: 70px;
-
-
-
-  height: 140px;
-  width: 140px;
+  top:0;
+  height: 20vh;
+  width: 0;
 }
 
 .dropdownText{
   color: white;
   position: relative;
-  left: 10px;
   margin: 0;
   padding:0;
-  top: 15px;
+
 }
 
 .logoutButton{
   position: relative;
-  top: 25px;
-  left: 20px;
-  width: 100px;
-  height: 40px;
+  width: 75%;
+  height: 25%;
+  bottom: 0.5vh;
   border-radius: 5px;
   font-size: 18px;
   background-color: #f50;
@@ -103,9 +104,7 @@ a{ text-decoration: none;}
 }
 .break{
   position: relative;
-  top: 15px;
-  width: 137px;
-
+  width: 99%;
   padding-left:0;
   padding-right:0;
   margin-left: 0;
@@ -113,11 +112,26 @@ a{ text-decoration: none;}
 }
 
 .profile-dropdown{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-evenly;
   padding: 0;
-  position: relative;
-  top: 34px;
-  right:175px;
+  position: absolute;
+  z-index: 1;
   background: #333;;
-  height: 160px;
-  width: 140px;
+  left: -8vh;
+  top: .25vh;
+  height: 22vh;
+  width: 18vh;
+  margin-top: 0;
+}
+
+.test-div, .some-div{
+  display: flex;
+  flex-direction: column;
+  padding:0;
+  height: 100%;
+  width:fit-content;
 }

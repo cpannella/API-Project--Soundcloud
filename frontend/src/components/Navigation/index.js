@@ -20,8 +20,12 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-      <button className="upload-button"onClick={()=> history.push('/upload')}>Upload</button>
-      <ProfileButton user={sessionUser} />
+        <div className="home-buttons">
+          <button className="upload-button"onClick={()=> history.push('/upload')}>Upload</button>
+          <div className="test-div">
+          <ProfileButton user={sessionUser} />
+          </div>
+      </div>
       </>
       );
   }
@@ -29,10 +33,15 @@ function Navigation({ isLoaded }){
 
   return (
     <div className='nav-bar'>
+          <div className="nav-container">
+            {/* <div className="spacers"></div> */}
+            <img onClick={()=> history.push('/')}className="app-icon"src={icon}></img>
+            {/* <div className="spacers"></div> */}
+            {/* <div className="spacers"></div> */}
 
-          <img onClick={()=> history.push('/')}className="app-icon"src={icon}></img>
-          <input className='search-bar' type="search" placeholder='Search' ></input>
-          {isLoaded && sessionLinks}
+            {isLoaded && sessionLinks}
+            {/* <div className="spacers"></div> */}
+         </div>
     </div>
   );
 }

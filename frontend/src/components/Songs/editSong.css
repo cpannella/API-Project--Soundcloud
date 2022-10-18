@@ -9,8 +9,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    width: 600px;
-    height: 500px;
+    width: 70vh;
+    height: 60vh;
     border-radius: 7px;
   }
 
@@ -23,15 +23,14 @@
 .edit-submit{
   background-color: #f50;
   position: relative;
-
   height: 50px;
-  width: 470px;
+  width: 90%;
   padding-left: 10px;
   font-size: 20px;
   color: #FFFFFF;
   border-radius: 7px;
   border: none;
-  top: 50px;
+
 }
 
 .edit-cancel{
@@ -53,5 +52,5 @@
 .edit-error-messages{
   position: relative;
   color: red;
-  top:30px;
+  top: 3vh;
 }
