@@ -1,7 +1,13 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
 module.exports = {
   async up (queryInterface, Sequelize) {
+    options.tableName = "Comments"
     /**
      * Add seed commands here.
      *
@@ -11,7 +17,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await queryInterface.bulkInsert('Comments', [
+   await queryInterface.bulkInsert(options, [
     {
       songId: 1,
       userId: 1,
@@ -26,12 +32,13 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
+    options.tableName = "Comments"
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Comments', null, {})
+    await queryInterface.bulkDelete(options, null, {})
   }
 };

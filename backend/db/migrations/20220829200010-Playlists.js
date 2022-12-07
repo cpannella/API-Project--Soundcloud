@@ -1,5 +1,13 @@
 'use strict';
 
+let options = {};
+options.tableName = "Playlists"
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
+
+
 const { query } = require("express");
 
 module.exports = {
@@ -45,7 +53,7 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    })
+    }. options)
   },
 
   async down (queryInterface, Sequelize) {
@@ -55,7 +63,7 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable('Playlists')
+    await queryInterface.dropTable('Playlists', options)
 
   }
 };

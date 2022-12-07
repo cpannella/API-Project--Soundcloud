@@ -1,5 +1,13 @@
 'use strict';
 
+let options = {};
+options.tableName = "Comments"
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
+
+
 const { query } = require("express");
 
 module.exports = {
@@ -44,7 +52,7 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    })
+    }, options)
   },
 
   async down (queryInterface, Sequelize) {
@@ -54,6 +62,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.droptable('Comments')
+    await queryInterface.droptable('Comments', options)
   }
 };
